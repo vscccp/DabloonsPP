@@ -125,7 +125,7 @@
     <Compile Include="GameObjects\IEnemy.cs" />
     <Compile Include="GameObjects\IGameObject.cs" />
     <Compile Include="GameObjects\ITower.cs" />
-    <Compile Include="GameObjects\Projectile.cs" />
+    <Compile Include="GameObjects\IProjectile.cs" />
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
