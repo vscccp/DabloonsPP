@@ -27,6 +27,7 @@ namespace DabloonsPP
         public Rectangle Hitbox
         {
             get { return hitbox; }
+            set { hitbox = value; }
         }
 
         public Image Image
