@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 
 namespace DabloonsPP
@@ -12,10 +13,11 @@ namespace DabloonsPP
         const int ENEMY_HEIGHT = 100;
         const int ENEMY_WIDTH = 125;
 
-        public float dx;
-        public float dy;
-        public float health;
+        public int dx;
+        public int dy;
+        public int health;
 
+        private DispatcherTimer moveTimer;
         public float Dx
         {
             get { return dx; }
@@ -34,12 +36,22 @@ namespace DabloonsPP
             set { health = value; }
         }
 
-        public IEnemy(int x, int y, string path, Canvas canva, float dx, float dy, float health) :
+        public IEnemy(int x, int y, string path, Canvas canva, int dx, int dy, int health) :
             base(ENEMY_WIDTH, ENEMY_HEIGHT, x, y, path, canva)
         {
             this.dx = dx;
             this.dy = dy;
             this.health = health;
+
+            moveTimer = new DispatcherTimer();
+            moveTimer.Interval = TimeSpan.FromTicks(20);
+            moveTimer.Tick += MoveTimer_Tick;
+            moveTimer.Start();
+        }
+
+        private void MoveTimer_Tick(object sender, object e)
+        {
+            position.X += dx;
         }
     }
 }

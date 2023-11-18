@@ -52,7 +52,15 @@ namespace DabloonsPP
             SetImage(path, height, width);
         }
 
-        public void SetImage(string path, int height, int width)
+        protected void Draw()
+        {
+            Canvas.SetLeft(image, position.X);
+            Canvas.SetTop(image, position.Y);
+
+            gameCanva.Children.Add(image);
+        }
+
+        protected void SetImage(string path, int height, int width)
         {
             image.Source = new BitmapImage(new Uri("ms-appx:///Assets/" + path));
             image.Height = height;
