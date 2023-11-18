@@ -18,19 +18,19 @@ namespace DabloonsPP
         public int health;
 
         private DispatcherTimer moveTimer;
-        public float Dx
+        public int Dx
         {
             get { return dx; }
             set { dx = value; }
         }
 
-        public float Dy
+        public int Dy
         {
             get { return dy; }
             set { dy = value; }
         }
 
-        public float Health
+        public int Health
         {
             get { return health; }
             set { health = value; }
