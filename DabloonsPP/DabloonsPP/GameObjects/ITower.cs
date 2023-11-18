@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace DabloonsPP
 {
-    abstract class ITower : IGameObject
-    {
-        public float damage;
-        public float range;
+    //abstract class ITower : IGameObject
+    //{
+    //    public float damage;
+    //    public float range;
 
-        protected abstract void Shoot();
-    }
+    //    protected abstract void Shoot();
+    //}
 }
