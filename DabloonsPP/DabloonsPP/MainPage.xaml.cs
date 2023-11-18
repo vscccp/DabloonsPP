@@ -25,6 +25,13 @@ namespace DabloonsPP
         public MainPage()
         {
             this.InitializeComponent();
+
+            
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            Frame.Navigate(typeof(Map1));
         }
     }
 }

@@ -138,6 +138,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Assets\Maps\Map1.png" />
+    <Content Include="Assets\Menu\MenuBackground.png" />
+    <Content Include="Assets\Menu\PlayButton.png" />
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="Assets\LockScreenLogo.scale-200.png" />
     <Content Include="Assets\SplashScreen.scale-200.png" />

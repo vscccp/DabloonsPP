@@ -52,6 +52,9 @@ namespace DabloonsPP
         private void MoveTimer_Tick(object sender, object e)
         {
             position.X += dx;
+            position.Y += dy;
+
+            Draw();
         }
     }
 }
