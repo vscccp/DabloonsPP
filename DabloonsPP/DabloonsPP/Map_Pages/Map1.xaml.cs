@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DabloonsPP.HelperClasses;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -22,9 +23,24 @@ namespace DabloonsPP
     /// </summary>
     public sealed partial class Map1 : Page
     {
+        public List<Turn> turns = new List<Turn>();
+        uint round = 1;
         public Map1()
         {
             this.InitializeComponent();
+        }
+
+        private void PageLoaded(object sender, RoutedEventArgs e)
+        {
+            #region Initialize Turns
+            turns.Add(new Turn(turn1, Direction.Down));
+            turns.Add(new Turn(turn2, Direction.Right));
+            turns.Add(new Turn(turn3, Direction.Up));
+            turns.Add(new Turn(turn4, Direction.Right));
+            turns.Add(new Turn(turn5, Direction.Down));
+            #endregion
+
+        
         }
     }
 }

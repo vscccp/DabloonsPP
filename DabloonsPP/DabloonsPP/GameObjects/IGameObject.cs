@@ -7,13 +7,14 @@ using System.Threading.Tasks;
 using Windows.ApplicationModel.Background;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media.Imaging;
+using Windows.UI.Xaml.Shapes;
 
 namespace DabloonsPP
 {
     abstract class IGameObject
     {
         public Point position;
-        public Rectangle hitbox;
+        public Ellipse hitbox;
         private Image image;
         private Canvas gameCanva;
 
@@ -24,7 +25,7 @@ namespace DabloonsPP
             set { position = value; }
         }
 
-        public Rectangle Hitbox
+        public Ellipse Hitbox
         {
             get { return hitbox; }
             set { hitbox = value; }
@@ -46,7 +47,9 @@ namespace DabloonsPP
         public IGameObject(int width, int height, int x, int y, string path, Canvas canva)
         {
             position = new Point(x, y);
-            hitbox = new Rectangle(x, y, width, height);
+            hitbox = new Ellipse();
+            hitbox.Width = width;
+            hitbox.Height = height;
             image = new Image();
             gameCanva = canva;
             SetImage(path, height, width);
