@@ -23,7 +23,7 @@ namespace DabloonsPP
     {
         #region constants
         const int STARTING_X = -50;
-        const int STARTING_Y = 320;
+        const int STARTING_Y = 300;
         #endregion
 
 
@@ -37,14 +37,14 @@ namespace DabloonsPP
         private void PageLoaded(object sender, RoutedEventArgs e)
         {
             #region Initialize Turns
-            turns.Enqueue(new Turn(turn1, Direction.Down));
-            turns.Enqueue(new Turn(turn2, Direction.Right));
-            turns.Enqueue(new Turn(turn3, Direction.Up));
-            turns.Enqueue(new Turn(turn4, Direction.Right));
-            turns.Enqueue(new Turn(turn5, Direction.Down));
+            turns.Enqueue(new Turn(turn1, new System.Drawing.Point((int)Canvas.GetLeft(turn1), (int)Canvas.GetTop(turn1)), Direction.Down));
+            turns.Enqueue(new Turn(turn2, new System.Drawing.Point((int)Canvas.GetLeft(turn2), (int)Canvas.GetTop(turn2)), Direction.Down));
+            turns.Enqueue(new Turn(turn3, new System.Drawing.Point((int)Canvas.GetLeft(turn3), (int)Canvas.GetTop(turn3)), Direction.Down));
+            turns.Enqueue(new Turn(turn4, new System.Drawing.Point((int)Canvas.GetLeft(turn4), (int)Canvas.GetTop(turn4)), Direction.Down));
+            turns.Enqueue(new Turn(turn5, new System.Drawing.Point((int)Canvas.GetLeft(turn5), (int)Canvas.GetTop(turn5)), Direction.Down));
             #endregion
 
-            IEnemy enemy = new IEnemy(STARTING_X, STARTING_Y, "Assets\\StoreLogo.png", GameCanva, 25, 25, 1, turns);
+            IEnemy enemy = new IEnemy(STARTING_X, STARTING_Y, "StoreLogo.png", GameCanva, 25, 25, 1, turns);
         }
     }
 }

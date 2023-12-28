@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 using Windows.Foundation;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Media;
+using Windows.UI.Xaml.Shapes;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace DabloonsPP
 {
@@ -18,8 +21,9 @@ namespace DabloonsPP
         public int dx;
         public int dy;
         public int health;
-        Queue<Turn> turns;
-
+        
+        private Direction direction;
+        private Queue<Turn> turns;
         private DispatcherTimer moveTimer;
 
         #region setters and getters
@@ -52,8 +56,10 @@ namespace DabloonsPP
 
             this.turns = turns;
 
+            direction = Direction.Right;
+
             moveTimer = new DispatcherTimer();
-            moveTimer.Interval = TimeSpan.FromTicks(20);
+            moveTimer.Interval = TimeSpan.FromMilliseconds(500);
             moveTimer.Tick += MoveTimer_Tick;
             moveTimer.Start();
         }
@@ -77,16 +83,39 @@ namespace DabloonsPP
             }
         }
 
+        private void Move(Direction dir)
+        {
+            if(dir == Direction.Up || dir == Direction.Down)
+            {
+                hitbox.setPosition(new System.Drawing.Point(hitbox.getPosition().X, hitbox.getPosition().Y + dy));
+            }
+            else
+            {
+                hitbox.setPosition(new System.Drawing.Point(hitbox.getPosition().X + dx, hitbox.getPosition().Y));
+            }
+        }
+
         private void MoveTimer_Tick(object sender, object e)
         {
-            Turn turn  = turns.Dequeue();
-        
-            if (MathHelper.CirclesCollide(hitbox, turn.Hitbox))
+            if(turns.Count != 0)
             {
-                MovementTurn(turn);
+                Turn turn = turns.Peek();
+
+                Ellipse eli = new Ellipse();
+                Canvas.SetLeft(eli, hitbox.getPosition().X);
+                Canvas.SetTop(eli, hitbox.getPosition().Y);
+                GameCanvas.Children.Add(eli);
+                if (MathHelper.CirclesCollide(hitbox, turn.Hitbox))
+                {
+                    direction = turn.TurnDirection;
+                    MovementTurn(turn);
+                    turn = turns.Dequeue();
+                }
+
+                GameCanvas.Children.Remove(eli);
             }
-            hitbox.setPosition(new System.Drawing.Point(hitbox.getPosition().X + dx, hitbox.getPosition().Y + dy));
-            
+
+            Move(direction);
             Draw();
         }
     }

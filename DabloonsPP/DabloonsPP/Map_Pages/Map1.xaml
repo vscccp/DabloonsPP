@@ -46,7 +46,7 @@
             <Ellipse x:Name="turn3" Fill="black" Height="30" Width="30" Canvas.Left="837" Canvas.Top="744"/>
             <Ellipse x:Name="turn4" Fill="black" Height="30" Width="30" Canvas.Left="809" Canvas.Top="135"/>
             <Ellipse x:Name="turn5" Fill="black" Height="30" Width="30" Canvas.Left="1111" Canvas.Top="183"/>
-            <Ellipse x:Name="turn6" Fill="black" Height="30" Width="30" Canvas.Left="-50" Canvas.Top="320"/>
+            <Ellipse x:Name="turn6" Fill="black" Height="30" Width="30" Canvas.Left="-50" Canvas.Top="330"/>
         </Canvas>
         
     </Grid>

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,9 +20,9 @@ namespace DabloonsPP.HelperClasses
         public MyCircle Hitbox { get; set; }
         public Direction TurnDirection { get; set; }
 
-        public Turn(MyCircle hitbox, Direction direction)
+        public Turn(Ellipse hitbox ,Point pos , Direction direction)
         {
-            Hitbox = hitbox;
+            Hitbox = new MyCircle(pos ,hitbox);
             TurnDirection = direction;
         }
     }

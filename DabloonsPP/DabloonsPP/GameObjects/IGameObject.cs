@@ -21,11 +21,11 @@ namespace DabloonsPP
         #region Getter and Setters
         public Point Position
         {
-            get { return position; }
-            set { position = value; }
+            get { return hitbox.getPosition(); }
+            set { hitbox.setPosition(value); }
         }
 
-        public Ellipse Hitbox
+        public MyCircle Hitbox
         {
             get { return hitbox; }
             set { hitbox = value; }
@@ -54,6 +54,11 @@ namespace DabloonsPP
 
             image = new Image();
             gameCanva = canva;
+
+            Canvas.SetLeft(image, hitbox.getPosition().X);
+            Canvas.SetTop(image, hitbox.getPosition().Y);
+            gameCanva.Children.Add(image);
+
             SetImage(path, height, width);
         }
 
@@ -62,7 +67,6 @@ namespace DabloonsPP
             Canvas.SetLeft(image, hitbox.getPosition().X);
             Canvas.SetTop(image, hitbox.getPosition().Y);
 
-            gameCanva.Children.Add(image);
         }
 
         protected void SetImage(string path, int height, int width)
