@@ -123,6 +123,8 @@
     <Compile Include="GameObjects\IGameObject.cs" />
     <Compile Include="GameObjects\ITower.cs" />
     <Compile Include="GameObjects\IProjectile.cs" />
+    <Compile Include="HelperClasses\MathHelper.cs" />
+    <Compile Include="HelperClasses\MyCircle.cs" />
     <Compile Include="HelperClasses\Turn.cs" />
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>

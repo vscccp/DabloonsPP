@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DabloonsPP.HelperClasses;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
@@ -13,8 +14,7 @@ namespace DabloonsPP
 {
     abstract class IGameObject
     {
-        public Point position;
-        public Ellipse hitbox;
+        public MyCircle hitbox;
         private Image image;
         private Canvas gameCanva;
 
@@ -46,10 +46,12 @@ namespace DabloonsPP
         // Constructor that initializes fields using parameters
         public IGameObject(int width, int height, int x, int y, string path, Canvas canva)
         {
-            position = new Point(x, y);
-            hitbox = new Ellipse();
-            hitbox.Width = width;
-            hitbox.Height = height;
+            Point position = new Point(x, y);
+            Ellipse eli = new Ellipse();
+            eli.Width = width;
+            eli.Height = width;
+            hitbox = new MyCircle(position, eli);
+
             image = new Image();
             gameCanva = canva;
             SetImage(path, height, width);
@@ -57,8 +59,8 @@ namespace DabloonsPP
 
         protected void Draw()
         {
-            Canvas.SetLeft(image, position.X);
-            Canvas.SetTop(image, position.Y);
+            Canvas.SetLeft(image, hitbox.getPosition().X);
+            Canvas.SetTop(image, hitbox.getPosition().Y);
 
             gameCanva.Children.Add(image);
         }

@@ -16,10 +16,10 @@ namespace DabloonsPP.HelperClasses
     }
     public class Turn
     {
-        public Ellipse Hitbox { get; set; }
+        public MyCircle Hitbox { get; set; }
         public Direction TurnDirection { get; set; }
 
-        public Turn(Ellipse hitbox, Direction direction)
+        public Turn(MyCircle hitbox, Direction direction)
         {
             Hitbox = hitbox;
             TurnDirection = direction;

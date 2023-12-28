@@ -18,9 +18,11 @@ namespace DabloonsPP
         public int dx;
         public int dy;
         public int health;
-        List<Turn> turns;
+        Queue<Turn> turns;
 
         private DispatcherTimer moveTimer;
+
+        #region setters and getters
         public int Dx
         {
             get { return dx; }
@@ -39,7 +41,9 @@ namespace DabloonsPP
             set { health = value; }
         }
 
-        public IEnemy(int x, int y, string path, Canvas canva, int dx, int dy, int health, List<Turn> turns) :
+        #endregion
+
+        public IEnemy(int x, int y, string path, Canvas canva, int dx, int dy, int health, Queue<Turn> turns) :
             base(ENEMY_WIDTH, ENEMY_HEIGHT, x, y, path, canva)
         {
             this.dx = dx;
@@ -54,49 +58,35 @@ namespace DabloonsPP
             moveTimer.Start();
         }
 
-        public void CheckIntersectionWithTurns(List<Turn> turns)
+        private void MovementTurn(Turn turn)
         {
-            foreach (Turn turn in turns)
+            switch (turn.TurnDirection)
             {
-                Point enemyCenter = new Point(position.X, position.Y);
-                Point turnCenter = new Point(Canvas.GetLeft(turn.Hitbox), Canvas.GetTop(turn.Hitbox));
-
-                double enemyRadius = hitbox.Width / 2;
-                double turnRadius = turn.Hitbox.Width / 2;
-
-                double distance = Math.Sqrt(Math.Pow(turnCenter.X - enemyCenter.X, 2) + Math.Pow(turnCenter.Y - enemyCenter.Y, 2));
-
-                // Check for intersection by comparing distances
-                if (distance <= enemyRadius + turnRadius)
-                {
-                    // Intersection detected with a turn, update speed based on the turn direction
-                    switch (turn.TurnDirection)
-                    {
-                        case Direction.Up:
-                            dy *= -1; // Adjust speed for upward movement
-                            break;
-                        case Direction.Down:
-                            dy = Math.Abs(dy); // Adjust speed for downward movement
-                            break;
-                        case Direction.Left:
-                            dx *= -1; // Adjust speed for leftward movement
-                            break;
-                        case Direction.Right:
-                            dx = Math.Abs(dx); // Adjust speed for rightward movement
-                            break;
-                    }
-                    break; // Exit loop after handling intersection with a turn
-                }
+                case Direction.Up:
+                    dy *= -1; // Adjust speed for upward movement
+                    break;
+                case Direction.Down:
+                    dy = Math.Abs(dy); // Adjust speed for downward movement
+                    break;
+                case Direction.Left:
+                    dx *= -1; // Adjust speed for leftward movement
+                    break;
+                case Direction.Right:
+                    dx = Math.Abs(dx); // Adjust speed for rightward movement
+                    break;
             }
         }
 
         private void MoveTimer_Tick(object sender, object e)
         {
-            position.X += dx;
-            position.Y += dy;
-
-
-
+            Turn turn  = turns.Dequeue();
+        
+            if (MathHelper.CirclesCollide(hitbox, turn.Hitbox))
+            {
+                MovementTurn(turn);
+            }
+            hitbox.setPosition(new System.Drawing.Point(hitbox.getPosition().X + dx, hitbox.getPosition().Y + dy));
+            
             Draw();
         }
     }
