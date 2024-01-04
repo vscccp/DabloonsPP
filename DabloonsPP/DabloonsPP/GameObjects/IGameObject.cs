@@ -66,7 +66,12 @@ namespace DabloonsPP
         {
             Canvas.SetLeft(image, hitbox.getPosition().X);
             Canvas.SetTop(image, hitbox.getPosition().Y);
+        }
 
+        protected void Undraw()
+        {
+            gameCanva.Children.Remove(image);
+            gameCanva.Children.Remove(hitbox.getCircle());
         }
 
         protected void SetImage(string path, int height, int width)

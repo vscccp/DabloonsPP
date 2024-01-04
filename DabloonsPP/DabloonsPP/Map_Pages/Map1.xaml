@@ -12,8 +12,8 @@
 
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="6*"/>
-            <ColumnDefinition />
+            <ColumnDefinition Width="1200"/>
+            <ColumnDefinition Width="300"/>
         </Grid.ColumnDefinitions>
 
         <!--#region Backgrounds-->
@@ -41,12 +41,12 @@
         <!--#endregion-->
 
         <Canvas Grid.Column="0" x:Name="GameCanva">
-            <Ellipse x:Name="turn1" Fill="Black" Height="30" Width="30" Canvas.Left="373" Canvas.Top="310"/>
-            <Ellipse x:Name="turn2" Fill="black" Height="30" Width="30" Canvas.Left="364" Canvas.Top="803"/>
-            <Ellipse x:Name="turn3" Fill="black" Height="30" Width="30" Canvas.Left="837" Canvas.Top="744"/>
-            <Ellipse x:Name="turn4" Fill="black" Height="30" Width="30" Canvas.Left="809" Canvas.Top="135"/>
-            <Ellipse x:Name="turn5" Fill="black" Height="30" Width="30" Canvas.Left="1111" Canvas.Top="183"/>
-            <Ellipse x:Name="turn6" Fill="black" Height="30" Width="30" Canvas.Left="-50" Canvas.Top="330"/>
+            <Ellipse x:Name="turn1" Fill="Black" Height="30" Width="30" Canvas.Left="390" Canvas.Top="250"/>
+            <Ellipse x:Name="turn2" Fill="black" Height="30" Width="30" Canvas.Left="350" Canvas.Top="660"/>
+            <Ellipse x:Name="turn3" Fill="black" Height="30" Width="30" Canvas.Left="760" Canvas.Top="660"/>
+            <Ellipse x:Name="turn4" Fill="black" Height="30" Width="30" Canvas.Left="770" Canvas.Top="60"/>
+            <Ellipse x:Name="turn5" Fill="black" Height="30" Width="30" Canvas.Left="1050" Canvas.Top="100"/>
+            <Ellipse x:Name="end" Fill="black" Height="30" Width="30" Canvas.Left="1050" Canvas.Top="900"/>
         </Canvas>
         
     </Grid>

@@ -15,8 +15,8 @@ namespace DabloonsPP
 {
     class IEnemy : IGameObject
     {
-        const int ENEMY_HEIGHT = 100;
-        const int ENEMY_WIDTH = 125;
+        const int ENEMY_HEIGHT = 50;
+        const int ENEMY_WIDTH = 50;
 
         public int dx;
         public int dy;
@@ -59,7 +59,7 @@ namespace DabloonsPP
             direction = Direction.Right;
 
             moveTimer = new DispatcherTimer();
-            moveTimer.Interval = TimeSpan.FromMilliseconds(500);
+            moveTimer.Interval = TimeSpan.FromMilliseconds(200);
             moveTimer.Tick += MoveTimer_Tick;
             moveTimer.Start();
         }
@@ -100,19 +100,17 @@ namespace DabloonsPP
             if(turns.Count != 0)
             {
                 Turn turn = turns.Peek();
-
-                Ellipse eli = new Ellipse();
-                Canvas.SetLeft(eli, hitbox.getPosition().X);
-                Canvas.SetTop(eli, hitbox.getPosition().Y);
-                GameCanvas.Children.Add(eli);
                 if (MathHelper.CirclesCollide(hitbox, turn.Hitbox))
                 {
                     direction = turn.TurnDirection;
                     MovementTurn(turn);
                     turn = turns.Dequeue();
-                }
 
-                GameCanvas.Children.Remove(eli);
+                    if (turns.Count == 0)
+                    {
+                        this.Undraw();
+                    }
+                }
             }
 
             Move(direction);
