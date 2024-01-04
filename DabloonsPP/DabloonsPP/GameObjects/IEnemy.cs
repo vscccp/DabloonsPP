@@ -100,15 +100,16 @@ namespace DabloonsPP
             if(turns.Count != 0)
             {
                 Turn turn = turns.Peek();
-                if (MathHelper.CirclesCollide(hitbox, turn.Hitbox))
+                if (MathHelper.CirclesCollide(hitbox, turn.Hitbox)) // if collides
                 {
                     direction = turn.TurnDirection;
                     MovementTurn(turn);
                     turn = turns.Dequeue();
 
-                    if (turns.Count == 0)
+                    if (turns.Count == 0) // if finished map then remove
                     {
                         this.Undraw();
+                        moveTimer.Stop();
                     }
                 }
             }

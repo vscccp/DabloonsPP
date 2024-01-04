@@ -13,6 +13,7 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using Windows.UI.Xaml.Shapes;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -46,6 +47,30 @@ namespace DabloonsPP
             #endregion
 
             IEnemy enemy = new IEnemy(STARTING_X, STARTING_Y, "StoreLogo.png", GameCanva, 20, 20, 1, turns);
+        }
+
+        private void Image_DoubleTapped(object sender, DoubleTappedRoutedEventArgs e)
+        {
+            // Get the position of the tap relative to the Image control
+            Point tapPosition = e.GetPosition(sender as UIElement);
+
+            // Retrieve X and Y coordinates
+            double tapX = tapPosition.X;
+            double tapY = tapPosition.Y;
+
+            // Create a Rectangle
+            Rectangle newRect = new Rectangle
+            {
+                Width = 50, // Set your desired width
+                Height = 50, // Set your desired height
+                Fill = new SolidColorBrush(Windows.UI.Colors.Black) // Fill the rectangle with Black color
+            };
+
+            // Set the position of the new rectangle
+            Canvas.SetLeft(newRect, tapPosition.X-25);
+            Canvas.SetTop(newRect, tapPosition.Y-25);
+
+            GameCanva.Children.Add(newRect);
         }
     }
 }
