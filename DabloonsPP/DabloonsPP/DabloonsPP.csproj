@@ -121,6 +121,7 @@
     </Compile>
     <Compile Include="GameObjects\Enemies\IEnemy.cs" />
     <Compile Include="GameObjects\IGameObject.cs" />
+    <Compile Include="GameObjects\Towers\BasicTower.cs" />
     <Compile Include="GameObjects\Towers\ITower.cs" />
     <Compile Include="GameObjects\IProjectile.cs" />
     <Compile Include="HelperClasses\MathHelper.cs" />
