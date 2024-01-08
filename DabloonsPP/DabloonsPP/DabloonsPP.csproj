@@ -119,9 +119,9 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
-    <Compile Include="GameObjects\IEnemy.cs" />
+    <Compile Include="GameObjects\Enemies\IEnemy.cs" />
     <Compile Include="GameObjects\IGameObject.cs" />
-    <Compile Include="GameObjects\ITower.cs" />
+    <Compile Include="GameObjects\Towers\ITower.cs" />
     <Compile Include="GameObjects\IProjectile.cs" />
     <Compile Include="HelperClasses\MathHelper.cs" />
     <Compile Include="HelperClasses\MyCircle.cs" />
@@ -171,10 +171,7 @@
       <Version>6.2.14</Version>
     </PackageReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="GameObjects\Enemies\" />
-    <Folder Include="GameObjects\Towers\" />
-  </ItemGroup>
+  <ItemGroup />
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
   </PropertyGroup>
