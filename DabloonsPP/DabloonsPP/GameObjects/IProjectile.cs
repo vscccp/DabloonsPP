@@ -7,7 +7,6 @@ using Windows.UI.Xaml.Controls;
 
 namespace DabloonsPP
 {
-    
     abstract class IProjectile : IGameObject
     {
         const int PROJECTILE_WIDTH = 20;

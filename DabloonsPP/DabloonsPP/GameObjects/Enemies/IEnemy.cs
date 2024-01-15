@@ -56,7 +56,7 @@ namespace DabloonsPP
 
             this.turns = turns;
 
-            direction = Direction.Right;
+            direction = Direction.RIGHT;
 
             moveTimer = new DispatcherTimer();
             moveTimer.Interval = TimeSpan.FromMilliseconds(200);
@@ -68,16 +68,16 @@ namespace DabloonsPP
         {
             switch (turn.TurnDirection)
             {
-                case Direction.Up:
+                case Direction.UP:
                     dy *= -1; // Adjust speed for upward movement
                     break;
-                case Direction.Down:
+                case Direction.DOWN:
                     dy = Math.Abs(dy); // Adjust speed for downward movement
                     break;
-                case Direction.Left:
+                case Direction.LEFT:
                     dx *= -1; // Adjust speed for leftward movement
                     break;
-                case Direction.Right:
+                case Direction.RIGHT:
                     dx = Math.Abs(dx); // Adjust speed for rightward movement
                     break;
             }
@@ -85,7 +85,7 @@ namespace DabloonsPP
 
         private void Move(Direction dir)
         {
-            if(dir == Direction.Up || dir == Direction.Down)
+            if(dir == Direction.UP || dir == Direction.DOWN)
             {
                 hitbox.setPosition(new System.Drawing.Point(hitbox.getPosition().X, hitbox.getPosition().Y + dy));
             }

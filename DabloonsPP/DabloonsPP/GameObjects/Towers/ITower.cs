@@ -12,12 +12,14 @@ namespace DabloonsPP
         public int damage { get; set; }
         public float range { get; set; }
 
-        protected abstract void Shoot();
+        protected abstract void Shoot(IEnemy target);
 
         public ITower(int width, int height, int x, int y, string path, Canvas canva, int damage, float range) : base(width, height, x, y, path, canva)
         {
             this.damage = damage;
             this.range = range;
+
+            this.hitbox = null;
         }
     }
 }

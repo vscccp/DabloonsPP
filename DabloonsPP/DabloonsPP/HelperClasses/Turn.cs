@@ -10,11 +10,15 @@ namespace DabloonsPP.HelperClasses
 {
     public enum Direction
     {
-        Up,
-        Down,
-        Left,
-        Right
-    }
+        RIGHT = 0,
+        LEFT = 1,
+        UP = 2,
+        DOWN = 3,
+        UP_LEFT = 4,
+        UP_RIGHT = 5,
+        DOWN_LEFT = 6,
+        DOWN_RIGHT = 7
+    };
     public class Turn
     {
         public MyCircle Hitbox { get; set; }
