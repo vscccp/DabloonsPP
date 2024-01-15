@@ -7,7 +7,7 @@ using Windows.UI.Xaml.Controls;
 
 namespace DabloonsPP
 {
-    abstract class IProjectile : IGameObject
+    class Projectile : IGameObject
     {
         const int PROJECTILE_WIDTH = 20;
         const int PROJECTILE_HEIGHT = 20;
@@ -34,7 +34,7 @@ namespace DabloonsPP
             get { return damage; }
         }
 
-        public IProjectile(int x, int y, float dx, float dy, float damage, string path, Canvas canva) :
+        public Projectile(int x, int y, float dx, float dy, float damage, string path, Canvas canva) :
             base(PROJECTILE_WIDTH, PROJECTILE_HEIGHT, x, y, path, canva)
         {
             this.dx = dx;

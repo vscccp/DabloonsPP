@@ -9,10 +9,9 @@ namespace DabloonsPP.GameObjects.Towers
 {
     class BasicTower : ITower
     {
+        private int projectile_speed = 50;
         public BasicTower(int width, int height, int x, int y, string path, Canvas canva, int damage, float range) : base(width, height, x, y, path, canva, damage, range)
-        {
-
-        }
+        {}
 
         protected override void Shoot(IEnemy target)
         {
@@ -25,10 +24,15 @@ namespace DabloonsPP.GameObjects.Towers
             if (distance > range)
                 return;
 
-            int vx = 0;
-            int vy = 0;
+            // Calculate the angle in radians
+            double angle = Math.Atan2(deltaY, deltaX);
 
-            
+            // Calculate the velocity components
+            double speed = projectile_speed;
+            int vx = (int)(speed * Math.Cos(angle));
+            int vy = (int)(speed * Math.Sin(angle));
+
+            Projectile projectile = new Projectile(Position.X, Position.Y, vx, vy, damage, "Assets\\Projectiles\\Dart.png", GameCanvas);
         }
 
     }
