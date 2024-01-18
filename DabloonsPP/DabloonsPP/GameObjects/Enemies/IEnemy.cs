@@ -15,8 +15,8 @@ namespace DabloonsPP
 {
     class IEnemy : IGameObject
     {
-        const int ENEMY_HEIGHT = 50;
-        const int ENEMY_WIDTH = 50;
+        const int ENEMY_HEIGHT = 75;
+        const int ENEMY_WIDTH = 75;
 
         public int dx;
         public int dy;
@@ -54,7 +54,7 @@ namespace DabloonsPP
             this.dy = dy;
             this.health = health;
 
-            this.turns = turns;
+            this.turns = new Queue<Turn>(turns);
 
             direction = Direction.RIGHT;
 
@@ -62,6 +62,8 @@ namespace DabloonsPP
             moveTimer.Interval = TimeSpan.FromMilliseconds(200);
             moveTimer.Tick += MoveTimer_Tick;
             moveTimer.Start();
+
+            
         }
 
         private void MovementTurn(Turn turn)
@@ -120,7 +122,7 @@ namespace DabloonsPP
         }
 
 
-        public void TakeDamage(int damage)
+        public async void TakeDamage(int damage)
         {
             health -= damage;
 
@@ -129,6 +131,11 @@ namespace DabloonsPP
                 SetImage("VFX\\pop.png", 50, 50);
                 Draw();
                 moveTimer.Stop();
+
+                // Wait for 1 second (1000 milliseconds)
+                await Task.Delay(500);
+
+
                 Undraw();
             }
         }

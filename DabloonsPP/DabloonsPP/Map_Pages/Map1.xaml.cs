@@ -1,4 +1,5 @@
-﻿using DabloonsPP.HelperClasses;
+﻿using DabloonsPP.GameObjects.Towers;
+using DabloonsPP.HelperClasses;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -27,9 +28,17 @@ namespace DabloonsPP
         const int STARTING_Y = 250;
         #endregion
 
-
+        private List<IEnemy> enemies = new List<IEnemy>();
         public Queue<Turn> turns = new Queue<Turn>();
+        private DispatcherTimer enemyCheckTimer;
         uint round = 1;
+
+        #region Stats
+
+        int money = 850;
+        int hearts = 100;
+
+        #endregion
         public Map1()
         {
             this.InitializeComponent();
@@ -46,9 +55,37 @@ namespace DabloonsPP
             turns.Enqueue(new Turn(end, new System.Drawing.Point((int)Canvas.GetLeft(end), (int)Canvas.GetTop(end)), Direction.DOWN));
             #endregion
 
-            IEnemy enemy = new IEnemy(STARTING_X, STARTING_Y, "StoreLogo.png", GameCanva, 20, 20, 1, turns);
-            Projectile pro = new Projectile(STARTING_X, STARTING_Y, 20, 0, 0, 1, "Projectiles\\Dart.png", 180, GameCanva);
+            // Initialize and start the timer for checking enemies' health
+            enemyCheckTimer = new DispatcherTimer();
+            enemyCheckTimer.Interval = TimeSpan.FromMilliseconds(500); // Adjust the interval as needed
+            enemyCheckTimer.Tick += EnemyCheckTimer_Tick;
+            enemyCheckTimer.Start();
+
+            Window.Current.CoreWindow.KeyDown += CoreWindow_KeyDown; ;
         }
+
+        private void CoreWindow_KeyDown(Windows.UI.Core.CoreWindow sender, Windows.UI.Core.KeyEventArgs args)
+        {
+            if (args.VirtualKey == Windows.System.VirtualKey.W)
+            {
+                IEnemy enemy = new IEnemy(STARTING_X, STARTING_Y, "\\enemies\\bloon.png", GameCanva, 20, 20, 1, turns);
+
+                enemies.Add(enemy);
+            }
+        }
+
+        private void EnemyCheckTimer_Tick(object sender, object e)
+        {
+            // Iterate through the list of enemies and remove those with health <= 0
+            for (int i = enemies.Count - 1; i >= 0; i--)
+            {
+                if (enemies[i].Health <= 0)
+                {
+                    enemies.RemoveAt(i);
+                }
+            }
+        }
+
 
         private void Image_DoubleTapped(object sender, DoubleTappedRoutedEventArgs e)
         {
@@ -56,22 +93,10 @@ namespace DabloonsPP
             Point tapPosition = e.GetPosition(sender as UIElement);
 
             // Retrieve X and Y coordinates
-            double tapX = tapPosition.X;
-            double tapY = tapPosition.Y;
+            int tapX = (int)(tapPosition.X);
+            int tapY = (int)(tapPosition.Y);
 
-            // Create a Rectangle
-            Rectangle newRect = new Rectangle
-            {
-                Width = 50, // Set your desired width
-                Height = 50, // Set your desired height
-                Fill = new SolidColorBrush(Windows.UI.Colors.Black) // Fill the rectangle with Black color
-            };
-
-            // Set the position of the new rectangle
-            Canvas.SetLeft(newRect, tapPosition.X-25);
-            Canvas.SetTop(newRect, tapPosition.Y-25);
-
-            GameCanva.Children.Add(newRect);
+            BasicTower test = new BasicTower(tapX, tapY, "Monkeys\\Dart_Monkey.png", GameCanva, 1, enemies);
         }
     }
 }

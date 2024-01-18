@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 
 namespace DabloonsPP.GameObjects.Towers
@@ -11,30 +12,32 @@ namespace DabloonsPP.GameObjects.Towers
     {
         private int projectile_speed = 50;
         private int pierce = 2;
-        public BasicTower(int width, int height, int x, int y, string path, Canvas canva, int damage, float range, List<IEnemy> enemeies) : base(width, height, x, y, path, canva, damage, range, enemies)
-        {}
-
-        protected override void Shoot(IEnemy target)
+        private static int width = 75;
+        private static int height = 75;
+        private int attacktime = 1000;
+        private DispatcherTimer ChooseTimer;
+        public BasicTower(int x, int y, string path, Canvas canva, int damage, List<IEnemy> enemies) : base(width, height, (x-(width/2)), (y-(height/2)), path, canva, damage, 250, enemies)
         {
-            // Calculate direction to shoot
-            int deltaX = Position.X - target.Position.X;
-            int deltaY = Position.Y - target.Position.Y;
+            ChooseTimer = new DispatcherTimer();
+            ChooseTimer.Interval = TimeSpan.FromMilliseconds(attacktime);
+            ChooseTimer.Tick += ChooseTimer_Tick;
 
-            double distance = Math.Sqrt(Math.Pow(deltaX ,2) + Math.Pow(deltaY, 2));
+            ChooseTimer.Start();
+        }
 
-            if (distance > range)
-                return;
+        private void ChooseTimer_Tick(object sender, object e)
+        {
+            ChooseTarget();
+        }
 
-            // Calculate the angle in radians
-            double angle = Math.Atan2(deltaY, deltaX);
-            double angleDegrees = angle * (180.0 / Math.PI);
-
+        protected override void Shoot(double angle)
+        {
             // Calculate the velocity components
             double speed = projectile_speed;
             int vx = (int)(speed * Math.Cos(angle));
             int vy = (int)(speed * Math.Sin(angle));
 
-            Projectile projectile = new Projectile(Position.X, Position.Y, vx, vy, damage, pierce, "Assets\\Projectiles\\Dart.png", (float)angleDegrees, GameCanvas);
+            Projectile projectile = new Projectile(Position.X, Position.Y, vx, vy, damage, pierce, "Projectiles\\Dart.png", (float)angle, GameCanvas, enemies);
         }
 
     }

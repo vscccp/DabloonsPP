@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Windows.ApplicationModel.Background;
 using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Media.Imaging;
 using Windows.UI.Xaml.Shapes;
 
@@ -17,6 +18,7 @@ namespace DabloonsPP
         public MyCircle hitbox;
         private Image image;
         private Canvas gameCanva;
+        private PlaneProjection planeProjection;
 
         #region Getter and Setters
         public Point Position
@@ -46,6 +48,8 @@ namespace DabloonsPP
         // Constructor that initializes fields using parameters
         public IGameObject(int width, int height, int x, int y, string path, Canvas canva)
         {
+            planeProjection = new PlaneProjection();
+
             Point position = new Point(x, y);
             Ellipse eli = new Ellipse();
             eli.Width = width;
@@ -79,6 +83,15 @@ namespace DabloonsPP
             image.Source = new BitmapImage(new Uri("ms-appx:///Assets/" + path));
             image.Height = height;
             image.Width = width;
+        }
+
+        protected void RotateImage(float angle)
+        {
+            // Create PlaneProjection
+            planeProjection.RotationZ = angle; // Set your desired rotation angle here
+
+            // Set Image.Projection
+            image.Projection = planeProjection;
         }
     }
 }

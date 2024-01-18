@@ -35,7 +35,7 @@ namespace DabloonsPP
             get { return pierce; }
         }
 
-        public Projectile(int x, int y, int dx, int dy, int damage, int pierce, string path, float angele, Canvas canva, List<IEnemy> enemies) :
+        public Projectile(int x, int y, int dx, int dy, int damage, int pierce, string path, float angle, Canvas canva, List<IEnemy> enemies) :
             base(PROJECTILE_WIDTH, PROJECTILE_HEIGHT, x, y, path, canva)
         {
             this.dx = dx;
@@ -44,6 +44,8 @@ namespace DabloonsPP
             this.damage = damage;
 
             this.enemies = enemies;
+
+            RotateImage(angle);
 
             Move_Timer = new DispatcherTimer();
             Move_Timer.Interval = TimeSpan.FromTicks(20);
