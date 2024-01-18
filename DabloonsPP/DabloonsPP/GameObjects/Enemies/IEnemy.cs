@@ -110,6 +110,7 @@ namespace DabloonsPP
                     {
                         this.Undraw();
                         moveTimer.Stop();
+                        return;
                     }
                 }
             }
@@ -117,5 +118,20 @@ namespace DabloonsPP
             Move(direction);
             Draw();
         }
+
+
+        public void TakeDamage(int damage)
+        {
+            health -= damage;
+
+            if(health <= 0)
+            {
+                SetImage("VFX\\pop.png", 50, 50);
+                Draw();
+                moveTimer.Stop();
+                Undraw();
+            }
+        }
+
     }
 }

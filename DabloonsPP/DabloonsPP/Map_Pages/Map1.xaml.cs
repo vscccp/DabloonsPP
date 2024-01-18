@@ -47,6 +47,7 @@ namespace DabloonsPP
             #endregion
 
             IEnemy enemy = new IEnemy(STARTING_X, STARTING_Y, "StoreLogo.png", GameCanva, 20, 20, 1, turns);
+            Projectile pro = new Projectile(STARTING_X, STARTING_Y, 20, 0, 0, 1, "Projectiles\\Dart.png", 180, GameCanva);
         }
 
         private void Image_DoubleTapped(object sender, DoubleTappedRoutedEventArgs e)
