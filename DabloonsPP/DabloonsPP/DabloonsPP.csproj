@@ -119,7 +119,7 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
-    <Compile Include="GameObjects\Enemies\IEnemy.cs" />
+    <Compile Include="GameObjects\Enemies\Bloon.cs" />
     <Compile Include="GameObjects\IGameObject.cs" />
     <Compile Include="GameObjects\Towers\BasicTower.cs" />
     <Compile Include="GameObjects\Towers\ITower.cs" />
@@ -142,6 +142,10 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Assets\Enemies\bloon.png" />
+    <Content Include="Assets\Enemies\bloonGreen.png" />
+    <Content Include="Assets\Enemies\bloonPink.png" />
+    <Content Include="Assets\Enemies\bloonBlue.png" />
+    <Content Include="Assets\Enemies\bloonYellow.png" />
     <Content Include="Assets\Maps\Map1.png" />
     <Content Include="Assets\Menu\MenuBackground.png" />
     <Content Include="Assets\Menu\PlayButton.png" />

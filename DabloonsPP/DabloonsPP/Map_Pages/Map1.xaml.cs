@@ -28,7 +28,7 @@ namespace DabloonsPP
         const int STARTING_Y = 250;
         #endregion
 
-        private List<IEnemy> enemies = new List<IEnemy>();
+        private List<Bloon> enemies = new List<Bloon>();
         public Queue<Turn> turns = new Queue<Turn>();
         private DispatcherTimer enemyCheckTimer;
         uint round = 1;
@@ -61,14 +61,20 @@ namespace DabloonsPP
             enemyCheckTimer.Tick += EnemyCheckTimer_Tick;
             enemyCheckTimer.Start();
 
-            Window.Current.CoreWindow.KeyDown += CoreWindow_KeyDown; ;
+            Window.Current.CoreWindow.KeyDown += CoreWindow_KeyDown;
         }
 
         private void CoreWindow_KeyDown(Windows.UI.Core.CoreWindow sender, Windows.UI.Core.KeyEventArgs args)
         {
             if (args.VirtualKey == Windows.System.VirtualKey.W)
             {
-                IEnemy enemy = new IEnemy(STARTING_X, STARTING_Y, "\\enemies\\bloon.png", GameCanva, 20, 20, 1, turns);
+                Bloon enemy = new Bloon(STARTING_X, STARTING_Y, GameCanva, 20, 20, 1, turns);
+
+                enemies.Add(enemy);
+            }
+            else if(args.VirtualKey == Windows.System.VirtualKey.S)
+            {
+                Bloon enemy = new Bloon(STARTING_X, STARTING_Y, GameCanva, 20, 20, 5, turns);
 
                 enemies.Add(enemy);
             }

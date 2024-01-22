@@ -21,9 +21,11 @@ namespace DabloonsPP
 
         public int damage;
         private int pierce;
-        private List<IEnemy> enemies;
+        private List<Bloon> enemies;
 
         private DispatcherTimer Move_Timer;
+        private Dictionary<Bloon, DateTime> lastHitTimes = new Dictionary<Bloon, DateTime>();
+        private TimeSpan cooldownDuration = TimeSpan.FromMilliseconds(150);
 
         public float Damage
         {
@@ -35,7 +37,7 @@ namespace DabloonsPP
             get { return pierce; }
         }
 
-        public Projectile(int x, int y, int dx, int dy, int damage, int pierce, string path, float angle, Canvas canva, List<IEnemy> enemies) :
+        public Projectile(int x, int y, int dx, int dy, int damage, int pierce, string path, float angle, Canvas canva, List<Bloon> enemies) :
             base(PROJECTILE_WIDTH, PROJECTILE_HEIGHT, x, y, path, canva)
         {
             this.dx = dx;
@@ -69,12 +71,15 @@ namespace DabloonsPP
         private void CheckCollisionWithEnemies()
         {
             // Assuming enemies is a List<IEnemy> containing all active enemies
-            foreach (IEnemy enemy in enemies)
+            foreach (Bloon enemy in enemies)
             {
-                if (MathHelper.CirclesCollide(hitbox, enemy.Hitbox))
+                if (MathHelper.CirclesCollide(hitbox, enemy.Hitbox) && !IsOnCooldown(enemy))
                 {
                     // Collision detected, apply damage to the enemy
                     enemy.TakeDamage(damage);
+
+                    // Record the time of the last hit for this enemy
+                    lastHitTimes[enemy] = DateTime.Now;
 
                     // Check if projectile has pierce remaining
                     if (--pierce <= 0)
@@ -87,8 +92,23 @@ namespace DabloonsPP
             }
         }
 
+        private bool IsOnCooldown(Bloon enemy)
+        {
+            // Check if the enemy is on cooldown based on the last hit time
+            if (lastHitTimes.TryGetValue(enemy, out DateTime lastHitTime))
+            {
+                TimeSpan elapsed = DateTime.Now - lastHitTime;
+                return elapsed < cooldownDuration;
+            }
+
+            return false; // Not on cooldown if never hit before
+        }
+
         private void RemoveProjectile()
         {
+            // Clear the set of damaged enemies and their last hit times for the next projectile
+            lastHitTimes.Clear();
+
             // Perform any cleanup tasks if needed
             Move_Timer.Stop();
             Undraw();

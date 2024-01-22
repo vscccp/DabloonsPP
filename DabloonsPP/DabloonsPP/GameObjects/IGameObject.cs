@@ -66,6 +66,24 @@ namespace DabloonsPP
             SetImage(path, height, width);
         }
 
+        public IGameObject(int width, int height, int x, int y, Canvas canva)
+        {
+            planeProjection = new PlaneProjection();
+
+            Point position = new Point(x, y);
+            Ellipse eli = new Ellipse();
+            eli.Width = width;
+            eli.Height = width;
+            hitbox = new MyCircle(position, eli);
+
+            image = new Image();
+            gameCanva = canva;
+
+            Canvas.SetLeft(image, hitbox.getPosition().X);
+            Canvas.SetTop(image, hitbox.getPosition().Y);
+            gameCanva.Children.Add(image);
+        }
+
         protected void Draw()
         {
             Canvas.SetLeft(image, hitbox.getPosition().X);

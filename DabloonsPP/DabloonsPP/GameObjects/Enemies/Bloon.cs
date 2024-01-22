@@ -13,7 +13,19 @@ using static System.Net.Mime.MediaTypeNames;
 
 namespace DabloonsPP
 {
-    class IEnemy : IGameObject
+    enum Bloon_Colors
+    {
+        RED = 1,
+        BLUE = 2,
+        GREEN = 3,
+        YELLOW = 4,
+        PINK = 5
+    }
+
+
+
+
+    class Bloon : IGameObject
     {
         const int ENEMY_HEIGHT = 75;
         const int ENEMY_WIDTH = 75;
@@ -47,8 +59,8 @@ namespace DabloonsPP
 
         #endregion
 
-        public IEnemy(int x, int y, string path, Canvas canva, int dx, int dy, int health, Queue<Turn> turns) :
-            base(ENEMY_WIDTH, ENEMY_HEIGHT, x, y, path, canva)
+        public Bloon(int x, int y, Canvas canva, int dx, int dy, int health, Queue<Turn> turns) :
+            base(ENEMY_WIDTH, ENEMY_HEIGHT, x, y, canva)
         {
             this.dx = dx;
             this.dy = dy;
@@ -63,7 +75,7 @@ namespace DabloonsPP
             moveTimer.Tick += MoveTimer_Tick;
             moveTimer.Start();
 
-            
+            SetBloonImage((Bloon_Colors)health);
         }
 
         private void MovementTurn(Turn turn)
@@ -122,22 +134,45 @@ namespace DabloonsPP
         }
 
 
+        private void SetBloonImage(Bloon_Colors bloonColor)
+        {
+            switch (bloonColor)
+            {
+                case Bloon_Colors.RED:
+                    SetImage("Enemies\\bloon.png", 50, 50);
+                    break;
+                case Bloon_Colors.BLUE:
+                    SetImage("Enemies\\bloonBlue.png", 50, 50);
+                    break;
+                case Bloon_Colors.GREEN:
+                    SetImage("Enemies\\bloonGreen.png", 50, 50);
+                    break;
+                case Bloon_Colors.YELLOW:
+                    SetImage("Enemies\\bloonYellow.png", 50, 50);
+                    break;
+                case Bloon_Colors.PINK:
+                    SetImage("Enemies\\bloonPink.png", 50, 50);
+                    break;
+            }
+        }
+
         public async void TakeDamage(int damage)
         {
             health -= damage;
 
-            if(health <= 0)
+            if (health <= 0)
             {
                 SetImage("VFX\\pop.png", 50, 50);
-                Draw();
                 moveTimer.Stop();
 
                 // Wait for 1 second (1000 milliseconds)
                 await Task.Delay(500);
 
-
                 Undraw();
             }
+
+            Bloon_Colors bloonColor = (Bloon_Colors)health;
+            SetBloonImage(bloonColor);
         }
 
     }
