@@ -102,7 +102,7 @@ namespace DabloonsPP
             int tapX = (int)(tapPosition.X);
             int tapY = (int)(tapPosition.Y);
 
-            BasicTower test = new BasicTower(tapX, tapY, "Monkeys\\Dart_Monkey.png", GameCanva, 1, enemies);
+            BasicTower test = new BasicTower(tapX, tapY, GameCanva, 1, enemies);
         }
     }
 }

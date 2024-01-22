@@ -149,8 +149,9 @@
     <Content Include="Assets\Maps\Map1.png" />
     <Content Include="Assets\Menu\MenuBackground.png" />
     <Content Include="Assets\Menu\PlayButton.png" />
-    <Content Include="Assets\Monkeys\Dart_Monkey.png" />
+    <Content Include="Assets\Monkeys\dartMonkey.png" />
     <Content Include="Assets\Projectiles\Dart.png" />
+    <Content Include="Assets\TowerIcons\dartMonkey_icon.png" />
     <Content Include="Assets\VFX\pop.png" />
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="Assets\LockScreenLogo.scale-200.png" />

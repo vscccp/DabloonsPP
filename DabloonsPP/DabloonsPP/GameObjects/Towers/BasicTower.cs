@@ -16,7 +16,7 @@ namespace DabloonsPP.GameObjects.Towers
         private static int height = 75;
         private int attacktime = 1000;
         private DispatcherTimer ChooseTimer;
-        public BasicTower(int x, int y, string path, Canvas canva, int damage, List<Bloon> enemies) : base(width, height, (x-(width/2)), (y-(height/2)), path, canva, damage, 250, enemies)
+        public BasicTower(int x, int y, Canvas canva, int damage, List<Bloon> enemies) : base(width, height, (x-(width/2)), (y-(height/2)), "Monkeys\\dartMonkey.png", canva, damage, 250, enemies)
         {
             ChooseTimer = new DispatcherTimer();
             ChooseTimer.Interval = TimeSpan.FromMilliseconds(attacktime);
