@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,6 +20,14 @@ namespace DabloonsPP.HelperClasses
             float radSum = (float)(circle1.getCircle().Width + circle2.getCircle().Width);
 
             return distance < radSum;
+        }
+
+        public static double Distance(Point p1, Point p2)
+        {
+            int deltaX = p2.X - p1.X;
+            int deltaY = p2.Y - p1.Y;
+
+            return Math.Sqrt(deltaX * deltaX + deltaY * deltaY);
         }
     }
 }

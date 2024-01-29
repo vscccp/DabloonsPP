@@ -20,12 +20,12 @@ namespace DabloonsPP
         public int dy;
 
         public int damage;
-        private int pierce;
-        private List<Bloon> enemies;
-
-        private DispatcherTimer Move_Timer;
-        private Dictionary<Bloon, DateTime> lastHitTimes = new Dictionary<Bloon, DateTime>();
-        private TimeSpan cooldownDuration = TimeSpan.FromMilliseconds(150);
+        protected int pierce;
+        protected List<Bloon> enemies;
+        
+        protected DispatcherTimer Move_Timer;
+        protected Dictionary<Bloon, DateTime> lastHitTimes = new Dictionary<Bloon, DateTime>();
+        protected TimeSpan cooldownDuration = TimeSpan.FromMilliseconds(150);
 
         public float Damage
         {
@@ -56,19 +56,18 @@ namespace DabloonsPP
             Move_Timer.Start();
         }
 
-        private void Move()
+        virtual protected void Move()
         {
             hitbox.setPosition(new System.Drawing.Point(hitbox.getPosition().X + dx, hitbox.getPosition().Y + dy));
         }
 
-        private void Move_Timer_Tick(object sender, object e)
+        protected void Move_Timer_Tick(object sender, object e)
         {
             Move();
             CheckCollisionWithEnemies();
-            Draw();
         }
 
-        private void CheckCollisionWithEnemies()
+        virtual protected void CheckCollisionWithEnemies()
         {
             // Assuming enemies is a List<IEnemy> containing all active enemies
             foreach (Bloon enemy in enemies)
@@ -92,7 +91,7 @@ namespace DabloonsPP
             }
         }
 
-        private bool IsOnCooldown(Bloon enemy)
+        protected bool IsOnCooldown(Bloon enemy)
         {
             // Check if the enemy is on cooldown based on the last hit time
             if (lastHitTimes.TryGetValue(enemy, out DateTime lastHitTime))
@@ -104,7 +103,7 @@ namespace DabloonsPP
             return false; // Not on cooldown if never hit before
         }
 
-        private void RemoveProjectile()
+        protected void RemoveProjectile()
         {
             // Clear the set of damaged enemies and their last hit times for the next projectile
             lastHitTimes.Clear();

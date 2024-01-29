@@ -144,6 +144,10 @@ namespace DabloonsPP
                 {
                     SuperTower newTower = new SuperTower(tapX, tapY, GameCanva, 1, enemies);
                 }
+                else if(towerType == "boomerang_monkey")
+                {
+                    BoomerangTower newTower = new BoomerangTower(tapX, tapY, GameCanva, 1, enemies);
+                }
                 // Deselect the tower after placing it
                 selectedTower.BorderThickness = new Thickness(0);
                 selectedTower = null;

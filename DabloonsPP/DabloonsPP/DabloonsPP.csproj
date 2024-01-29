@@ -121,6 +121,7 @@
     </Compile>
     <Compile Include="GameObjects\Enemies\Bloon.cs" />
     <Compile Include="GameObjects\IGameObject.cs" />
+    <Compile Include="GameObjects\Projectiles\BoomerangProjectile.cs" />
     <Compile Include="GameObjects\Towers\BasicTower.cs" />
     <Compile Include="GameObjects\Towers\BoomerangTower.cs" />
     <Compile Include="GameObjects\Towers\ITower.cs" />
@@ -155,12 +156,15 @@
     <Content Include="Assets\Maps\Map1.png" />
     <Content Include="Assets\Menu\MenuBackground.png" />
     <Content Include="Assets\Menu\PlayButton.png" />
+    <Content Include="Assets\Monkeys\boomerang_Monkey.png" />
     <Content Include="Assets\Monkeys\dartMonkey.png" />
     <Content Include="Assets\Monkeys\ninja_monkey.png" />
     <Content Include="Assets\Monkeys\super_monkey.png" />
+    <Content Include="Assets\Projectiles\boomerang.png" />
     <Content Include="Assets\Projectiles\Dart.png" />
     <Content Include="Assets\Projectiles\blue_shurikan.png" />
     <Content Include="Assets\Projectiles\Shurikan.png" />
+    <Content Include="Assets\TowerIcons\boomerangMonkey_icon.png" />
     <Content Include="Assets\TowerIcons\dartMonkey_icon.png" />
     <Content Include="Assets\TowerIcons\ninjaMonkey_icon.png" />
     <Content Include="Assets\TowerIcons\superMonkey_icon.png" />

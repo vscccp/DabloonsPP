@@ -14,7 +14,7 @@ namespace DabloonsPP.GameObjects.Towers
         private static int width = 75;
         private static int height = 75;
         public BoomerangTower(int x, int y, Canvas canva, int damage, List<Bloon> enemies) :
-            base(width, height, (x - (width / 2)), (y - (height / 2)), "Monkeys\\super_monkey.png", canva, damage, 300, enemies, TimeSpan.FromMilliseconds(100))
+            base(width, height, (x - (width / 2)), (y - (height / 2)), "Monkeys\\boomerang_monkey.png", canva, damage, 300, enemies, TimeSpan.FromMilliseconds(100))
         {
         }
 
@@ -25,7 +25,7 @@ namespace DabloonsPP.GameObjects.Towers
             int vx = (int)(speed * Math.Cos(angle));
             int vy = (int)(speed * Math.Sin(angle));
 
-            Projectile projectile = new Projectile(Position.X, Position.Y, vx, vy, damage, pierce, "Projectiles\\dart.png", (float)angle, GameCanvas, enemies);
+            Projectile projectile = new Projectile(Position.X, Position.Y, vx, vy, damage, pierce, "Projectiles\\boomerang.png", (float)angle, GameCanvas, enemies);
         }
     }
 }
