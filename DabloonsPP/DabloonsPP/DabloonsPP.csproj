@@ -124,7 +124,7 @@
     <Compile Include="GameObjects\Towers\BasicTower.cs" />
     <Compile Include="GameObjects\Towers\ITower.cs" />
     <Compile Include="GameObjects\Projectile.cs" />
-    <Compile Include="GameObjects\Towers\ninjaTower.cs" />
+    <Compile Include="GameObjects\Towers\NinjaTower.cs" />
     <Compile Include="HelperClasses\MathHelper.cs" />
     <Compile Include="HelperClasses\MyCircle.cs" />
     <Compile Include="HelperClasses\Turn.cs" />
@@ -157,7 +157,10 @@
     <Content Include="Assets\Monkeys\ninja_monkey.png" />
     <Content Include="Assets\Monkeys\super_monkey.png" />
     <Content Include="Assets\Projectiles\Dart.png" />
+    <Content Include="Assets\Projectiles\blue_shurikan.png" />
+    <Content Include="Assets\Projectiles\Shurikan.png" />
     <Content Include="Assets\TowerIcons\dartMonkey_icon.png" />
+    <Content Include="Assets\TowerIcons\ninjaMonkey_icon.png" />
     <Content Include="Assets\VFX\pop.png" />
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="Assets\LockScreenLogo.scale-200.png" />

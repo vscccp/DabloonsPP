@@ -138,7 +138,7 @@ namespace DabloonsPP
                 }
                 else if(towerType == "ninja_monkey")
                 {
-
+                    NinjaTower newTower = new NinjaTower(tapX, tapY, GameCanva, 1, enemies);
                 }
 
                 // Deselect the tower after placing it

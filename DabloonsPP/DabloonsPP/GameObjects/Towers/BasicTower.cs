@@ -17,7 +17,7 @@ namespace DabloonsPP.GameObjects.Towers
         private TimeSpan cooldownDuration = TimeSpan.FromMilliseconds(750);
         private DispatcherTimer ChooseTimer;
         public BasicTower(int x, int y, Canvas canva, int damage, List<Bloon> enemies) : 
-            base(width, height, (x-(width/2)), (y-(height/2)), "Monkeys\\dartMonkey.png", canva, damage, 250, enemies, TimeSpan.FromMilliseconds(750))
+            base(width, height, (x-(width/2)), (y-(height/2)), "Monkeys\\dartMonkey.png", canva, damage, 200, enemies, TimeSpan.FromMilliseconds(750))
         {
             ChooseTimer = new DispatcherTimer();
             ChooseTimer.Interval = TimeSpan.FromTicks(20);
