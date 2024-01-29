@@ -58,8 +58,17 @@
             <Rectangle Width="320" Height="100" Canvas.Top="100" Canvas.Left="750" RadiusX="4" RadiusY="4" Fill="Transparent" />
             <Rectangle Width="125" Height="630" Canvas.Left="985" RadiusX="6" RadiusY="6" Canvas.Top="200" Fill="Transparent" />
             <!--#endregion-->
+
+
+            <StackPanel Orientation="Horizontal">
+                <Image Source="ms-appx:///assets/Icons/hearts.png" Width="50" Height="50"/>
+                <TextBlock x:Name="health_block" Text="100" FontSize="45" Foreground="White" FontFamily="Comic Sans MS"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Canvas.Top="60" VerticalAlignment="Top">
+                <Image Source="ms-appx:///assets/Icons/coins.png" Width="50" Height="50"/>
+                <TextBlock x:Name="money_block" Text="850" FontSize="45" Foreground="White" FontFamily="Comic Sans MS"/>
+            </StackPanel>
             
-            <Image sou
         </Canvas>
         <!--#endregion-->
     </Grid>

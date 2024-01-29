@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml;
 
 namespace DabloonsPP.GameObjects.Towers
 {
-    class BasicTower : ITower
+    internal class ninjaTower
     {
         private int projectile_speed = 50;
         private int pierce = 2;
@@ -16,8 +16,8 @@ namespace DabloonsPP.GameObjects.Towers
         private static int height = 75;
         private TimeSpan cooldownDuration = TimeSpan.FromMilliseconds(750);
         private DispatcherTimer ChooseTimer;
-        public BasicTower(int x, int y, Canvas canva, int damage, List<Bloon> enemies) : 
-            base(width, height, (x-(width/2)), (y-(height/2)), "Monkeys\\dartMonkey.png", canva, damage, 250, enemies, TimeSpan.FromMilliseconds(750))
+        public BasicTower(int x, int y, Canvas canva, int damage, List<Bloon> enemies) :
+            base(width, height, (x - (width / 2)), (y - (height / 2)), "Monkeys\\dartMonkey.png", canva, damage, 250, enemies, TimeSpan.FromMilliseconds(750))
         {
             ChooseTimer = new DispatcherTimer();
             ChooseTimer.Interval = TimeSpan.FromTicks(20);
@@ -40,6 +40,5 @@ namespace DabloonsPP.GameObjects.Towers
 
             Projectile projectile = new Projectile(Position.X, Position.Y, vx, vy, damage, pierce, "Projectiles\\Dart.png", (float)angle, GameCanvas, enemies);
         }
-
     }
 }

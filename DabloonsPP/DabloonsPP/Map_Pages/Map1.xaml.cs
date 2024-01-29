@@ -37,8 +37,8 @@ namespace DabloonsPP
 
         #region Stats
 
-        int money = 850;
-        int hearts = 100;
+        private int money = 850;
+        private int health = 100;
 
         #endregion
         public Map1()
@@ -74,13 +74,13 @@ namespace DabloonsPP
         {
             if (args.VirtualKey == Windows.System.VirtualKey.W)
             {
-                Bloon enemy = new Bloon(STARTING_X, STARTING_Y, GameCanva, 20, 20, 1, turns);
+                Bloon enemy = new Bloon(STARTING_X, STARTING_Y, GameCanva, 1, turns, Reduce_Health);
 
                 enemies.Add(enemy);
             }
             else if(args.VirtualKey == Windows.System.VirtualKey.S)
             {
-                Bloon enemy = new Bloon(STARTING_X, STARTING_Y, GameCanva, 20, 20, 5, turns);
+                Bloon enemy = new Bloon(STARTING_X, STARTING_Y, GameCanva, 5, turns, Reduce_Health);
 
                 enemies.Add(enemy);
             }
@@ -92,6 +92,10 @@ namespace DabloonsPP
             for (int i = enemies.Count - 1; i >= 0; i--)
             {
                 if (enemies[i].Health <= 0)
+                {
+                    enemies.RemoveAt(i);
+                }
+                else if (enemies[i].Turns.Count() == 0)
                 {
                     enemies.RemoveAt(i);
                 }
@@ -125,14 +129,32 @@ namespace DabloonsPP
                 int tapY = (int)tapPosition.Y;
 
                 // Use the selected tower's Tag to identify the chosen tower
-                string towerColor = selectedTower.Tag as string;
+                string towerType = selectedTower.Tag as string;
 
-                // Create the tower based on the selected color
-                BasicTower newTower = new BasicTower(tapX, tapY, GameCanva, 1, enemies);
+                if(towerType == "dart_monkey")
+                {
+                    // Create the tower based on the selected color
+                    BasicTower newTower = new BasicTower(tapX, tapY, GameCanva, 1, enemies);
+                }
+                else if(towerType == "ninja_monkey")
+                {
+
+                }
 
                 // Deselect the tower after placing it
                 selectedTower.BorderThickness = new Thickness(0);
                 selectedTower = null;
+            }
+        }
+
+        private void Reduce_Health(int health_reduce)
+        {
+            health -= health_reduce;
+
+            health_block.Text = health.ToString();
+            if(health <= 0)
+            {
+                // implement lose screen and statistics
             }
         }
     }

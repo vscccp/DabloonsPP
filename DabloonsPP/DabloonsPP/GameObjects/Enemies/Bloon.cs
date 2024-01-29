@@ -23,10 +23,11 @@ namespace DabloonsPP
     }
 
 
-
+    delegate void reduceHealth(int healthReduced);
 
     class Bloon : IGameObject
     {
+
         const int ENEMY_HEIGHT = 75;
         const int ENEMY_WIDTH = 75;
 
@@ -37,6 +38,8 @@ namespace DabloonsPP
         private Direction direction;
         private Queue<Turn> turns;
         private DispatcherTimer moveTimer;
+
+        private reduceHealth reduceHealth;
 
         #region setters and getters
         public int Dx
@@ -57,44 +60,30 @@ namespace DabloonsPP
             set { health = value; }
         }
 
+        public Queue<Turn> Turns
+        {
+            get { return turns; }
+        }
+
         #endregion
 
-        public Bloon(int x, int y, Canvas canva, int dx, int dy, int health, Queue<Turn> turns) :
+        public Bloon(int x, int y, Canvas canva, int health, Queue<Turn> turns, reduceHealth reduceHealth) :
             base(ENEMY_WIDTH, ENEMY_HEIGHT, x, y, canva)
         {
-            this.dx = dx;
-            this.dy = dy;
             this.health = health;
-
             this.turns = new Queue<Turn>(turns);
 
             direction = Direction.RIGHT;
 
+            SetSpeed();
+
             moveTimer = new DispatcherTimer();
-            moveTimer.Interval = TimeSpan.FromMilliseconds(200);
+            moveTimer.Interval = TimeSpan.FromMilliseconds(50);
             moveTimer.Tick += MoveTimer_Tick;
             moveTimer.Start();
 
             SetBloonImage((Bloon_Colors)health);
-        }
-
-        private void MovementTurn(Turn turn)
-        {
-            switch (turn.TurnDirection)
-            {
-                case Direction.UP:
-                    dy *= -1; // Adjust speed for upward movement
-                    break;
-                case Direction.DOWN:
-                    dy = Math.Abs(dy); // Adjust speed for downward movement
-                    break;
-                case Direction.LEFT:
-                    dx *= -1; // Adjust speed for leftward movement
-                    break;
-                case Direction.RIGHT:
-                    dx = Math.Abs(dx); // Adjust speed for rightward movement
-                    break;
-            }
+            this.reduceHealth = reduceHealth;
         }
 
         private void Move(Direction dir)
@@ -117,13 +106,14 @@ namespace DabloonsPP
                 if (MathHelper.CirclesCollide(hitbox, turn.Hitbox)) // if collides
                 {
                     direction = turn.TurnDirection;
-                    MovementTurn(turn);
+                    SetSpeed();
                     turn = turns.Dequeue();
 
                     if (turns.Count == 0) // if finished map then remove
                     {
                         this.Undraw();
                         moveTimer.Stop();
+                        reduceHealth(health);
                         return;
                     }
                 }
@@ -133,6 +123,48 @@ namespace DabloonsPP
             Draw();
         }
 
+        private void SetSpeed()
+        {
+            int speed = 0;
+            switch ((Bloon_Colors)health)
+            {
+                case Bloon_Colors.PINK:
+                    speed = 40;
+                    break;
+                case Bloon_Colors.YELLOW:
+                    speed = 30;
+                    break;
+                case Bloon_Colors.GREEN:
+                    speed = 20;
+                    break;
+                case Bloon_Colors.BLUE:
+                    speed = 15;
+                    break;
+                default:
+                    speed = 10;
+                    break;
+                    
+            }
+            switch (direction)
+            {
+                case Direction.UP:
+                    dy = speed * -1;
+                    dx = 0;
+                    break;
+                case Direction.DOWN:
+                    dy = speed;
+                    dx = 0;
+                    break;
+                case Direction.LEFT:
+                    dx = speed * -1;
+                    dy = 0;
+                    break;
+                case Direction.RIGHT:
+                    dx = speed;
+                    dy = 0;
+                    break;
+            }
+        }
 
         private void SetBloonImage(Bloon_Colors bloonColor)
         {
@@ -170,9 +202,12 @@ namespace DabloonsPP
 
                 Undraw();
             }
-
-            Bloon_Colors bloonColor = (Bloon_Colors)health;
-            SetBloonImage(bloonColor);
+            else
+            {
+                Bloon_Colors bloonColor = (Bloon_Colors)health;
+                SetBloonImage(bloonColor);
+                SetSpeed();
+            }
         }
 
     }

@@ -1,10 +1,7 @@
-﻿using System;
+﻿using DabloonsPP.HelperClasses;
+using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
 using Windows.UI.Xaml.Controls;
 
 namespace DabloonsPP
@@ -13,22 +10,25 @@ namespace DabloonsPP
     {
         public int damage { get; set; }
         public float range { get; set; }
+        public TimeSpan ShootCooldown { get; set; }
 
         protected List<Bloon> enemies;
+        private DateTime lastShootTime = DateTime.MinValue;
+
         protected abstract void Shoot(double angle);
 
-
-
-        public ITower(int width, int height, int x, int y, string path, Canvas canva, int damage, float range, List<Bloon> enemeies) : base(width, height, x, y, path, canva)
+        public ITower(int width, int height, int x, int y, string path, Canvas canva, int damage, float range, List<Bloon> enemies, TimeSpan shootCooldown)
+            : base(width, height, x, y, path, canva)
         {
             this.damage = damage;
             this.range = range;
-            this.enemies = enemeies;
+            this.enemies = enemies;
+            this.ShootCooldown = shootCooldown;
         }
 
         protected void ChooseTarget()
         {
-            if (enemies.Count == 0)
+            if (enemies.Count == 0 || IsOnCooldown())
                 return;
 
             Bloon target = enemies.First();
@@ -50,8 +50,16 @@ namespace DabloonsPP
             RotateImage((float)(-angleDegrees));
 
             Shoot(angle);
+
+            // Update the last shoot time
+            lastShootTime = DateTime.Now;
         }
 
-
+        private bool IsOnCooldown()
+        {
+            // Check if the tower is on cooldown based on the last shoot time
+            TimeSpan elapsed = DateTime.Now - lastShootTime;
+            return elapsed < ShootCooldown;
+        }
     }
 }
