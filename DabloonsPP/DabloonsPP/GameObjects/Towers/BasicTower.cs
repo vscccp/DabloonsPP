@@ -14,20 +14,10 @@ namespace DabloonsPP.GameObjects.Towers
         private int pierce = 2;
         private static int width = 75;
         private static int height = 75;
-        private DispatcherTimer ChooseTimer;
         public BasicTower(int x, int y, Canvas canva, int damage, List<Bloon> enemies) : 
             base(width, height, (x-(width/2)), (y-(height/2)), "Monkeys\\dartMonkey.png", canva, damage, 200, enemies, TimeSpan.FromMilliseconds(750))
         {
-            ChooseTimer = new DispatcherTimer();
-            ChooseTimer.Interval = TimeSpan.FromTicks(20);
-            ChooseTimer.Tick += ChooseTimer_Tick;
-
-            ChooseTimer.Start();
-        }
-
-        private void ChooseTimer_Tick(object sender, object e)
-        {
-            ChooseTarget();
+            
         }
 
         protected override void Shoot(double angle)

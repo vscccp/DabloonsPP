@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 
 namespace DabloonsPP
@@ -14,6 +15,7 @@ namespace DabloonsPP
 
         protected List<Bloon> enemies;
         private DateTime lastShootTime = DateTime.MinValue;
+        private DispatcherTimer ChooseTimer;
 
         protected abstract void Shoot(double angle);
 
@@ -24,6 +26,17 @@ namespace DabloonsPP
             this.range = range;
             this.enemies = enemies;
             this.ShootCooldown = shootCooldown;
+
+            ChooseTimer = new DispatcherTimer();
+            ChooseTimer.Interval = TimeSpan.FromTicks(20);
+            ChooseTimer.Tick += ChooseTimer_Tick;
+
+            ChooseTimer.Start();
+        }
+
+        private void ChooseTimer_Tick(object sender, object e)
+        {
+            ChooseTarget();
         }
 
         protected void ChooseTarget()
