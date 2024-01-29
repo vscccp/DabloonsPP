@@ -122,8 +122,9 @@
     <Compile Include="GameObjects\Enemies\Bloon.cs" />
     <Compile Include="GameObjects\IGameObject.cs" />
     <Compile Include="GameObjects\Towers\BasicTower.cs" />
+    <Compile Include="GameObjects\Towers\BoomerangTower.cs" />
     <Compile Include="GameObjects\Towers\ITower.cs" />
-    <Compile Include="GameObjects\Projectile.cs" />
+    <Compile Include="GameObjects\Projectiles\Projectile.cs" />
     <Compile Include="GameObjects\Towers\NinjaTower.cs" />
     <Compile Include="GameObjects\Towers\SuperTower.cs" />
     <Compile Include="HelperClasses\MathHelper.cs" />
