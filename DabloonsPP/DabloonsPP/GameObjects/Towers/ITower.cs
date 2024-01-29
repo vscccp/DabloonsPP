@@ -46,8 +46,6 @@ namespace DabloonsPP
             double angle = Math.Atan2(deltaY, deltaX);
             double angleDegrees = angle * (180.0 / Math.PI);
 
-            Debug.WriteLine(angleDegrees);
-
             // Invert the angle before rotating the image
             RotateImage((float)(-angleDegrees));
 

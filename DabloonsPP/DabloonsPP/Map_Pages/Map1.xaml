@@ -23,23 +23,21 @@
 
         <!--#region Menu-->
 
-        <!--Left Towers-->
-        <StackPanel Margin="20" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Top" Height="700" Width="120" x:Name="TowersLeft" >
-            <Rectangle Fill="Red" Width="80" Height="80" Margin="5" Tapped="Tower_Selected" Tag="Red"/>
-            <Rectangle Fill="Blue" Width="80" Height="80" Margin="5" Tapped="Tower_Selected" Tag="Blue"/>
-            <Rectangle Fill="Green" Width="80" Height="80" Margin="5" Tapped="Tower_Selected" Tag="Green"/>
-            <Rectangle Fill="Purple" Width="80" Height="80" Margin="5" Tapped="Tower_Selected" Tag="Purple"/>
+        <!-- Left Towers -->
+        <StackPanel Margin="20" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Top" Height="700" Width="120" x:Name="TowersLeft">
+            <Border BorderBrush="Black" BorderThickness="0" Tapped="Tower_Selected" Tag="Red">
+                <Image Source="ms-appx:///Assets/TowerImages/RedTower.png" Width="80" Height="80" Margin="5"/>
+            </Border>
+            <!-- Add similar Border elements for other colors -->
         </StackPanel>
 
-        <!--Right Towers-->
+        <!-- Right Towers -->
         <StackPanel Margin="20" Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Top" Height="700" Width="120" x:Name="TowersRight">
-            <Rectangle Fill="Red" Width="80" Height="80" Margin="5" Tapped="Tower_Selected" Tag="Red"/>
-            <Rectangle Fill="Blue" Width="80" Height="80" Margin="5" Tapped="Tower_Selected" Tag="Blue"/>
-            <Rectangle Fill="Green" Width="80" Height="80" Margin="5" Tapped="Tower_Selected" Tag="Green"/>
-            <Rectangle Fill="Purple" Width="80" Height="80" Margin="5" Tapped="Tower_Selected" Tag="Purple"/>
+            <Border BorderBrush="Black" BorderThickness="0" Tapped="Tower_Selected" Tag="dart_monkey">
+                <Image Source="ms-appx:///Assets/TowerIcons/dartMonkey_icon.png" Width="80" Height="80" Margin="5"/>
+            </Border>
+            <!-- Add similar Border elements for other colors -->
         </StackPanel>
-
-        <!--#endregion-->
 
         <!--#region GameCanva-->
 
@@ -52,13 +50,16 @@
             <Ellipse x:Name="turn5" Fill="Transparent" Height="30" Width="30" Canvas.Left="1090" Canvas.Top="100"/>
             <Ellipse x:Name="end" Fill="Transparent" Height="30" Width="30" Canvas.Left="1050" Canvas.Top="900"/>
             <!--#endregion-->
-
+            <!--#region Blockers-->
             <Rectangle Width="390" Height="100" Canvas.Top="210" RadiusX="4" RadiusY="4"                   Fill="Transparent" />
             <Rectangle Width="95" Height="450" Canvas.Left="300" RadiusX="6" RadiusY="6" Canvas.Top="205"  Fill="Transparent" />
             <Rectangle Width="490" Height="135" Canvas.Top="555" Canvas.Left="310" RadiusX="4" RadiusY="4" Fill="Transparent" />
             <Rectangle Width="85" Height="570" Canvas.Left="715" RadiusX="6" RadiusY="6" Canvas.Top="100"  Fill="Transparent" />
             <Rectangle Width="320" Height="100" Canvas.Top="100" Canvas.Left="750" RadiusX="4" RadiusY="4" Fill="Transparent" />
             <Rectangle Width="125" Height="630" Canvas.Left="985" RadiusX="6" RadiusY="6" Canvas.Top="200" Fill="Transparent" />
+            <!--#endregion-->
+            
+            <Image sou
         </Canvas>
         <!--#endregion-->
     </Grid>

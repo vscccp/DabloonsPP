@@ -146,6 +146,9 @@
     <Content Include="Assets\Enemies\bloonPink.png" />
     <Content Include="Assets\Enemies\bloonBlue.png" />
     <Content Include="Assets\Enemies\bloonYellow.png" />
+    <Content Include="Assets\Icons\coins.png" />
+    <Content Include="Assets\Icons\hearts.png" />
+    <Content Include="Assets\Icons\settings.png" />
     <Content Include="Assets\Maps\Map1.png" />
     <Content Include="Assets\Menu\MenuBackground.png" />
     <Content Include="Assets\Menu\PlayButton.png" />

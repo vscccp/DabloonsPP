@@ -32,7 +32,7 @@ namespace DabloonsPP
         private List<Bloon> enemies = new List<Bloon>();
         public Queue<Turn> turns = new Queue<Turn>();
         private DispatcherTimer enemyCheckTimer;
-        private Rectangle selectedTower;
+        private Border selectedTower;
         uint round = 1;
 
         #region Stats
@@ -103,13 +103,14 @@ namespace DabloonsPP
             // Deselect previously selected tower (if any)
             if (selectedTower != null)
             {
-                selectedTower.StrokeThickness = 0;
+                // Reset the border thickness
+                selectedTower.BorderThickness = new Thickness(0);
             }
 
             // Select the clicked tower
-            selectedTower = sender as Rectangle;
-            selectedTower.Stroke = new SolidColorBrush(Windows.UI.Colors.Black);
-            selectedTower.StrokeThickness = 5;
+            selectedTower = sender as Border;
+            selectedTower.BorderBrush = new SolidColorBrush(Windows.UI.Colors.Black);
+            selectedTower.BorderThickness = new Thickness(5);
         }
 
         private void GameCanva_Tapped(object sender, TappedRoutedEventArgs e)
@@ -130,7 +131,7 @@ namespace DabloonsPP
                 BasicTower newTower = new BasicTower(tapX, tapY, GameCanva, 1, enemies);
 
                 // Deselect the tower after placing it
-                selectedTower.StrokeThickness = 0;
+                selectedTower.BorderThickness = new Thickness(0);
                 selectedTower = null;
             }
         }
