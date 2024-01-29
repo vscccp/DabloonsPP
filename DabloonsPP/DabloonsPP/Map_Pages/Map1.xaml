@@ -28,6 +28,9 @@
             <Border BorderBrush="Black" BorderThickness="0" Tapped="Tower_Selected" Tag="ninja_monkey">
                 <Image Source="ms-appx:///Assets/TowerIcons/ninjaMonkey_icon.png" Width="80" Height="80" Margin="5"/>
             </Border>
+            <Border BorderBrush="Black" BorderThickness="0" Tapped="Tower_Selected" Tag="super_monkey">
+                <Image Source="ms-appx:///Assets/TowerIcons/superMonkey_icon.png" Width="80" Height="80" Margin="5"/>
+            </Border>
             <!-- Add similar Border elements for other colors -->
         </StackPanel>
 

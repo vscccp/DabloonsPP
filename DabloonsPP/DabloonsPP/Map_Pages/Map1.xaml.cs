@@ -140,7 +140,10 @@ namespace DabloonsPP
                 {
                     NinjaTower newTower = new NinjaTower(tapX, tapY, GameCanva, 1, enemies);
                 }
-
+                else if(towerType == "super_monkey")
+                {
+                    SuperTower newTower = new SuperTower(tapX, tapY, GameCanva, 1, enemies);
+                }
                 // Deselect the tower after placing it
                 selectedTower.BorderThickness = new Thickness(0);
                 selectedTower = null;
