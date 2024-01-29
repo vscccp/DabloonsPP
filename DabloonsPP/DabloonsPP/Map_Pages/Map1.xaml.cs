@@ -7,6 +7,7 @@ using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.UI;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -31,6 +32,7 @@ namespace DabloonsPP
         private List<Bloon> enemies = new List<Bloon>();
         public Queue<Turn> turns = new Queue<Turn>();
         private DispatcherTimer enemyCheckTimer;
+        private Rectangle selectedTower;
         uint round = 1;
 
         #region Stats
@@ -55,11 +57,15 @@ namespace DabloonsPP
             turns.Enqueue(new Turn(end, new System.Drawing.Point((int)Canvas.GetLeft(end), (int)Canvas.GetTop(end)), Direction.DOWN));
             #endregion
 
+            #region enemyCheckTimer init
             // Initialize and start the timer for checking enemies' health
             enemyCheckTimer = new DispatcherTimer();
             enemyCheckTimer.Interval = TimeSpan.FromMilliseconds(500); // Adjust the interval as needed
             enemyCheckTimer.Tick += EnemyCheckTimer_Tick;
             enemyCheckTimer.Start();
+            #endregion
+
+            selectedTower = null;
 
             Window.Current.CoreWindow.KeyDown += CoreWindow_KeyDown;
         }
@@ -92,17 +98,41 @@ namespace DabloonsPP
             }
         }
 
-
-        private void Image_DoubleTapped(object sender, DoubleTappedRoutedEventArgs e)
+        private void Tower_Selected(object sender, TappedRoutedEventArgs e)
         {
-            // Get the position of the tap relative to the Image control
-            Point tapPosition = e.GetPosition(sender as UIElement);
+            // Deselect previously selected tower (if any)
+            if (selectedTower != null)
+            {
+                selectedTower.StrokeThickness = 0;
+            }
 
-            // Retrieve X and Y coordinates
-            int tapX = (int)(tapPosition.X);
-            int tapY = (int)(tapPosition.Y);
+            // Select the clicked tower
+            selectedTower = sender as Rectangle;
+            selectedTower.Stroke = new SolidColorBrush(Windows.UI.Colors.Black);
+            selectedTower.StrokeThickness = 5;
+        }
 
-            BasicTower test = new BasicTower(tapX, tapY, GameCanva, 1, enemies);
+        private void GameCanva_Tapped(object sender, TappedRoutedEventArgs e)
+        {
+            if (selectedTower != null)
+            {
+                // Get the position of the tap relative to the Canvas
+                Point tapPosition = e.GetPosition(GameCanva);
+
+                // Retrieve X and Y coordinates
+                int tapX = (int)tapPosition.X;
+                int tapY = (int)tapPosition.Y;
+
+                // Use the selected tower's Tag to identify the chosen tower
+                string towerColor = selectedTower.Tag as string;
+
+                // Create the tower based on the selected color
+                BasicTower newTower = new BasicTower(tapX, tapY, GameCanva, 1, enemies);
+
+                // Deselect the tower after placing it
+                selectedTower.StrokeThickness = 0;
+                selectedTower = null;
+            }
         }
     }
 }
