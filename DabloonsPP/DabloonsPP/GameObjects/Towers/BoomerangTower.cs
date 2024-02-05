@@ -12,8 +12,8 @@ namespace DabloonsPP.GameObjects.Towers
         static private readonly int RANGE = 300;
         private int projectile_speed = 50;
         private int pierce = 4;
-        private static int width = 75;
-        private static int height = 75;
+        private static int width = 100;
+        private static int height = 100;
         public BoomerangTower(int x, int y, Canvas canva, int damage, List<Bloon> enemies) :
             base(width, height, (x - (width / 2)), (y - (height / 2)), "Monkeys\\boomerang_monkey.png", canva, damage, RANGE, enemies, TimeSpan.FromMilliseconds(800))
         {

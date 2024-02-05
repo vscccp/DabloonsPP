@@ -12,19 +12,19 @@
 
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="1200"/>
+            <ColumnDefinition Width="1250"/>
             <ColumnDefinition Width="300"/>
         </Grid.ColumnDefinitions>
 
         <!--#region Backgrounds-->
         <Image Source="ms-appx:///Assets\Maps\Map1.png" Stretch="Fill" Grid.Column="0" IsDoubleTapEnabled="True" Tapped="GameCanva_Tapped"/>
-        <Image Source="ms-appx:///Assets\Menu\MenuBackground.png" Stretch="fill" Grid.Column="1" />
+        <Image Source="ms-appx:///Assets\Menu\MenuBackground.png" Stretch="fill" Grid.Column="1" Canvas.ZIndex="200" />
         <!--#endregion-->
 
         <!--#region Menu-->
 
         <!-- Left Towers -->
-        <StackPanel Margin="20" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Top" Height="700" Width="120" x:Name="TowersLeft">
+        <StackPanel Margin="20" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Top" Height="700" Width="120" x:Name="TowersLeft" Canvas.ZIndex="219">
             <Border BorderBrush="Black" BorderThickness="0" Tapped="Tower_Selected" Tag="ninja_monkey">
                 <Image Source="ms-appx:///Assets/TowerIcons/ninjaMonkey_icon.png" Width="80" Height="80" Margin="5"/>
             </Border>
@@ -35,7 +35,7 @@
         </StackPanel>
 
         <!-- Right Towers -->
-        <StackPanel Margin="20" Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Top" Height="700" Width="120" x:Name="TowersRight">
+        <StackPanel Margin="20" Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Top" Height="700" Width="120" x:Name="TowersRight" Canvas.ZIndex="219">
             <Border BorderBrush="Black" BorderThickness="0" Tapped="Tower_Selected" Tag="dart_monkey">
                 <Image Source="ms-appx:///Assets/TowerIcons/dartMonkey_icon.png" Width="80" Height="80" Margin="5"/>
             </Border>
@@ -57,12 +57,12 @@
             <Ellipse x:Name="end" Fill="Transparent" Height="30" Width="30" Canvas.Left="1050" Canvas.Top="900"/>
             <!--#endregion-->
             <!--#region Blockers-->
-            <Rectangle Width="390" Height="100" Canvas.Top="210" RadiusX="4" RadiusY="4"                   Fill="Transparent" />
-            <Rectangle Width="95" Height="450" Canvas.Left="300" RadiusX="6" RadiusY="6" Canvas.Top="205"  Fill="Transparent" />
-            <Rectangle Width="490" Height="135" Canvas.Top="555" Canvas.Left="310" RadiusX="4" RadiusY="4" Fill="Transparent" />
-            <Rectangle Width="85" Height="570" Canvas.Left="715" RadiusX="6" RadiusY="6" Canvas.Top="100"  Fill="Transparent" />
-            <Rectangle Width="320" Height="100" Canvas.Top="100" Canvas.Left="750" RadiusX="4" RadiusY="4" Fill="Transparent" />
-            <Rectangle Width="125" Height="630" Canvas.Left="985" RadiusX="6" RadiusY="6" Canvas.Top="200" Fill="Transparent" />
+            <Rectangle Width="400" Height="100" Canvas.Top="210" RadiusX="4" RadiusY="4"                   Fill="Transparent" />
+            <Rectangle Width="95" Height="450" Canvas.Left="310" RadiusX="6" RadiusY="6" Canvas.Top="205"  Fill="Transparent" />
+            <Rectangle Width="490" Height="135" Canvas.Top="575" Canvas.Left="310" RadiusX="4" RadiusY="4" Fill="Transparent" />
+            <Rectangle Width="85" Height="570" Canvas.Left="745" RadiusX="6" RadiusY="6" Canvas.Top="100"  Fill="Transparent" />
+            <Rectangle Width="320" Height="100" Canvas.Top="100" Canvas.Left="760" RadiusX="4" RadiusY="4" Fill="Transparent" />
+            <Rectangle Width="125" Height="630" Canvas.Left="1020" RadiusX="6" RadiusY="6" Canvas.Top="200" Fill="Transparent" />
             <!--#endregion-->
 
 
