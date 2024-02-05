@@ -59,6 +59,7 @@ namespace DabloonsPP
         virtual protected void Move()
         {
             hitbox.setPosition(new System.Drawing.Point(hitbox.getPosition().X + dx, hitbox.getPosition().Y + dy));
+            Draw();
         }
 
         protected void Move_Timer_Tick(object sender, object e)
@@ -84,6 +85,12 @@ namespace DabloonsPP
                     if (--pierce <= 0)
                     {
                         // Projectile has no pierce remaining, remove it
+                        RemoveProjectile();
+                        return;
+                    }
+                    else if(Position.X > 1400 || Position.X < -200 || Position.Y > 1200 || Position.Y < -200) // giving the projectile a little space after the map
+                    {
+                        // Projectile out of bounds, remove it
                         RemoveProjectile();
                         return;
                     }

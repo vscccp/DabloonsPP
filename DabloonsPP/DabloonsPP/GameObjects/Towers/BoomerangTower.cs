@@ -9,12 +9,13 @@ namespace DabloonsPP.GameObjects.Towers
 {
     internal class BoomerangTower : ITower
     {
+        static private readonly int RANGE = 300;
         private int projectile_speed = 50;
-        private int pierce = 1;
+        private int pierce = 4;
         private static int width = 75;
         private static int height = 75;
         public BoomerangTower(int x, int y, Canvas canva, int damage, List<Bloon> enemies) :
-            base(width, height, (x - (width / 2)), (y - (height / 2)), "Monkeys\\boomerang_monkey.png", canva, damage, 300, enemies, TimeSpan.FromMilliseconds(100))
+            base(width, height, (x - (width / 2)), (y - (height / 2)), "Monkeys\\boomerang_monkey.png", canva, damage, RANGE, enemies, TimeSpan.FromMilliseconds(800))
         {
         }
 
@@ -25,7 +26,7 @@ namespace DabloonsPP.GameObjects.Towers
             int vx = (int)(speed * Math.Cos(angle));
             int vy = (int)(speed * Math.Sin(angle));
 
-            Projectile projectile = new Projectile(Position.X, Position.Y, vx, vy, damage, pierce, "Projectiles\\boomerang.png", (float)angle, GameCanvas, enemies);
+            BoomerangProjectile projectile = new BoomerangProjectile(Position.X, Position.Y, vx, vy, damage, pierce, RANGE, "Projectiles\\boomerang.png", (float)angle, GameCanvas, enemies);
         }
     }
 }

@@ -1,61 +1,72 @@
-﻿using System;
+﻿using DabloonsPP.HelperClasses;
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Diagnostics;
+using System.Drawing;
+using System.Windows;
+using Windows.UI.Xaml.Controls;
 
-namespace DabloonsPP.GameObjects.Projectiles
+namespace DabloonsPP
 {
-    using global::DabloonsPP.HelperClasses;
-    using System;
-    using System.Collections.Generic;
-    using System.Drawing;
-    using System.Linq;
-    using System.Windows;
-    using Windows.UI.Xaml.Controls;
-
-    namespace DabloonsPP
+    internal class BoomerangProjectile : Projectile
     {
-        internal class BoomerangProjectile : Projectile
+        private Point originalPosition;
+        private bool returning = false;
+        private float range; // Added range field
+        private int rotationAngle = 0;
+
+        public BoomerangProjectile(int x, int y, int dx, int dy, int damage, int pierce, float range, string path, float angle, Canvas canva, List<Bloon> enemies)
+            : base(x, y, dx, dy, damage, pierce, path, angle, canva, enemies)
         {
-            private Point originalPosition;
-            private bool returning = false;
-            private int returnSpeed = 10; // Adjust the return speed as needed
+            originalPosition = new Point(x, y);
+            this.range = range;
+        }
 
-            public BoomerangProjectile(int x, int y, int dx, int dy, int damage, int pierce, string path, float angle, Canvas canva, List<Bloon> enemies)
-                : base(x, y, dx, dy, damage, pierce, path, angle, canva, enemies)
+        protected override void Move()
+        {
+            if(rotationAngle >= 360)
             {
-                originalPosition = new Point(x, y);
+                rotationAngle -= 360;
             }
-
-            protected override void Move()
+            rotationAngle += 150;
+            RotateImage(rotationAngle);
+            if (!returning)
             {
-                if (!returning)
-                    base.Move();
-                else
-                {
-                    // Move back to the original position
-                    hitbox.setPosition(new System.Drawing.Point(hitbox.getPosition().X - returnSpeed, hitbox.getPosition().Y));
+                base.Move();
 
-                    // Check if the projectile returned to the starting position
-                    if (MathHelper.Distance(hitbox.getPosition(), new System.Drawing.Point((int)originalPosition.X, (int)originalPosition.Y)) <= returnSpeed)
-                    {
-                        RemoveProjectile();
-                    }
+                // Check if the boomerang has traveled beyond the specified range
+                if (MathHelper.Distance(hitbox.getPosition(), new System.Drawing.Point((int)originalPosition.X, (int)originalPosition.Y)) >= range)
+                {
+                    returning = true;
+                    dx *= -1;
+                    dy *= -1;
                 }
             }
-
-            protected override void CheckCollisionWithEnemies()
+            else
             {
-                if (!returning)
-                {
-                    base.CheckCollisionWithEnemies();
+                // Move back to the original position
+                base.Move();
 
-                    // Check if the projectile needs to start returning
-                    if (pierce <= 0)
-                    {
-                        returning = true;
-                    }
+                // Check if the projectile returned to the starting position
+                if (MathHelper.Distance(hitbox.getPosition(), new System.Drawing.Point((int)originalPosition.X, (int)originalPosition.Y)) <= 25)
+                {
+                    RemoveProjectile();
+                }
+            }
+        }
+
+        protected override void CheckCollisionWithEnemies()
+        {
+            if (!returning)
+            {
+                base.CheckCollisionWithEnemies();
+
+                // Check if the projectile needs to start returning
+                if (pierce <= 0)
+                {
+                    returning = true;
+                    dx *= -1;
+                    dy *= -1;
                 }
             }
         }

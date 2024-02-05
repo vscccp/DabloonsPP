@@ -39,6 +39,9 @@
             <Border BorderBrush="Black" BorderThickness="0" Tapped="Tower_Selected" Tag="dart_monkey">
                 <Image Source="ms-appx:///Assets/TowerIcons/dartMonkey_icon.png" Width="80" Height="80" Margin="5"/>
             </Border>
+            <Border BorderBrush="Black" BorderThickness="0" Tapped="Tower_Selected" Tag="boomerang_monkey">
+                <Image Source="ms-appx:///Assets/TowerIcons/boomerangMonkey_icon.png" Width="80" Height="80" Margin="5"/>
+            </Border>
             <!-- Add similar Border elements for other colors -->
         </StackPanel>
 
