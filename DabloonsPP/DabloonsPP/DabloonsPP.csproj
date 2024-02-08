@@ -156,6 +156,7 @@
     <Content Include="Assets\Maps\Map1.png" />
     <Content Include="Assets\Menu\MenuBackground.png" />
     <Content Include="Assets\Menu\PlayButton.png" />
+    <Content Include="Assets\Menu\sellButton.png" />
     <Content Include="Assets\Monkeys\boomerang_Monkey.png" />
     <Content Include="Assets\Monkeys\dartMonkey.png" />
     <Content Include="Assets\Monkeys\ninja_monkey.png" />

@@ -16,7 +16,7 @@ namespace DabloonsPP
     abstract class IGameObject
     {
         public MyCircle hitbox;
-        private Image image;
+        protected Image image;
         private Canvas gameCanva;
         private PlaneProjection planeProjection;
 

@@ -7,8 +7,31 @@ using Windows.UI.Xaml.Controls;
 
 namespace DabloonsPP
 {
+    enum TowerType
+    {
+        Basic = 0,
+        ninja = 1,
+        super = 2,
+        boomerang = 3
+    };
+
+    enum Paths
+    {
+        FirstPath = 0,
+        SecondPath = 1,
+        ThirdPath = 2
+    }
+
+    delegate void changeMenu(TowerType tower, int firstPath, int secondPath, int thirdPath);
+
+    delegate bool TryReduceMoney(int money);
+
     abstract class ITower : IGameObject
     {
+        protected int firstPath = 0;
+        protected int secondPath = 0;
+        protected int thirdPath = 0;
+
         public int damage { get; set; }
         public float range { get; set; }
         public TimeSpan ShootCooldown { get; set; }
@@ -17,11 +40,17 @@ namespace DabloonsPP
         private DateTime lastShootTime = DateTime.MinValue;
         private DispatcherTimer ChooseTimer;
 
+        protected changeMenu OpenUpgradeMenu;
+        protected TryReduceMoney tryReduceMoney;
+
         protected abstract void Shoot(double angle);
 
-        public ITower(int width, int height, int x, int y, string path, Canvas canva, int damage, float range, List<Bloon> enemies, TimeSpan shootCooldown)
+        public ITower(int width, int height, int x, int y, string path, Canvas canva, int damage, float range, List<Bloon> enemies, TimeSpan shootCooldown, TryReduceMoney tryReduceMoney, changeMenu OpenUpgradeMenu)
             : base(width, height, x, y, path, canva)
         {
+
+            this.OpenUpgradeMenu = OpenUpgradeMenu;
+            this.tryReduceMoney = tryReduceMoney;
             this.damage = damage;
             this.range = range;
             this.enemies = enemies;
@@ -30,6 +59,8 @@ namespace DabloonsPP
             ChooseTimer = new DispatcherTimer();
             ChooseTimer.Interval = TimeSpan.FromTicks(20);
             ChooseTimer.Tick += ChooseTimer_Tick;
+
+            InitilizeTap();
 
             ChooseTimer.Start();
         }
@@ -73,6 +104,18 @@ namespace DabloonsPP
             // Check if the tower is on cooldown based on the last shoot time
             TimeSpan elapsed = DateTime.Now - lastShootTime;
             return elapsed < ShootCooldown;
+        }
+
+        private void InitilizeTap()
+        {
+            image.Tapped += Image_Tapped;
+        }
+
+        protected abstract void Upgrade_Tower(Paths path);
+
+        private void Image_Tapped(object sender, Windows.UI.Xaml.Input.TappedRoutedEventArgs e)
+        {
+            
         }
     }
 }

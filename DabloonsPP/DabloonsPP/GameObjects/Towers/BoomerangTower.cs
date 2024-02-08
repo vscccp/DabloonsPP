@@ -14,9 +14,14 @@ namespace DabloonsPP.GameObjects.Towers
         private int pierce = 4;
         private static int width = 100;
         private static int height = 100;
-        public BoomerangTower(int x, int y, Canvas canva, int damage, List<Bloon> enemies) :
-            base(width, height, (x - (width / 2)), (y - (height / 2)), "Monkeys\\boomerang_monkey.png", canva, damage, RANGE, enemies, TimeSpan.FromMilliseconds(800))
+        public BoomerangTower(int x, int y, Canvas canva, int damage, List<Bloon> enemies, TryReduceMoney tryReduceMoney, changeMenu OpenUpgradeMenu) :
+            base(width, height, (x - (width / 2)), (y - (height / 2)), "Monkeys\\boomerang_monkey.png", canva, damage, RANGE, enemies, TimeSpan.FromMilliseconds(800), tryReduceMoney, OpenUpgradeMenu)
         {
+        }
+
+        protected override void Upgrade_Tower(Paths path)
+        {
+
         }
 
         protected override void Shoot(double angle)

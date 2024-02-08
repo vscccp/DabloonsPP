@@ -134,23 +134,43 @@ namespace DabloonsPP
                 if(towerType == "dart_monkey")
                 {
                     // Create the tower based on the selected color
-                    BasicTower newTower = new BasicTower(tapX, tapY, GameCanva, 1, enemies);
+                    BasicTower newTower = new BasicTower(tapX, tapY, GameCanva, 1, enemies, TryReduceMoney, changeMenu);
                 }
                 else if(towerType == "ninja_monkey")
                 {
-                    NinjaTower newTower = new NinjaTower(tapX, tapY, GameCanva, 1, enemies);
+                    NinjaTower newTower = new NinjaTower(tapX, tapY, GameCanva, 1, enemies, TryReduceMoney, changeMenu);
                 }
                 else if(towerType == "super_monkey")
                 {
-                    SuperTower newTower = new SuperTower(tapX, tapY, GameCanva, 1, enemies);
+                    SuperTower newTower = new SuperTower(tapX, tapY, GameCanva, 1, enemies, TryReduceMoney, changeMenu);
                 }
                 else if(towerType == "boomerang_monkey")
                 {
-                    BoomerangTower newTower = new BoomerangTower(tapX, tapY, GameCanva, 1, enemies);
+                    BoomerangTower newTower = new BoomerangTower(tapX, tapY, GameCanva, 1, enemies, TryReduceMoney, changeMenu);
                 }
                 // Deselect the tower after placing it
                 selectedTower.BorderThickness = new Thickness(0);
                 selectedTower = null;
+            }
+        }
+
+        private void changeMenu(TowerType tower, int firstPath, int secondPath, int thirdPath)
+        {
+            if(upgradeMenu.Visibility == Visibility.Collapsed)
+            {
+                TowersRight.Visibility = Visibility.Collapsed;
+                TowersLeft.Visibility = Visibility.Collapsed;
+                PlayButton.Visibility = Visibility.Collapsed;
+
+                upgradeMenu.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                TowersRight.Visibility = Visibility.Visible;
+                TowersLeft.Visibility = Visibility.Visible;
+                PlayButton.Visibility = Visibility.Visible;
+
+                upgradeMenu.Visibility = Visibility.Collapsed;
             }
         }
 
@@ -163,6 +183,25 @@ namespace DabloonsPP
             {
                 // implement lose screen and statistics
             }
+        }
+
+        private bool TryReduceMoney(int moneyReduced)
+        {
+            if (money > moneyReduced)
+            {
+                money -= moneyReduced;
+                return true;
+            }
+
+            return false;
+        }
+
+        private void Sell_Tapped(object sender, TappedRoutedEventArgs e)
+        {
+            if(upgradeMenu.Visibility == Visibility.Collapsed)
+                return;
+
+
         }
     }
 }
