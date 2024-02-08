@@ -15,8 +15,8 @@ namespace DabloonsPP
         private float range; // Added range field
         private int rotationAngle = 0;
 
-        public BoomerangProjectile(int x, int y, int dx, int dy, int damage, int pierce, float range, string path, float angle, Canvas canva, List<Bloon> enemies)
-            : base(x, y, dx, dy, damage, pierce, path, angle, canva, enemies)
+        public BoomerangProjectile(int x, int y, int dx, int dy, int damage, int pierce, float range, string path, float angle, Canvas canva, List<Bloon> enemies, AddMoneyForPop addMoneyForPop)
+            : base(x, y, dx, dy, damage, pierce, path, angle, canva, enemies, addMoneyForPop)
         {
             originalPosition = new Point(x, y);
             this.range = range;

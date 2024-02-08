@@ -22,15 +22,22 @@ namespace DabloonsPP
         ThirdPath = 2
     }
 
-    delegate void changeMenu(TowerType tower, int firstPath, int secondPath, int thirdPath);
-
+    delegate void changeMenu(TowerType tower,string PhotoPath1, string PhotoPath2, string PhotoPath3,int firstPath, int secondPath, int thirdPath, int price1, int price2, int price3);
+    delegate void ChangeSelectedTower(ITower newTower);
     delegate bool TryReduceMoney(int money);
+    
 
     abstract class ITower : IGameObject
     {
         protected int firstPath = 0;
         protected int secondPath = 0;
         protected int thirdPath = 0;
+
+        protected int firstPath_Price = 0;
+        protected int secondPath_Price = 0;
+        protected int thirdPath_Price = 0;
+
+        protected int moneySpent = 0;
 
         public int damage { get; set; }
         public float range { get; set; }
@@ -42,15 +49,55 @@ namespace DabloonsPP
 
         protected changeMenu OpenUpgradeMenu;
         protected TryReduceMoney tryReduceMoney;
+        protected ChangeSelectedTower changeSelectedTower;
+        protected AddMoneyForPop addMoneyForPop;
+
+        public int FirstPath
+        {
+            get { return firstPath; }
+            set { firstPath = value; }
+        }
+
+        public int SecondPath
+        {
+            get { return secondPath; }
+            set { secondPath = value; }
+        }
+
+        public int ThirdPath
+        {
+            get { return thirdPath; }
+            set { thirdPath = value; }
+        }
+
+        public int FirstPath_Price
+        {
+            get { return firstPath_Price; }
+            set { firstPath_Price = value; }
+        }
+
+        public int SecondPath_Price
+        {
+            get { return secondPath_Price; }
+            set { secondPath_Price = value; }
+        }
+
+        public int ThirdPath_Price
+        {
+            get { return thirdPath_Price; }
+            set { thirdPath_Price = value; }
+        }
 
         protected abstract void Shoot(double angle);
 
-        public ITower(int width, int height, int x, int y, string path, Canvas canva, int damage, float range, List<Bloon> enemies, TimeSpan shootCooldown, TryReduceMoney tryReduceMoney, changeMenu OpenUpgradeMenu)
+        public ITower(int width, int height, int x, int y, string path, Canvas canva, int damage, float range, List<Bloon> enemies,
+            TimeSpan shootCooldown, TryReduceMoney tryReduceMoney, changeMenu OpenUpgradeMenu, ChangeSelectedTower changeSelectedTower, AddMoneyForPop addMoneyForPop)
             : base(width, height, x, y, path, canva)
         {
-
+            this.changeSelectedTower = changeSelectedTower;
             this.OpenUpgradeMenu = OpenUpgradeMenu;
             this.tryReduceMoney = tryReduceMoney;
+            this.addMoneyForPop = addMoneyForPop;
             this.damage = damage;
             this.range = range;
             this.enemies = enemies;
@@ -75,19 +122,30 @@ namespace DabloonsPP
             if (enemies.Count == 0 || IsOnCooldown())
                 return;
 
-            Bloon target = enemies.First();
+            Bloon target = null;
 
-            // Calculate direction to shoot
-            int deltaX = target.Position.X - Position.X;
-            int deltaY = target.Position.Y - Position.Y;
+            foreach (var enemy in enemies)
+            {
+                // Calculate direction to shoot
+                int deltaX = enemy.Position.X - Position.X;
+                int deltaY = enemy.Position.Y - Position.Y;
 
-            double distance = Math.Sqrt(Math.Pow(deltaX, 2) + Math.Pow(deltaY, 2));
+                double distance = Math.Sqrt(Math.Pow(deltaX, 2) + Math.Pow(deltaY, 2));
 
-            if (distance > range)
-                return;
+                if (distance <= range)
+                {
+                    target = enemy;
+                    break; // Found a target within range, no need to continue searching
+                }
+            }
+
+            if (target == null)
+                return; // No target within range
 
             // Calculate the angle in radians
-            double angle = Math.Atan2(deltaY, deltaX);
+            int deltaXTarget = target.Position.X - Position.X;
+            int deltaYTarget = target.Position.Y - Position.Y;
+            double angle = Math.Atan2(deltaYTarget, deltaXTarget);
             double angleDegrees = angle * (180.0 / Math.PI);
 
             // Invert the angle before rotating the image
@@ -98,6 +156,7 @@ namespace DabloonsPP
             // Update the last shoot time
             lastShootTime = DateTime.Now;
         }
+
 
         private bool IsOnCooldown()
         {
@@ -111,11 +170,19 @@ namespace DabloonsPP
             image.Tapped += Image_Tapped;
         }
 
-        protected abstract void Upgrade_Tower(Paths path);
+        public void sellTower()
+        {
+            ChooseTimer.Stop();
+            addMoneyForPop((int)(moneySpent * 0.85));
+            Undraw();
+        }
+
+        public abstract void Upgrade_Tower(Paths path);
 
         private void Image_Tapped(object sender, Windows.UI.Xaml.Input.TappedRoutedEventArgs e)
         {
-            
+            OpenUpgradeMenu(TowerType.Basic, "ms-appx:///Assets/Upgrade_Icons/Sharp_darts.png", "ms-appx:///Assets/Upgrade_Icons/Quick_shots.png", "ms-appx:///Assets/Upgrade_Icons/RangeLol.png", firstPath, secondPath, thirdPath, firstPath_Price, secondPath_Price, thirdPath_Price);
+            changeSelectedTower(this);
         }
     }
 }

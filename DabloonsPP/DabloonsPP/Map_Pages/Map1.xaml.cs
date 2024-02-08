@@ -14,6 +14,7 @@ using Windows.UI.Xaml.Controls.Primitives;
 using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
+using Windows.UI.Xaml.Media.Imaging;
 using Windows.UI.Xaml.Navigation;
 using Windows.UI.Xaml.Shapes;
 
@@ -32,7 +33,8 @@ namespace DabloonsPP
         private List<Bloon> enemies = new List<Bloon>();
         public Queue<Turn> turns = new Queue<Turn>();
         private DispatcherTimer enemyCheckTimer;
-        private Border selectedTower;
+        private ITower selectedTower;
+        private Border selectedTower_icon;
         uint round = 1;
 
         #region Stats
@@ -65,7 +67,7 @@ namespace DabloonsPP
             enemyCheckTimer.Start();
             #endregion
 
-            selectedTower = null;
+            selectedTower_icon = null;
 
             Window.Current.CoreWindow.KeyDown += CoreWindow_KeyDown;
         }
@@ -105,21 +107,21 @@ namespace DabloonsPP
         private void Tower_Selected(object sender, TappedRoutedEventArgs e)
         {
             // Deselect previously selected tower (if any)
-            if (selectedTower != null)
+            if (selectedTower_icon != null)
             {
                 // Reset the border thickness
-                selectedTower.BorderThickness = new Thickness(0);
+                selectedTower_icon.BorderThickness = new Thickness(0);
             }
 
             // Select the clicked tower
-            selectedTower = sender as Border;
-            selectedTower.BorderBrush = new SolidColorBrush(Windows.UI.Colors.Black);
-            selectedTower.BorderThickness = new Thickness(5);
+            selectedTower_icon = sender as Border;
+            selectedTower_icon.BorderBrush = new SolidColorBrush(Windows.UI.Colors.Black);
+            selectedTower_icon.BorderThickness = new Thickness(5);
         }
 
         private void GameCanva_Tapped(object sender, TappedRoutedEventArgs e)
         {
-            if (selectedTower != null)
+            if (selectedTower_icon != null)
             {
                 // Get the position of the tap relative to the Canvas
                 Point tapPosition = e.GetPosition(GameCanva);
@@ -129,40 +131,80 @@ namespace DabloonsPP
                 int tapY = (int)tapPosition.Y;
 
                 // Use the selected tower's Tag to identify the chosen tower
-                string towerType = selectedTower.Tag as string;
+                string towerType = selectedTower_icon.Tag as string;
 
-                if(towerType == "dart_monkey")
+                if(towerType == "dart_monkey" && TryReduceMoney((int)BasicTower_Prices.TowerPrice))
                 {
                     // Create the tower based on the selected color
-                    BasicTower newTower = new BasicTower(tapX, tapY, GameCanva, 1, enemies, TryReduceMoney, changeMenu);
+                    BasicTower newTower = new BasicTower(tapX, tapY, GameCanva, 1, enemies, TryReduceMoney, changeMenu, changeSelectedTower, addMoneyForPop);
                 }
-                else if(towerType == "ninja_monkey")
+                else if(towerType == "ninja_monkey" && TryReduceMoney((int)NinjaTower_Prices.TowerPrice))
                 {
-                    NinjaTower newTower = new NinjaTower(tapX, tapY, GameCanva, 1, enemies, TryReduceMoney, changeMenu);
+                    NinjaTower newTower = new NinjaTower(tapX, tapY, GameCanva, 1, enemies, TryReduceMoney, changeMenu, changeSelectedTower, addMoneyForPop);
                 }
-                else if(towerType == "super_monkey")
+                else if(towerType == "super_monkey" && TryReduceMoney((int)SuperTower_Prices.TowerPrice))
                 {
-                    SuperTower newTower = new SuperTower(tapX, tapY, GameCanva, 1, enemies, TryReduceMoney, changeMenu);
+                    SuperTower newTower = new SuperTower(tapX, tapY, GameCanva, 1, enemies, TryReduceMoney, changeMenu, changeSelectedTower, addMoneyForPop);
                 }
-                else if(towerType == "boomerang_monkey")
+                else if(towerType == "boomerang_monkey" && TryReduceMoney((int)BoomerangTower_Prices.TowerPrice))
                 {
-                    BoomerangTower newTower = new BoomerangTower(tapX, tapY, GameCanva, 1, enemies, TryReduceMoney, changeMenu);
+                    BoomerangTower newTower = new BoomerangTower(tapX, tapY, GameCanva, 1, enemies, TryReduceMoney, changeMenu, changeSelectedTower, addMoneyForPop);
                 }
                 // Deselect the tower after placing it
-                selectedTower.BorderThickness = new Thickness(0);
-                selectedTower = null;
+                selectedTower_icon.BorderThickness = new Thickness(0);
+                selectedTower_icon = null;
             }
         }
 
-        private void changeMenu(TowerType tower, int firstPath, int secondPath, int thirdPath)
+        private void changeSelectedTower(ITower tower)
         {
-            if(upgradeMenu.Visibility == Visibility.Collapsed)
+            selectedTower = tower;
+        }
+
+        private void changeMenu(TowerType tower, string PhotoPath1, string PhotoPath2, string PhotoPath3, int firstPath, int secondPath, int thirdPath, int price1, int price2, int price3)
+        {
+            if (upgradeMenu.Visibility == Visibility.Collapsed)
             {
                 TowersRight.Visibility = Visibility.Collapsed;
                 TowersLeft.Visibility = Visibility.Collapsed;
                 PlayButton.Visibility = Visibility.Collapsed;
 
                 upgradeMenu.Visibility = Visibility.Visible;
+
+                // Change tower name and image source based on tower type
+                switch (tower)
+                {
+                    case TowerType.Basic:
+                        TowerName.Text = "Basic Tower";
+                        // Change image source for upgrade1, upgrade2, upgrade3
+                        // For example:
+                        upgrade1.Source = new BitmapImage(new Uri(PhotoPath1));
+                        upgrade2.Source = new BitmapImage(new Uri(PhotoPath2));
+                        upgrade3.Source = new BitmapImage(new Uri(PhotoPath3));
+                        break;
+                    case TowerType.ninja:
+                        TowerName.Text = "Ninja Monkey";
+                        // Change image source for upgrade1, upgrade2, upgrade3
+                        break;
+                    case TowerType.super:
+                        TowerName.Text = "Super Monkey";
+                        // Change image source for upgrade1, upgrade2, upgrade3
+                        break;
+                    case TowerType.boomerang:
+                        TowerName.Text = "Boomerang Monkey";
+                        // Change image source for upgrade1, upgrade2, upgrade3
+                        break;
+                }
+
+                // Color the rectangles green based on the path
+                ColorRectangles(upgrade1_1, upgrade1_2, upgrade1_3, firstPath);
+                ColorRectangles(upgrade2_1, upgrade2_2, upgrade2_3, secondPath);
+                ColorRectangles(upgrade3_1, upgrade3_2, upgrade3_3, thirdPath);
+
+                // Change button prices
+                upgrade1_buy.Content = $"{price1}$";
+                upgrade2_buy.Content = $"{price2}$";
+                upgrade3_buy.Content = $"{price3}$";
             }
             else
             {
@@ -173,6 +215,37 @@ namespace DabloonsPP
                 upgradeMenu.Visibility = Visibility.Collapsed;
             }
         }
+
+        private void addMoneyForPop(int pops)
+        {
+            money += pops;
+            money_block.Text = money.ToString();
+        }
+
+        private void ColorRectangles(Rectangle rect1, Rectangle rect2, Rectangle rect3, int path)
+        {
+            // Set all rectangles to gray first
+            rect1.Fill = rect2.Fill = rect3.Fill = new SolidColorBrush(Colors.Gray);
+
+            // Color the rectangles green based on the path
+            if (path >= 1 && path <= 3)
+            {
+                switch (path)
+                {
+                    case 1:
+                        rect1.Fill = new SolidColorBrush(Colors.Green);
+                        break;
+                    case 2:
+                        rect1.Fill = rect2.Fill = new SolidColorBrush(Colors.Green);
+                        break;
+                    case 3:
+                        rect1.Fill = rect2.Fill = rect3.Fill = new SolidColorBrush(Colors.Green);
+                        break;
+                }
+            }
+        }
+
+
 
         private void Reduce_Health(int health_reduce)
         {
@@ -187,9 +260,10 @@ namespace DabloonsPP
 
         private bool TryReduceMoney(int moneyReduced)
         {
-            if (money > moneyReduced)
+            if (money >= moneyReduced)
             {
                 money -= moneyReduced;
+                money_block.Text = money.ToString();
                 return true;
             }
 
@@ -201,7 +275,53 @@ namespace DabloonsPP
             if(upgradeMenu.Visibility == Visibility.Collapsed)
                 return;
 
+            selectedTower.sellTower();
 
+            TowersRight.Visibility = Visibility.Visible;
+            TowersLeft.Visibility = Visibility.Visible;
+            PlayButton.Visibility = Visibility.Visible;
+
+            upgradeMenu.Visibility = Visibility.Collapsed;
+        }
+
+        private void upgrade_buy_Click(object sender, RoutedEventArgs e)
+        {
+            Button butt = (Button)sender;
+            Paths path;
+            if ((string)butt.Tag == "Path1")
+            {
+                path = Paths.FirstPath;
+                if (selectedTower.FirstPath == 3)
+                    return;
+            }
+            else if ((string)butt.Tag == "Path2")
+            {
+                path = Paths.SecondPath;
+                if (selectedTower.SecondPath == 3)
+                    return;
+            }
+            else
+            {
+                path = Paths.ThirdPath;
+                if (selectedTower.ThirdPath == 3)
+                    return;
+            }
+            selectedTower.Upgrade_Tower(path);
+
+            // After upgrading, update the UI to reflect the new upgrade path
+            int firstPath = selectedTower.FirstPath;
+            int secondPath = selectedTower.SecondPath;
+            int thirdPath = selectedTower.ThirdPath;
+
+            // Color the rectangles green based on the updated path
+            ColorRectangles(upgrade1_1, upgrade1_2, upgrade1_3, firstPath);
+            ColorRectangles(upgrade2_1, upgrade2_2, upgrade2_3, secondPath);
+            ColorRectangles(upgrade3_1, upgrade3_2, upgrade3_3, thirdPath);
+
+            // Change button prices
+            upgrade1_buy.Content = $"{selectedTower.FirstPath_Price}$";
+            upgrade2_buy.Content = $"{selectedTower.SecondPath_Price}$";
+            upgrade3_buy.Content = $"{selectedTower.ThirdPath_Price}$";
         }
     }
 }

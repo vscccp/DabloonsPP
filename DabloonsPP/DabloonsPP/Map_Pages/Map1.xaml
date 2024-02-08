@@ -50,7 +50,7 @@
         
         <!--#region Upgrades -->
 
-        <StackPanel x:Name="upgradeMenu" Margin="40" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Top" Height="700" Width="290" Canvas.ZIndex="219" Visibility="Visible">
+        <StackPanel x:Name="upgradeMenu" Margin="40" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Top" Height="700" Width="290" Canvas.ZIndex="219" Visibility="Collapsed">
             <TextBlock x:Name="TowerName" Text="Tower Name" Foreground="White" FontSize="36" FontFamily="Courier New" Margin="0,0,0,15"/>
 
             <StackPanel Orientation="Horizontal">
@@ -59,7 +59,7 @@
                 <Rectangle x:Name="upgrade1_2" Fill="Gray" Width="15" Height="15" Margin="3,0,0,0"/>
                 <Rectangle x:Name="upgrade1_3" Fill="Gray" Width="15" Height="15" Margin="3,0,0,0"/>
 
-                <Button x:Name="upgrade1_buy" Content="1000$" Width="45" Height="25" FontSize="8" Margin="3,0,0,0" Tag="Path1"/>
+                <Button x:Name="upgrade1_buy" Content="1000$" Width="45" Height="25" FontSize="8" Margin="3,0,0,0" Tag="Path1" Click="upgrade_buy_Click"/>
             </StackPanel>
 
 
@@ -69,7 +69,7 @@
                 <Rectangle x:Name="upgrade2_2" Fill="Gray" Width="15" Height="15" Margin="3,0,0,0"/>
                 <Rectangle x:Name="upgrade2_3" Fill="Gray" Width="15" Height="15" Margin="3,0,0,0"/>
 
-                <Button x:Name="upgrade2_buy" Content="1000$" Width="45" Height="25" FontSize="8" Margin="3,0,0,0" Tag="path2"/>
+                <Button x:Name="upgrade2_buy" Content="1000$" Width="45" Height="25" FontSize="8" Margin="3,0,0,0" Tag="Path2" Click="upgrade_buy_Click"/>
             </StackPanel>
 
 
@@ -79,7 +79,7 @@
                 <Rectangle x:Name="upgrade3_2" Fill="Gray" Width="15" Height="15" Margin="3,0,0,0"/>
                 <Rectangle x:Name="upgrade3_3" Fill="Gray" Width="15" Height="15" Margin="3,0,0,0"/>
 
-                <Button x:Name="upgrade3_buy" Content="1000$" Width="45" Height="25" FontSize="8" Margin="3,0,0,0" Tag="path3"/>
+                <Button x:Name="upgrade3_buy" Content="1000$" Width="45" Height="25" FontSize="8" Margin="3,0,0,0" Tag="Path3" Click="upgrade_buy_Click"/>
             </StackPanel>
 
             <Image Source="ms-appx:///Assets/Menu/sellButton.png" Width="120" Height="60" HorizontalAlignment="Center" Margin="0,150,0,0" Stretch="Fill" Tapped="Sell_Tapped"/>
@@ -101,10 +101,10 @@
             <!--#region Blockers-->
             <Rectangle Width="400" Height="100" Canvas.Top="210" RadiusX="4" RadiusY="4"                   Fill="Transparent" />
             <Rectangle Width="95" Height="450" Canvas.Left="310" RadiusX="6" RadiusY="6" Canvas.Top="205"  Fill="Transparent" />
-            <Rectangle Width="490" Height="135" Canvas.Top="575" Canvas.Left="310" RadiusX="4" RadiusY="4" Fill="Transparent" />
-            <Rectangle Width="85" Height="570" Canvas.Left="745" RadiusX="6" RadiusY="6" Canvas.Top="100"  Fill="Transparent" />
-            <Rectangle Width="320" Height="100" Canvas.Top="100" Canvas.Left="760" RadiusX="4" RadiusY="4" Fill="Transparent" />
-            <Rectangle Width="125" Height="630" Canvas.Left="1020" RadiusX="6" RadiusY="6" Canvas.Top="200" Fill="Transparent" />
+            <Rectangle Width="490" Height="135" Canvas.Top="555" Canvas.Left="310" RadiusX="4" RadiusY="4" Fill="Transparent" />
+            <Rectangle Width="100" Height="570" Canvas.Left="740" RadiusX="6" RadiusY="6" Canvas.Top="100"  Fill="Transparent" />
+            <Rectangle Width="320" Height="110" Canvas.Top="100" Canvas.Left="755" RadiusX="4" RadiusY="4" Fill="Transparent" />
+            <Rectangle Width="125" Height="665" Canvas.Left="1020" RadiusX="6" RadiusY="6" Canvas.Top="130" Fill="Transparent" />
             <!--#endregion-->
 
 
