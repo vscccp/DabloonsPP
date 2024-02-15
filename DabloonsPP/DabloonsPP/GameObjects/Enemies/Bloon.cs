@@ -191,12 +191,26 @@ namespace DabloonsPP
                 case Bloon_Colors.PINK:
                     SetImage("Enemies\\bloonPink.png", 50, 50);
                     break;
+                case Bloon_Colors.LEAD:
+                    SetImage("Enemies\\leadBloon.png", 50, 50);
+                    break;
             }
         }
 
         public async void TakeDamage(int damage, bool shootsCamo, bool shootsLead)
         {
             health -= damage;
+            if(isCamo && !shootsCamo)
+                return;
+
+            if (health == 6 && !shootsLead)
+                return;
+
+            if(ceramicLayers > 0)
+            {
+                ceramicLayers -= damage;
+                return;
+            }
 
             if (health <= 0)
             {

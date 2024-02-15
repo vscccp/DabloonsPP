@@ -130,6 +130,7 @@
     <Compile Include="GameObjects\Towers\SuperTower.cs" />
     <Compile Include="HelperClasses\MathHelper.cs" />
     <Compile Include="HelperClasses\MyCircle.cs" />
+    <Compile Include="HelperClasses\RoundManager.cs" />
     <Compile Include="HelperClasses\Turn.cs" />
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
