@@ -23,7 +23,7 @@ namespace DabloonsPP
         LEAD = 6
     }
 
-
+    delegate void AddMoneyForPop(int pops);
     delegate void reduceHealth(int healthReduced);
 
     class Bloon : IGameObject
@@ -44,6 +44,7 @@ namespace DabloonsPP
         private int ceramicLayers;
 
         private reduceHealth reduceHealth;
+        protected AddMoneyForPop addMoneyForPop;
 
         #region setters and getters
         public int Dx
@@ -71,7 +72,7 @@ namespace DabloonsPP
 
         #endregion
 
-        public Bloon(int x, int y, Canvas canva, int health, Queue<Turn> turns, reduceHealth reduceHealth, bool isCamo, int ceramicLayers) :
+        public Bloon(int x, int y, Canvas canva, int health, Queue<Turn> turns, AddMoneyForPop addMoneyForPop, reduceHealth reduceHealth, bool isCamo, int ceramicLayers) :
             base(ENEMY_WIDTH, ENEMY_HEIGHT, x, y, canva)
         {
             this.health = health;
@@ -82,12 +83,13 @@ namespace DabloonsPP
             SetSpeed();
 
             moveTimer = new DispatcherTimer();
-            moveTimer.Interval = TimeSpan.FromMilliseconds(50);
+            moveTimer.Interval = TimeSpan.FromMilliseconds(5);
             moveTimer.Tick += MoveTimer_Tick;
             moveTimer.Start();
 
             SetBloonImage((Bloon_Colors)health);
             this.reduceHealth = reduceHealth;
+            this.addMoneyForPop = addMoneyForPop;
             this.isCamo = isCamo;
             this.ceramicLayers = ceramicLayers;
         }
@@ -135,19 +137,19 @@ namespace DabloonsPP
             switch ((Bloon_Colors)health)
             {
                 case Bloon_Colors.PINK:
-                    speed = 40;
+                    speed = 5;
                     break;
                 case Bloon_Colors.YELLOW:
-                    speed = 30;
+                    speed = 4;
                     break;
                 case Bloon_Colors.GREEN:
-                    speed = 20;
+                    speed = 3;
                     break;
                 case Bloon_Colors.BLUE:
-                    speed = 15;
+                    speed = 2;
                     break;
                 default:
-                    speed = 10;
+                    speed = 1;
                     break;
                     
             }
@@ -199,7 +201,7 @@ namespace DabloonsPP
 
         public async void TakeDamage(int damage, bool shootsCamo, bool shootsLead)
         {
-            health -= damage;
+            
             if(isCamo && !shootsCamo)
                 return;
 
@@ -211,6 +213,9 @@ namespace DabloonsPP
                 ceramicLayers -= damage;
                 return;
             }
+
+            health -= damage;
+            addMoneyForPop(damage);
 
             if (health <= 0)
             {

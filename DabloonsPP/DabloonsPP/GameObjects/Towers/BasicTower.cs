@@ -161,14 +161,14 @@ namespace DabloonsPP
                 double offsetAngle = Math.PI / 15; 
 
                 // Create three projectiles with slightly different angles
-                Projectile projectile1 = new Projectile(Position.X, Position.Y, vx, vy, damage, pierce, projectilePath, (float)angle, GameCanvas, enemies, addMoneyForPop, canShootCamo, canShootLead);
-                Projectile projectile2 = new Projectile(Position.X, Position.Y, (int)(speed * Math.Cos(angle + offsetAngle)), (int)(speed * Math.Sin(angle + offsetAngle)), damage, pierce, projectilePath, (float)(angle + offsetAngle), GameCanvas, enemies, addMoneyForPop, canShootCamo, canShootLead);
-                Projectile projectile3 = new Projectile(Position.X, Position.Y, (int)(speed * Math.Cos(angle - offsetAngle)), (int)(speed * Math.Sin(angle - offsetAngle)), damage, pierce, projectilePath, (float)(angle - offsetAngle), GameCanvas, enemies, addMoneyForPop, canShootCamo, canShootLead);
+                Projectile projectile1 = new Projectile(Position.X, Position.Y, vx, vy, damage, pierce, projectilePath, (float)angle, GameCanvas, enemies, canShootCamo, canShootLead);
+                Projectile projectile2 = new Projectile(Position.X, Position.Y, (int)(speed * Math.Cos(angle + offsetAngle)), (int)(speed * Math.Sin(angle + offsetAngle)), damage, pierce, projectilePath, (float)(angle + offsetAngle), GameCanvas, enemies, canShootCamo, canShootLead);
+                Projectile projectile3 = new Projectile(Position.X, Position.Y, (int)(speed * Math.Cos(angle - offsetAngle)), (int)(speed * Math.Sin(angle - offsetAngle)), damage, pierce, projectilePath, (float)(angle - offsetAngle), GameCanvas, enemies, canShootCamo, canShootLead);
             }
             else
             {
                 // Create a single projectile
-                Projectile projectile = new Projectile(Position.X, Position.Y, vx, vy, damage, pierce, projectilePath, (float)angle, GameCanvas, enemies, addMoneyForPop, canShootCamo, canShootLead);
+                Projectile projectile = new Projectile(Position.X, Position.Y, vx, vy, damage, pierce, projectilePath, (float)angle, GameCanvas, enemies, canShootCamo, canShootLead);
             }
         }
     }

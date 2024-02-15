@@ -12,7 +12,7 @@ using Windows.UI.Xaml.Controls;
 namespace DabloonsPP
 {
 
-    delegate void AddMoneyForPop(int pops);
+    
 
     class Projectile : IGameObject
     {
@@ -33,8 +33,6 @@ namespace DabloonsPP
         protected Dictionary<Bloon, DateTime> lastHitTimes = new Dictionary<Bloon, DateTime>();
         protected TimeSpan cooldownDuration = TimeSpan.FromMilliseconds(350);
 
-        protected AddMoneyForPop addMoneyForPop;
-
         public float Damage
         {
             get { return damage; }
@@ -46,14 +44,13 @@ namespace DabloonsPP
         }
 
         public Projectile(int x, int y, int dx, int dy, int damage, int pierce, string path,
-            float angle, Canvas canva, List<Bloon> enemies, AddMoneyForPop addMoneyForPop, bool shootsCamo, bool shootsLead) :
+            float angle, Canvas canva, List<Bloon> enemies, bool shootsCamo, bool shootsLead) :
             base(PROJECTILE_WIDTH, PROJECTILE_HEIGHT, x, y, path, canva)
         {
             this.dx = dx;
             this.dy = dy;
             this.pierce = pierce;
             this.damage = damage;
-            this.addMoneyForPop = addMoneyForPop;
             this.enemies = enemies;
 
             RotateImage(angle);
@@ -87,8 +84,7 @@ namespace DabloonsPP
                 if (MathHelper.CirclesCollide(hitbox, enemy.Hitbox) && !IsOnCooldown(enemy))
                 {
                     // Collision detected, apply damage to the enemy
-                    enemy.TakeDamage(damage);
-                    addMoneyForPop(damage);
+                    enemy.TakeDamage(damage, ShootsCamo, ShootsLead);
 
                     // Record the time of the last hit for this enemy
                     lastHitTimes[enemy] = DateTime.Now;

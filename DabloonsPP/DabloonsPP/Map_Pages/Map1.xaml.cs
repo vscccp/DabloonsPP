@@ -81,13 +81,13 @@ namespace DabloonsPP
         {
             if (args.VirtualKey == Windows.System.VirtualKey.W)
             {
-                Bloon enemy = new Bloon(STARTING_X, STARTING_Y, GameCanva, 1, turns, Reduce_Health);
+                Bloon enemy = new Bloon(STARTING_X, STARTING_Y, GameCanva, 1, turns, addMoneyForPop, Reduce_Health, false, 0);
 
                 enemies.Add(enemy);
             }
             else if(args.VirtualKey == Windows.System.VirtualKey.S)
             {
-                Bloon enemy = new Bloon(STARTING_X, STARTING_Y, GameCanva, 5, turns, Reduce_Health);
+                Bloon enemy = new Bloon(STARTING_X, STARTING_Y, GameCanva, 5, turns, addMoneyForPop, Reduce_Health, false, 0);
 
                 enemies.Add(enemy);
             }
@@ -95,8 +95,6 @@ namespace DabloonsPP
             {
                 money += 200;
                 money_block.Text = money.ToString();
-
-                
 
                 moneySound.Play();
             }

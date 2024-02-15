@@ -155,7 +155,7 @@ namespace DabloonsPP.GameObjects.Towers
             int vx = (int)(speed * Math.Cos(angle));
             int vy = (int)(speed * Math.Sin(angle));
 
-            Projectile projectile = new Projectile(Position.X, Position.Y, vx, vy, damage, pierce, projectilePath, (float)angle, GameCanvas, enemies, addMoneyForPop, canShootCamo, canShootLead);
+            Projectile projectile = new Projectile(Position.X, Position.Y, vx, vy, damage, pierce, projectilePath, (float)angle, GameCanvas, enemies, canShootCamo, canShootLead);
         }
     }
 }

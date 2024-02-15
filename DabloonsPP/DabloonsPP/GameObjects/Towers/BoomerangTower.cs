@@ -153,7 +153,7 @@ namespace DabloonsPP
             int vx = (int)(speed * Math.Cos(angle));
             int vy = (int)(speed * Math.Sin(angle));
 
-            BoomerangProjectile projectile = new BoomerangProjectile(Position.X, Position.Y, vx, vy, damage, pierce, RANGE, projectilePath, (float)angle, GameCanvas, enemies, addMoneyForPop);
+            BoomerangProjectile projectile = new BoomerangProjectile(Position.X, Position.Y, vx, vy, damage, pierce, RANGE, projectilePath, (float)angle, GameCanvas, enemies, false, false);
         }
     }
 }

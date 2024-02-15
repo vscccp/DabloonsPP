@@ -174,7 +174,7 @@ namespace DabloonsPP.GameObjects.Towers
                 int vy = (int)(speed * Math.Sin(shotAngle));
 
                 // Create the projectile
-                Projectile projectile = new Projectile(Position.X, Position.Y, vx, vy, damage, pierce, projectilePath, (float)shotAngle, GameCanvas, enemies, addMoneyForPop, canShootCamo, canShootLead);
+                Projectile projectile = new Projectile(Position.X, Position.Y, vx, vy, damage, pierce, projectilePath, (float)shotAngle, GameCanvas, enemies, canShootCamo, canShootLead);
             }
 
             for (int i = 1; i <= shotsBelow; i++) // Start from 1 to avoid duplicate shot at the exact angle
@@ -187,7 +187,7 @@ namespace DabloonsPP.GameObjects.Towers
                 int vy = (int)(speed * Math.Sin(shotAngle));
 
                 // Create the projectile
-                Projectile projectile = new Projectile(Position.X, Position.Y, vx, vy, damage, pierce, projectilePath, (float)shotAngle, GameCanvas, enemies, addMoneyForPop, canShootCamo, canShootLead);
+                Projectile projectile = new Projectile(Position.X, Position.Y, vx, vy, damage, pierce, projectilePath, (float)shotAngle, GameCanvas, enemies, canShootCamo, canShootLead);
             }
         }
     }
