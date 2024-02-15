@@ -47,11 +47,13 @@ namespace DabloonsPP
             switch (firstPath)
             {
                 case 0:
-                    if (tryReduceMoney((int)BasicTower_Prices.FirstPath_1))
+                    if (!(pathsChosen == 2) && tryReduceMoney((int)BasicTower_Prices.FirstPath_1))
                     {
                         pierce++;
                         firstPath_Price = (int)BasicTower_Prices.FirstPath_2;
                         firstPath++;
+                        pathsChosen++;
+                        moneySpent += (int)BasicTower_Prices.FirstPath_1; // Increase money spent
                     }
                     break;
                 case 1:
@@ -61,10 +63,11 @@ namespace DabloonsPP
                         pierce += 2;
                         firstPath_Price = (int)BasicTower_Prices.FirstPath_3;
                         firstPath++;
+                        moneySpent += (int)BasicTower_Prices.FirstPath_2; // Increase money spent
                     }
                     break;
                 case 2:
-                    if (tryReduceMoney((int)BasicTower_Prices.FirstPath_3))
+                    if (!maxPath && tryReduceMoney((int)BasicTower_Prices.FirstPath_3))
                     {
                         // Perform upgrade specific to first path and level 2
                         damage++;
@@ -72,6 +75,8 @@ namespace DabloonsPP
                         firstPath_Price = 0;
                         tripleShot = true;
                         firstPath++;
+                        maxPath = true;
+                        moneySpent += (int)BasicTower_Prices.FirstPath_3; // Increase money spent
                     }
                     break;
             }
@@ -82,12 +87,14 @@ namespace DabloonsPP
             switch (secondPath)
             {
                 case 0:
-                    if (tryReduceMoney((int)BasicTower_Prices.SecondPath_1))
+                    if (!(pathsChosen == 2) && tryReduceMoney((int)BasicTower_Prices.SecondPath_1))
                     {
                         // Perform upgrade specific to second path and level 0
                         ShootCooldown -= TimeSpan.FromMilliseconds(120);
                         secondPath_Price = (int)BasicTower_Prices.SecondPath_2;
                         secondPath++;
+                        pathsChosen++;
+                        moneySpent += (int)BasicTower_Prices.SecondPath_1; // Increase money spent
                     }
                     break;
                 case 1:
@@ -97,15 +104,18 @@ namespace DabloonsPP
                         ShootCooldown -= TimeSpan.FromMilliseconds(150);
                         secondPath_Price = (int)BasicTower_Prices.SecondPath_3;
                         secondPath++;
+                        moneySpent += (int)BasicTower_Prices.SecondPath_2; // Increase money spent
                     }
                     break;
                 case 2:
-                    if (tryReduceMoney((int)BasicTower_Prices.SecondPath_3))
+                    if (!maxPath && tryReduceMoney((int)BasicTower_Prices.SecondPath_3))
                     {
                         // Perform upgrade specific to second path and level 2
                         tripleShot = true;
                         secondPath_Price = 0;
                         secondPath++;
+                        maxPath = true;
+                        moneySpent += (int)BasicTower_Prices.SecondPath_3; // Increase money spent
                     }
                     break;
             }
@@ -116,12 +126,14 @@ namespace DabloonsPP
             switch (thirdPath)
             {
                 case 0:
-                    if (tryReduceMoney((int)BasicTower_Prices.ThirdPath_1))
+                    if (!(pathsChosen == 2) && tryReduceMoney((int)BasicTower_Prices.ThirdPath_1))
                     {
                         // Perform upgrade specific to third path and level 0
                         range += 10;
                         thirdPath_Price = (int)BasicTower_Prices.ThirdPath_2;
                         thirdPath++;
+                        pathsChosen++;
+                        moneySpent += (int)BasicTower_Prices.ThirdPath_1; // Increase money spent
                     }
                     break;
                 case 1:
@@ -132,16 +144,19 @@ namespace DabloonsPP
                         canShootCamo = true;
                         thirdPath_Price = (int)BasicTower_Prices.ThirdPath_3;
                         thirdPath++;
+                        moneySpent += (int)BasicTower_Prices.ThirdPath_2; // Increase money spent
                     }
                     break;
                 case 2:
-                    if (tryReduceMoney((int)BasicTower_Prices.ThirdPath_3))
+                    if (!maxPath && tryReduceMoney((int)BasicTower_Prices.ThirdPath_3))
                     {
                         // Perform upgrade specific to third path and level 2
                         damage += 2;
                         pierce++;
                         thirdPath_Price = 0;
                         thirdPath++;
+                        maxPath = true;
+                        moneySpent += (int)BasicTower_Prices.ThirdPath_3; // Increase money spent
                     }
                     break;
             }

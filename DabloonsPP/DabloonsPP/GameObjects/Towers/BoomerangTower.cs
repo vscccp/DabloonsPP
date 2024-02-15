@@ -25,7 +25,7 @@ namespace DabloonsPP
 
     internal class BoomerangTower : ITower
     {
-        static private readonly int RANGE = 300;
+        static private readonly int RANGE = 200;
         private int projectile_speed = 50;
         private int pierce = 4;
         private static int width = 100;
@@ -47,11 +47,13 @@ namespace DabloonsPP
             switch (firstPath)
             {
                 case 0:
-                    if (tryReduceMoney((int)BoomerangTower_Prices.FirstPath_1))
+                    if (!(pathsChosen == 2) && tryReduceMoney((int)BoomerangTower_Prices.FirstPath_1))
                     {
                         pierce *= 2;
                         firstPath_Price = (int)BoomerangTower_Prices.FirstPath_2;
                         firstPath++;
+                        pathsChosen++;
+                        moneySpent += (int)BoomerangTower_Prices.FirstPath_1; // Increase money spent
                     }
                     break;
                 case 1:
@@ -62,16 +64,19 @@ namespace DabloonsPP
                         projectile_speed = (int)(projectile_speed*1.3);
                         firstPath_Price = (int)BoomerangTower_Prices.FirstPath_3;
                         firstPath++;
+                        moneySpent += (int)BoomerangTower_Prices.FirstPath_2; // Increase money spent
                     }
                     break;
                 case 2:
-                    if (tryReduceMoney((int)BoomerangTower_Prices.FirstPath_3))
+                    if (!maxPath && tryReduceMoney((int)BoomerangTower_Prices.FirstPath_3))
                     {
                         // Perform upgrade specific to first path and level 2
                         damage += 3;
                         projectile_speed = (int)(projectile_speed * 1.2);
                         firstPath_Price = 0;
                         firstPath++;
+                        maxPath = true;
+                        moneySpent += (int)BoomerangTower_Prices.FirstPath_3; // Increase money spent
                     }
                     break;
             }
@@ -82,12 +87,14 @@ namespace DabloonsPP
             switch (secondPath)
             {
                 case 0:
-                    if (tryReduceMoney((int)BoomerangTower_Prices.SecondPath_1))
+                    if (!(pathsChosen == 2) && tryReduceMoney((int)BoomerangTower_Prices.SecondPath_1))
                     {
                         // Perform upgrade specific to second path and level 0
                         ShootCooldown -= TimeSpan.FromMilliseconds(120);
                         secondPath_Price = (int)BoomerangTower_Prices.SecondPath_2;
                         secondPath++;
+                        pathsChosen++;
+                        moneySpent += (int)BoomerangTower_Prices.SecondPath_1; // Increase money spent
                     }
                     break;
                 case 1:
@@ -97,15 +104,18 @@ namespace DabloonsPP
                         ShootCooldown -= TimeSpan.FromMilliseconds(150);
                         secondPath_Price = (int)BoomerangTower_Prices.SecondPath_3;
                         secondPath++;
+                        moneySpent += (int)BoomerangTower_Prices.SecondPath_2; // Increase money spent
                     }
                     break;
                 case 2:
-                    if (tryReduceMoney((int)BoomerangTower_Prices.SecondPath_3))
+                    if (!maxPath && tryReduceMoney((int)BoomerangTower_Prices.SecondPath_3))
                     {
                         // Perform upgrade specific to second path and level 2
                         ShootCooldown -= TimeSpan.FromMilliseconds(200);
                         secondPath_Price = 0;
                         secondPath++;
+                        maxPath = true;
+                        moneySpent += (int)BoomerangTower_Prices.SecondPath_3; // Increase money spent
                     }
                     break;
             }
@@ -116,12 +126,14 @@ namespace DabloonsPP
             switch (thirdPath)
             {
                 case 0:
-                    if (tryReduceMoney((int)BoomerangTower_Prices.ThirdPath_1))
+                    if (!(pathsChosen == 2) && tryReduceMoney((int)BoomerangTower_Prices.ThirdPath_1))
                     {
                         // Perform upgrade specific to third path and level 0
                         range += 10;
                         thirdPath_Price = (int)BoomerangTower_Prices.ThirdPath_2;
                         thirdPath++;
+                        pathsChosen++;
+                        moneySpent += (int)BoomerangTower_Prices.ThirdPath_1; // Increase money spent
                     }
                     break;
                 case 1:
@@ -131,16 +143,19 @@ namespace DabloonsPP
                         range += 20;
                         thirdPath_Price = (int)BoomerangTower_Prices.ThirdPath_3;
                         thirdPath++;
+                        moneySpent += (int)BoomerangTower_Prices.ThirdPath_2; // Increase money spent
                     }
                     break;
                 case 2:
-                    if (tryReduceMoney((int)BoomerangTower_Prices.ThirdPath_3))
+                    if (!maxPath && tryReduceMoney((int)BoomerangTower_Prices.ThirdPath_3))
                     {
                         // Perform upgrade specific to third path and level 2
                         damage++;
                         range += 15;
                         thirdPath_Price = 0;
                         thirdPath++;
+                        maxPath = true;
+                        moneySpent += (int)BoomerangTower_Prices.ThirdPath_3; // Increase money spent
                     }
                     break;
             }

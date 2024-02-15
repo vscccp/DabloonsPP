@@ -137,19 +137,19 @@ namespace DabloonsPP
             switch ((Bloon_Colors)health)
             {
                 case Bloon_Colors.PINK:
-                    speed = 5;
+                    speed = 10;
                     break;
                 case Bloon_Colors.YELLOW:
-                    speed = 4;
+                    speed = 8;
                     break;
                 case Bloon_Colors.GREEN:
-                    speed = 3;
+                    speed = 6;
                     break;
                 case Bloon_Colors.BLUE:
-                    speed = 2;
+                    speed = 4;
                     break;
                 default:
-                    speed = 1;
+                    speed = 2;
                     break;
                     
             }

@@ -45,7 +45,7 @@ namespace DabloonsPP.GameObjects.Towers
             switch (firstPath)
             {
                 case 0:
-                    if (tryReduceMoney((int)SuperTower_Prices.FirstPath_1))
+                    if (!(pathsChosen == 2) && tryReduceMoney((int)SuperTower_Prices.FirstPath_1))
                     {
                         pierce++;
                         damage += 2;
@@ -53,6 +53,8 @@ namespace DabloonsPP.GameObjects.Towers
                         projectilePath = "Projectiles/Laser.png";
                         firstPath_Price = (int)SuperTower_Prices.FirstPath_2;
                         firstPath++;
+                        pathsChosen++;
+                        moneySpent += (int)SuperTower_Prices.FirstPath_1; // Increase money spent
                     }
                     break;
                 case 1:
@@ -63,16 +65,19 @@ namespace DabloonsPP.GameObjects.Towers
                         projectile_speed = (int)(projectile_speed * 1.3);
                         firstPath_Price = (int)SuperTower_Prices.FirstPath_3;
                         firstPath++;
+                        moneySpent += (int)SuperTower_Prices.FirstPath_2; // Increase money spent
                     }
                     break;
                 case 2:
-                    if (tryReduceMoney((int)SuperTower_Prices.FirstPath_3))
+                    if (!maxPath && tryReduceMoney((int)SuperTower_Prices.FirstPath_3))
                     {
                         // Perform upgrade specific to first path and level 2
                         damage += 3;
                         projectile_speed = (int)(projectile_speed * 1.2);
                         firstPath_Price = 0;
                         firstPath++;
+                        maxPath = true;
+                        moneySpent += (int)SuperTower_Prices.FirstPath_3; // Increase money spent
                     }
                     break;
             }
@@ -83,12 +88,14 @@ namespace DabloonsPP.GameObjects.Towers
             switch (secondPath)
             {
                 case 0:
-                    if (tryReduceMoney((int)SuperTower_Prices.SecondPath_1))
+                    if (!(pathsChosen == 2) && tryReduceMoney((int)SuperTower_Prices.SecondPath_1))
                     {
                         // Perform upgrade specific to second path and level 0
 
                         secondPath_Price = (int)SuperTower_Prices.SecondPath_2;
                         secondPath++;
+                        pathsChosen++;
+                        moneySpent += (int)SuperTower_Prices.SecondPath_1; // Increase money spent
                     }
                     break;
                 case 1:
@@ -98,15 +105,18 @@ namespace DabloonsPP.GameObjects.Towers
 
                         secondPath_Price = (int)SuperTower_Prices.SecondPath_3;
                         secondPath++;
+                        moneySpent += (int)SuperTower_Prices.SecondPath_2; // Increase money spent
                     }
                     break;
                 case 2:
-                    if (tryReduceMoney((int)SuperTower_Prices.SecondPath_3))
+                    if (!maxPath && tryReduceMoney((int)SuperTower_Prices.SecondPath_3))
                     {
                         // Perform upgrade specific to second path and level 2
 
                         secondPath_Price = 0;
                         secondPath++;
+                        maxPath = true;
+                        moneySpent += (int)SuperTower_Prices.SecondPath_3; // Increase money spent
                     }
                     break;
             }
@@ -117,12 +127,14 @@ namespace DabloonsPP.GameObjects.Towers
             switch (thirdPath)
             {
                 case 0:
-                    if (tryReduceMoney((int)SuperTower_Prices.ThirdPath_1))
+                    if (!(pathsChosen == 2) && tryReduceMoney((int)SuperTower_Prices.ThirdPath_1))
                     {
                         // Perform upgrade specific to third path and level 0
                         range += 15;
                         thirdPath_Price = (int)SuperTower_Prices.ThirdPath_2;
                         thirdPath++;
+                        pathsChosen++;
+                        moneySpent += (int)SuperTower_Prices.ThirdPath_1; // Increase money spent
                     }
                     break;
                 case 1:
@@ -133,16 +145,19 @@ namespace DabloonsPP.GameObjects.Towers
                         canShootCamo = true;
                         thirdPath_Price = (int)SuperTower_Prices.ThirdPath_3;
                         thirdPath++;
+                        moneySpent += (int)SuperTower_Prices.ThirdPath_2; // Increase money spent
                     }
                     break;
                 case 2:
-                    if (tryReduceMoney((int)SuperTower_Prices.ThirdPath_3))
+                    if (!maxPath && tryReduceMoney((int)SuperTower_Prices.ThirdPath_3))
                     {
                         // Perform upgrade specific to third path and level 2
                         damage++;
                         range += 20;
                         thirdPath_Price = 0;
                         thirdPath++;
+                        maxPath = true;
+                        moneySpent += (int)SuperTower_Prices.ThirdPath_3; // Increase money spent
                     }
                     break;
             }

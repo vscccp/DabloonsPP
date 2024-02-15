@@ -57,6 +57,8 @@ namespace DabloonsPP
 
         protected bool canShootCamo = false;
         protected bool canShootLead = false;
+        protected bool maxPath = false;
+        protected int pathsChosen = 0;
 
 
         public int FirstPath

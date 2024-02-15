@@ -36,7 +36,8 @@ namespace DabloonsPP
         private DispatcherTimer enemyCheckTimer;
         private ITower selectedTower;
         private Border selectedTower_icon;
-        uint round = 1;
+        
+        private RoundManager roundManager;
 
         #region Stats
 
@@ -73,6 +74,7 @@ namespace DabloonsPP
             moneySound.Source = new Uri("ms-appx:///Assets/SFX/moneySound.mp3");
             moneySound.AutoPlay = false;
             GameCanva.Children.Add(moneySound);
+            roundManager = new RoundManager(GameCanva, addMoneyForPop, enemies, STARTING_X, STARTING_Y, turns, Reduce_Health, round_block);
 
             Window.Current.CoreWindow.KeyDown += CoreWindow_KeyDown;
         }
@@ -334,6 +336,11 @@ namespace DabloonsPP
             upgrade1_buy.Content = $"{selectedTower.FirstPath_Price}$";
             upgrade2_buy.Content = $"{selectedTower.SecondPath_Price}$";
             upgrade3_buy.Content = $"{selectedTower.ThirdPath_Price}$";
+        }
+
+        private void PlayButton_Tapped(object sender, TappedRoutedEventArgs e)
+        {
+            roundManager.startRound();
         }
     }
 }

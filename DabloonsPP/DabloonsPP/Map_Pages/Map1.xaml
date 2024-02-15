@@ -45,7 +45,7 @@
             <!-- Add similar Border elements for other colors -->
         </StackPanel>
 
-        <Image Source="ms-appx:///Assets/Menu/PlayButton.png" Grid.Column="1" Width="100" Height="100" Canvas.ZIndex="210" x:Name="PlayButton" Visibility="Visible"/>
+        <Image Source="ms-appx:///Assets/Menu/PlayButton.png" Grid.Column="1" Width="100" Height="100" Canvas.ZIndex="210" x:Name="PlayButton" Visibility="Visible" Tapped="PlayButton_Tapped"/>
         <!--#endregion -->
         
         <!--#region Upgrades -->
@@ -116,7 +116,7 @@
                 <Image Source="ms-appx:///assets/Icons/coins.png" Width="50" Height="50"/>
                 <TextBlock x:Name="money_block" Text="850" FontSize="45" Foreground="White" FontFamily="Comic Sans MS"/>
             </StackPanel>
-            
+            <TextBlock x:Name="round_block" Text="Round: 1" FontSize="45" Foreground="White" FontFamily="Comic Sans MS" HorizontalAlignment="Left" Canvas.Left="539" VerticalAlignment="Center" />
         </Canvas>
         <!--#endregion-->
     </Grid>
