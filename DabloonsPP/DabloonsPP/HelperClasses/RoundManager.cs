@@ -325,6 +325,250 @@ namespace DabloonsPP.HelperClasses
                         await Task.Delay(400);
                     }
                     break;
+                case 11:
+                    for (int i = 0; i < 6; i++)
+                    {
+                        int health = 1;
+                        bool isCamo = false;
+                        int ceramicLayers = 0;
+                        Bloon enemy = new Bloon(STARTING_X, STARTING_Y, gameCanva, health, turns, addMoney, reduceHealth, isCamo, ceramicLayers);
+
+                        enemies.Add(enemy);
+
+                        await Task.Delay(355);
+                    }
+
+                    await Task.Delay(600); // delay between colors
+                    //blue bloons
+                    for (int i = 0; i < 12; i++)
+                    {
+                        int health = 2;
+                        bool isCamo = false;
+                        int ceramicLayers = 0;
+                        Bloon enemy = new Bloon(STARTING_X, STARTING_Y, gameCanva, health, turns, addMoney, reduceHealth, isCamo, ceramicLayers);
+
+                        enemies.Add(enemy);
+
+                        await Task.Delay(255);
+                    }
+
+                    await Task.Delay(600); // delay between colors
+                    //green bloons
+                    for (int i = 0; i < 12; i++)
+                    {
+                        int health = 3;
+                        bool isCamo = false;
+                        int ceramicLayers = 0;
+                        Bloon enemy = new Bloon(STARTING_X, STARTING_Y, gameCanva, health, turns, addMoney, reduceHealth, isCamo, ceramicLayers);
+
+                        enemies.Add(enemy);
+
+                        await Task.Delay(255);
+                    }
+                    await Task.Delay(600); // delay between colors
+                    //Yellow bloons
+                    for (int i = 0; i < 3; i++)
+                    {
+                        int health = 4;
+                        bool isCamo = false;
+                        int ceramicLayers = 0;
+                        Bloon enemy = new Bloon(STARTING_X, STARTING_Y, gameCanva, health, turns, addMoney, reduceHealth, isCamo, ceramicLayers);
+
+                        enemies.Add(enemy);
+
+                        await Task.Delay(255);
+                    }
+                    break;
+                case 12:
+                    //blue bloons
+                    for (int i = 0; i < 15; i++)
+                    {
+                        int health = 2;
+                        bool isCamo = false;
+                        int ceramicLayers = 0;
+                        Bloon enemy = new Bloon(STARTING_X, STARTING_Y, gameCanva, health, turns, addMoney, reduceHealth, isCamo, ceramicLayers);
+
+                        enemies.Add(enemy);
+
+                        await Task.Delay(255);
+                    }
+
+                    await Task.Delay(500); // delay between colors
+                    //green bloons
+                    for (int i = 0; i < 10; i++)
+                    {
+                        int health = 3;
+                        bool isCamo = false;
+                        int ceramicLayers = 0;
+                        Bloon enemy = new Bloon(STARTING_X, STARTING_Y, gameCanva, health, turns, addMoney, reduceHealth, isCamo, ceramicLayers);
+
+                        enemies.Add(enemy);
+
+                        await Task.Delay(255);
+                    }
+                    await Task.Delay(500); // delay between colors
+                    //Yellow bloons
+                    for (int i = 0; i < 5; i++)
+                    {
+                        int health = 4;
+                        bool isCamo = false;
+                        int ceramicLayers = 0;
+                        Bloon enemy = new Bloon(STARTING_X, STARTING_Y, gameCanva, health, turns, addMoney, reduceHealth, isCamo, ceramicLayers);
+
+                        enemies.Add(enemy);
+
+                        await Task.Delay(255);
+                    }
+                    break;
+                case 13:
+                    //blue bloons
+                    for (int i = 0; i < 50; i++)
+                    {
+                        int health = 2;
+                        bool isCamo = false;
+                        int ceramicLayers = 0;
+                        Bloon enemy = new Bloon(STARTING_X, STARTING_Y, gameCanva, health, turns, addMoney, reduceHealth, isCamo, ceramicLayers);
+
+                        enemies.Add(enemy);
+
+                        await Task.Delay(255);
+                    }
+
+                    await Task.Delay(500); // delay between colors
+                    //green bloons
+                    for (int i = 0; i < 23; i++)
+                    {
+                        int health = 3;
+                        bool isCamo = false;
+                        int ceramicLayers = 0;
+                        Bloon enemy = new Bloon(STARTING_X, STARTING_Y, gameCanva, health, turns, addMoney, reduceHealth, isCamo, ceramicLayers);
+
+                        enemies.Add(enemy);
+
+                        await Task.Delay(255);
+                    }
+                    break;
+                case 14:
+                    for (int i = 0; i < 49; i++)
+                    {
+                        int health = 1;
+                        bool isCamo = false;
+                        int ceramicLayers = 0;
+                        Bloon enemy = new Bloon(STARTING_X, STARTING_Y, gameCanva, health, turns, addMoney, reduceHealth, isCamo, ceramicLayers);
+
+                        enemies.Add(enemy);
+
+                        await Task.Delay(355);
+                    }
+
+                    await Task.Delay(600); // delay between colors
+                    //blue bloons
+                    for (int i = 0; i < 15; i++)
+                    {
+                        int health = 2;
+                        bool isCamo = false;
+                        int ceramicLayers = 0;
+                        Bloon enemy = new Bloon(STARTING_X, STARTING_Y, gameCanva, health, turns, addMoney, reduceHealth, isCamo, ceramicLayers);
+
+                        enemies.Add(enemy);
+
+                        await Task.Delay(255);
+                    }
+
+                    await Task.Delay(600); // delay between colors
+                    //green bloons
+                    for (int i = 0; i < 10; i++)
+                    {
+                        int health = 3;
+                        bool isCamo = false;
+                        int ceramicLayers = 0;
+                        Bloon enemy = new Bloon(STARTING_X, STARTING_Y, gameCanva, health, turns, addMoney, reduceHealth, isCamo, ceramicLayers);
+
+                        enemies.Add(enemy);
+
+                        await Task.Delay(255);
+                    }
+                    await Task.Delay(600); // delay between colors
+                    //Yellow bloons
+                    for (int i = 0; i < 9; i++)
+                    {
+                        int health = 4;
+                        bool isCamo = false;
+                        int ceramicLayers = 0;
+                        Bloon enemy = new Bloon(STARTING_X, STARTING_Y, gameCanva, health, turns, addMoney, reduceHealth, isCamo, ceramicLayers);
+
+                        enemies.Add(enemy);
+
+                        await Task.Delay(255);
+                    }
+                    break;
+                case 15:
+                    for (int i = 0; i < 20; i++)
+                    {
+                        int health = 1;
+                        bool isCamo = false;
+                        int ceramicLayers = 0;
+                        Bloon enemy = new Bloon(STARTING_X, STARTING_Y, gameCanva, health, turns, addMoney, reduceHealth, isCamo, ceramicLayers);
+
+                        enemies.Add(enemy);
+
+                        await Task.Delay(355);
+                    }
+
+                    await Task.Delay(600); // delay between colors
+                    //blue bloons
+                    for (int i = 0; i < 15; i++)
+                    {
+                        int health = 2;
+                        bool isCamo = false;
+                        int ceramicLayers = 0;
+                        Bloon enemy = new Bloon(STARTING_X, STARTING_Y, gameCanva, health, turns, addMoney, reduceHealth, isCamo, ceramicLayers);
+
+                        enemies.Add(enemy);
+
+                        await Task.Delay(255);
+                    }
+
+                    await Task.Delay(600); // delay between colors
+                    //green bloons
+                    for (int i = 0; i < 12; i++)
+                    {
+                        int health = 3;
+                        bool isCamo = false;
+                        int ceramicLayers = 0;
+                        Bloon enemy = new Bloon(STARTING_X, STARTING_Y, gameCanva, health, turns, addMoney, reduceHealth, isCamo, ceramicLayers);
+
+                        enemies.Add(enemy);
+
+                        await Task.Delay(255);
+                    }
+                    await Task.Delay(600); // delay between colors
+                    //Yellow bloons
+                    for (int i = 0; i < 10; i++)
+                    {
+                        int health = 4;
+                        bool isCamo = false;
+                        int ceramicLayers = 0;
+                        Bloon enemy = new Bloon(STARTING_X, STARTING_Y, gameCanva, health, turns, addMoney, reduceHealth, isCamo, ceramicLayers);
+
+                        enemies.Add(enemy);
+
+                        await Task.Delay(255);
+                    }
+                    await Task.Delay(400); // delay between colors
+                    //Yellow bloons
+                    for (int i = 0; i < 5; i++)
+                    {
+                        int health = 5;
+                        bool isCamo = false;
+                        int ceramicLayers = 0;
+                        Bloon enemy = new Bloon(STARTING_X, STARTING_Y, gameCanva, health, turns, addMoney, reduceHealth, isCamo, ceramicLayers);
+
+                        enemies.Add(enemy);
+
+                        await Task.Delay(255);
+                    }
+                    break;
             }
 
             enemyChecker.Start();
