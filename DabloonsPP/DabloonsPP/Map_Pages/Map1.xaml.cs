@@ -30,6 +30,7 @@ namespace DabloonsPP
         const int STARTING_Y = 250;
         #endregion
 
+        MediaElement moneySound = new MediaElement();
         private List<Bloon> enemies = new List<Bloon>();
         public Queue<Turn> turns = new Queue<Turn>();
         private DispatcherTimer enemyCheckTimer;
@@ -69,6 +70,10 @@ namespace DabloonsPP
 
             selectedTower_icon = null;
 
+            moneySound.Source = new Uri("ms-appx:///Assets/SFX/moneySound.mp3");
+            moneySound.AutoPlay = false;
+            GameCanva.Children.Add(moneySound);
+
             Window.Current.CoreWindow.KeyDown += CoreWindow_KeyDown;
         }
 
@@ -85,6 +90,15 @@ namespace DabloonsPP
                 Bloon enemy = new Bloon(STARTING_X, STARTING_Y, GameCanva, 5, turns, Reduce_Health);
 
                 enemies.Add(enemy);
+            }
+            else if(args.VirtualKey == Windows.System.VirtualKey.M)
+            {
+                money += 200;
+                money_block.Text = money.ToString();
+
+                
+
+                moneySound.Play();
             }
         }
 

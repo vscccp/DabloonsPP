@@ -33,6 +33,8 @@ namespace DabloonsPP
         public BasicTower(int x, int y, Canvas canva, int damage, List<Bloon> enemies, TryReduceMoney tryReduceMoney, changeMenu OpenUpgradeMenu, ChangeSelectedTower changeSelectedTower, AddMoneyForPop addMoneyForPop) : 
             base(width, height, (x-(width/2)), (y-(height/2)), "Monkeys\\dartMonkey.png", canva, damage, 200, enemies, TimeSpan.FromMilliseconds(750), tryReduceMoney, OpenUpgradeMenu, changeSelectedTower, addMoneyForPop)
         {
+            projectilePath = "Projectiles/Dart.png";
+
             firstPath_Price = (int)BasicTower_Prices.FirstPath_1;
             secondPath_Price = (int)BasicTower_Prices.SecondPath_1;
             thirdPath_Price = (int)BasicTower_Prices.ThirdPath_1;
@@ -40,23 +42,7 @@ namespace DabloonsPP
             moneySpent = (int)BasicTower_Prices.TowerPrice;
         }
 
-        public override void Upgrade_Tower(Paths path)
-        {
-            if (path == Paths.FirstPath)
-            {
-                UpgradeFirstPath();
-            }
-            else if (path == Paths.SecondPath)
-            {
-                UpgradeSecondPath();
-            }
-            else if (path == Paths.ThirdPath)
-            {
-                UpgradeThirdPath();
-            }
-        }
-
-        private void UpgradeFirstPath()
+        protected override void UpgradeFirstPath()
         {
             switch (firstPath)
             {
@@ -91,7 +77,7 @@ namespace DabloonsPP
             }
         }
 
-        private void UpgradeSecondPath()
+        protected override void UpgradeSecondPath()
         {
             switch (secondPath)
             {
@@ -125,7 +111,7 @@ namespace DabloonsPP
             }
         }
 
-        private void UpgradeThirdPath()
+        protected override void UpgradeThirdPath()
         {
             switch (thirdPath)
             {
@@ -143,6 +129,7 @@ namespace DabloonsPP
                     {
                         // Perform upgrade specific to third path and level 1
                         range += 20;
+                        canShootCamo = true;
                         thirdPath_Price = (int)BasicTower_Prices.ThirdPath_3;
                         thirdPath++;
                     }
@@ -174,14 +161,14 @@ namespace DabloonsPP
                 double offsetAngle = Math.PI / 15; 
 
                 // Create three projectiles with slightly different angles
-                Projectile projectile1 = new Projectile(Position.X, Position.Y, vx, vy, damage, pierce, "Projectiles\\Dart.png", (float)angle, GameCanvas, enemies, addMoneyForPop);
-                Projectile projectile2 = new Projectile(Position.X, Position.Y, (int)(speed * Math.Cos(angle + offsetAngle)), (int)(speed * Math.Sin(angle + offsetAngle)), damage, pierce, "Projectiles\\Dart.png", (float)(angle + offsetAngle), GameCanvas, enemies, addMoneyForPop);
-                Projectile projectile3 = new Projectile(Position.X, Position.Y, (int)(speed * Math.Cos(angle - offsetAngle)), (int)(speed * Math.Sin(angle - offsetAngle)), damage, pierce, "Projectiles\\Dart.png", (float)(angle - offsetAngle), GameCanvas, enemies, addMoneyForPop);
+                Projectile projectile1 = new Projectile(Position.X, Position.Y, vx, vy, damage, pierce, projectilePath, (float)angle, GameCanvas, enemies, addMoneyForPop, canShootCamo, canShootLead);
+                Projectile projectile2 = new Projectile(Position.X, Position.Y, (int)(speed * Math.Cos(angle + offsetAngle)), (int)(speed * Math.Sin(angle + offsetAngle)), damage, pierce, projectilePath, (float)(angle + offsetAngle), GameCanvas, enemies, addMoneyForPop, canShootCamo, canShootLead);
+                Projectile projectile3 = new Projectile(Position.X, Position.Y, (int)(speed * Math.Cos(angle - offsetAngle)), (int)(speed * Math.Sin(angle - offsetAngle)), damage, pierce, projectilePath, (float)(angle - offsetAngle), GameCanvas, enemies, addMoneyForPop, canShootCamo, canShootLead);
             }
             else
             {
                 // Create a single projectile
-                Projectile projectile = new Projectile(Position.X, Position.Y, vx, vy, damage, pierce, "Projectiles\\Dart.png", (float)angle, GameCanvas, enemies, addMoneyForPop);
+                Projectile projectile = new Projectile(Position.X, Position.Y, vx, vy, damage, pierce, projectilePath, (float)angle, GameCanvas, enemies, addMoneyForPop, canShootCamo, canShootLead);
             }
         }
     }

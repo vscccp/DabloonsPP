@@ -1,8 +1,10 @@
-﻿using System;
+﻿using DabloonsPP.GameObjects.Towers;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Windows.UI.ViewManagement.Core;
 using Windows.UI.Xaml.Controls;
 
 namespace DabloonsPP
@@ -31,12 +33,117 @@ namespace DabloonsPP
         public BoomerangTower(int x, int y, Canvas canva, int damage, List<Bloon> enemies, TryReduceMoney tryReduceMoney, changeMenu OpenUpgradeMenu, ChangeSelectedTower changeSelectedTower, AddMoneyForPop addMoneyForPop) :
             base(width, height, (x - (width / 2)), (y - (height / 2)), "Monkeys\\boomerang_monkey.png", canva, damage, RANGE, enemies, TimeSpan.FromMilliseconds(800), tryReduceMoney, OpenUpgradeMenu, changeSelectedTower, addMoneyForPop)
         {
-            moneySpent = (int)BasicTower_Prices.TowerPrice;
+            projectilePath = "Projectiles/boomerang.png";
+
+            firstPath_Price = (int)BoomerangTower_Prices.FirstPath_1;
+            secondPath_Price = (int)BoomerangTower_Prices.SecondPath_1;
+            thirdPath_Price = (int)BoomerangTower_Prices.ThirdPath_1;
+
+            moneySpent = (int)BoomerangTower_Prices.TowerPrice;
         }
 
-        public override void Upgrade_Tower(Paths path)
+        protected override void UpgradeFirstPath()
         {
+            switch (firstPath)
+            {
+                case 0:
+                    if (tryReduceMoney((int)BoomerangTower_Prices.FirstPath_1))
+                    {
+                        pierce *= 2;
+                        firstPath_Price = (int)BoomerangTower_Prices.FirstPath_2;
+                        firstPath++;
+                    }
+                    break;
+                case 1:
+                    if (tryReduceMoney((int)BoomerangTower_Prices.FirstPath_2))
+                    {
+                        // Perform upgrade specific to first path and level 1
+                        damage += 2;
+                        projectile_speed = (int)(projectile_speed*1.3);
+                        firstPath_Price = (int)BoomerangTower_Prices.FirstPath_3;
+                        firstPath++;
+                    }
+                    break;
+                case 2:
+                    if (tryReduceMoney((int)BoomerangTower_Prices.FirstPath_3))
+                    {
+                        // Perform upgrade specific to first path and level 2
+                        damage += 3;
+                        projectile_speed = (int)(projectile_speed * 1.2);
+                        firstPath_Price = 0;
+                        firstPath++;
+                    }
+                    break;
+            }
+        }
 
+        protected override void UpgradeSecondPath()
+        {
+            switch (secondPath)
+            {
+                case 0:
+                    if (tryReduceMoney((int)BoomerangTower_Prices.SecondPath_1))
+                    {
+                        // Perform upgrade specific to second path and level 0
+                        ShootCooldown -= TimeSpan.FromMilliseconds(120);
+                        secondPath_Price = (int)BoomerangTower_Prices.SecondPath_2;
+                        secondPath++;
+                    }
+                    break;
+                case 1:
+                    if (tryReduceMoney((int)BoomerangTower_Prices.SecondPath_2))
+                    {
+                        // Perform upgrade specific to second path and level 1
+                        ShootCooldown -= TimeSpan.FromMilliseconds(150);
+                        secondPath_Price = (int)BoomerangTower_Prices.SecondPath_3;
+                        secondPath++;
+                    }
+                    break;
+                case 2:
+                    if (tryReduceMoney((int)BoomerangTower_Prices.SecondPath_3))
+                    {
+                        // Perform upgrade specific to second path and level 2
+                        ShootCooldown -= TimeSpan.FromMilliseconds(200);
+                        secondPath_Price = 0;
+                        secondPath++;
+                    }
+                    break;
+            }
+        }
+
+        protected override void UpgradeThirdPath()
+        {
+            switch (thirdPath)
+            {
+                case 0:
+                    if (tryReduceMoney((int)BoomerangTower_Prices.ThirdPath_1))
+                    {
+                        // Perform upgrade specific to third path and level 0
+                        range += 10;
+                        thirdPath_Price = (int)BoomerangTower_Prices.ThirdPath_2;
+                        thirdPath++;
+                    }
+                    break;
+                case 1:
+                    if (tryReduceMoney((int)BoomerangTower_Prices.ThirdPath_2))
+                    {
+                        // Perform upgrade specific to third path and level 1
+                        range += 20;
+                        thirdPath_Price = (int)BoomerangTower_Prices.ThirdPath_3;
+                        thirdPath++;
+                    }
+                    break;
+                case 2:
+                    if (tryReduceMoney((int)BoomerangTower_Prices.ThirdPath_3))
+                    {
+                        // Perform upgrade specific to third path and level 2
+                        damage++;
+                        range += 15;
+                        thirdPath_Price = 0;
+                        thirdPath++;
+                    }
+                    break;
+            }
         }
 
         protected override void Shoot(double angle)
@@ -46,7 +153,7 @@ namespace DabloonsPP
             int vx = (int)(speed * Math.Cos(angle));
             int vy = (int)(speed * Math.Sin(angle));
 
-            BoomerangProjectile projectile = new BoomerangProjectile(Position.X, Position.Y, vx, vy, damage, pierce, RANGE, "Projectiles\\boomerang.png", (float)angle, GameCanvas, enemies, addMoneyForPop);
+            BoomerangProjectile projectile = new BoomerangProjectile(Position.X, Position.Y, vx, vy, damage, pierce, RANGE, projectilePath, (float)angle, GameCanvas, enemies, addMoneyForPop);
         }
     }
 }

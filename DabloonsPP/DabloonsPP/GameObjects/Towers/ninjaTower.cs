@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml;
 using System.ComponentModel;
+using System.Diagnostics;
 
 namespace DabloonsPP.GameObjects.Towers
 {
@@ -33,30 +34,18 @@ namespace DabloonsPP.GameObjects.Towers
         public NinjaTower(int x, int y, Canvas canva, int damage, List<Bloon> enemies, TryReduceMoney tryReduceMoney, changeMenu OpenUpgradeMenu, ChangeSelectedTower changeSelectedTower, AddMoneyForPop addMoneyForPop) :
             base(width, height, (x - (width / 2)), (y - (height / 2)), "Monkeys\\ninja_monkey.png", canva, damage, 250, enemies, TimeSpan.FromMilliseconds(550), tryReduceMoney, OpenUpgradeMenu, changeSelectedTower, addMoneyForPop)
         {
+            projectilePath = "Projectiles/Shurikan.png";
+
             firstPath_Price = (int)NinjaTower_Prices.FirstPath_1;
             secondPath_Price = (int)NinjaTower_Prices.SecondPath_1;
             thirdPath_Price = (int)NinjaTower_Prices.ThirdPath_1;
 
             moneySpent = (int)NinjaTower_Prices.TowerPrice;
+
+            canShootCamo = true;
         }
 
-        public override void Upgrade_Tower(Paths path)
-        {
-            if (path == Paths.FirstPath)
-            {
-                UpgradeFirstPath();
-            }
-            else if (path == Paths.SecondPath)
-            {
-                UpgradeSecondPath();
-            }
-            else if (path == Paths.ThirdPath)
-            {
-                UpgradeThirdPath();
-            }
-        }
-
-        private void UpgradeFirstPath()
+        protected override void UpgradeFirstPath()
         {
             switch (firstPath)
             {
@@ -74,7 +63,7 @@ namespace DabloonsPP.GameObjects.Towers
                     {
                         // Perform upgrade specific to first path and level 1
                         damage++;
-                        shots++;
+                        shots *= 2;
                         firstPath_Price = (int)NinjaTower_Prices.FirstPath_3;
                         firstPath++;
                     }
@@ -84,7 +73,7 @@ namespace DabloonsPP.GameObjects.Towers
                     {
                         // Perform upgrade specific to first path and level 2
                         damage++;
-                        shots += 2;
+                        shots *= 2;
                         firstPath_Price = 0;
                         firstPath++;
                     }
@@ -92,7 +81,7 @@ namespace DabloonsPP.GameObjects.Towers
             }
         }
 
-        private void UpgradeSecondPath()
+        protected override void UpgradeSecondPath()
         {
             switch (secondPath)
             {
@@ -126,7 +115,7 @@ namespace DabloonsPP.GameObjects.Towers
             }
         }
 
-        private void UpgradeThirdPath()
+        protected override void UpgradeThirdPath()
         {
             switch (thirdPath)
             {
@@ -161,14 +150,45 @@ namespace DabloonsPP.GameObjects.Towers
             }
         }
 
+
         protected override void Shoot(double angle)
         {
             // Calculate the velocity components
             double speed = projectile_speed;
-            int vx = (int)(speed * Math.Cos(angle));
-            int vy = (int)(speed * Math.Sin(angle));
 
-            Projectile projectile = new Projectile(Position.X, Position.Y, vx, vy, damage, pierce, "Projectiles\\shurikan.png", (float)angle, GameCanvas, enemies, addMoneyForPop);
+            // Calculate the angle between shots
+            double angleBetweenShots = Math.PI / 20;
+
+            // Determine the number of shots above and below the angle
+            int shotsAbove = shots / 2;
+            int shotsBelow = shots - shotsAbove;
+
+            // Loop to create multiple projectiles
+            for (int i = 0; i < shotsAbove; i++)
+            {
+                // Calculate the angle for this shot above the angle
+                double shotAngle = angle + (i * angleBetweenShots);
+                Debug.WriteLine(shotAngle);
+                // Calculate the velocity components for this shot
+                int vx = (int)(speed * Math.Cos(shotAngle));
+                int vy = (int)(speed * Math.Sin(shotAngle));
+
+                // Create the projectile
+                Projectile projectile = new Projectile(Position.X, Position.Y, vx, vy, damage, pierce, projectilePath, (float)shotAngle, GameCanvas, enemies, addMoneyForPop, canShootCamo, canShootLead);
+            }
+
+            for (int i = 1; i <= shotsBelow; i++) // Start from 1 to avoid duplicate shot at the exact angle
+            {
+                // Calculate the angle for this shot below the angle
+                double shotAngle = angle - (i * angleBetweenShots);
+                Debug.WriteLine(shotAngle);
+                // Calculate the velocity components for this shot
+                int vx = (int)(speed * Math.Cos(shotAngle));
+                int vy = (int)(speed * Math.Sin(shotAngle));
+
+                // Create the projectile
+                Projectile projectile = new Projectile(Position.X, Position.Y, vx, vy, damage, pierce, projectilePath, (float)shotAngle, GameCanvas, enemies, addMoneyForPop, canShootCamo, canShootLead);
+            }
         }
     }
 }

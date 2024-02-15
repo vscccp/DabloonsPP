@@ -25,10 +25,13 @@ namespace DabloonsPP
         public int damage;
         protected int pierce;
         protected List<Bloon> enemies;
+
+        protected bool ShootsCamo;
+        protected bool ShootsLead;
         
         protected DispatcherTimer Move_Timer;
         protected Dictionary<Bloon, DateTime> lastHitTimes = new Dictionary<Bloon, DateTime>();
-        protected TimeSpan cooldownDuration = TimeSpan.FromMilliseconds(150);
+        protected TimeSpan cooldownDuration = TimeSpan.FromMilliseconds(350);
 
         protected AddMoneyForPop addMoneyForPop;
 
@@ -42,7 +45,8 @@ namespace DabloonsPP
             get { return pierce; }
         }
 
-        public Projectile(int x, int y, int dx, int dy, int damage, int pierce, string path, float angle, Canvas canva, List<Bloon> enemies, AddMoneyForPop addMoneyForPop) :
+        public Projectile(int x, int y, int dx, int dy, int damage, int pierce, string path,
+            float angle, Canvas canva, List<Bloon> enemies, AddMoneyForPop addMoneyForPop, bool shootsCamo, bool shootsLead) :
             base(PROJECTILE_WIDTH, PROJECTILE_HEIGHT, x, y, path, canva)
         {
             this.dx = dx;
@@ -59,6 +63,8 @@ namespace DabloonsPP
             Move_Timer.Tick += Move_Timer_Tick;
 
             Move_Timer.Start();
+            ShootsCamo = shootsCamo;
+            ShootsLead = shootsLead;
         }
 
         virtual protected void Move()

@@ -150,6 +150,7 @@
     <Content Include="Assets\Enemies\bloonPink.png" />
     <Content Include="Assets\Enemies\bloonBlue.png" />
     <Content Include="Assets\Enemies\bloonYellow.png" />
+    <Content Include="Assets\Enemies\leadBloon.png" />
     <Content Include="Assets\Icons\coins.png" />
     <Content Include="Assets\Icons\hearts.png" />
     <Content Include="Assets\Icons\settings.png" />
@@ -164,7 +165,9 @@
     <Content Include="Assets\Projectiles\boomerang.png" />
     <Content Include="Assets\Projectiles\Dart.png" />
     <Content Include="Assets\Projectiles\blue_shurikan.png" />
+    <Content Include="Assets\Projectiles\Laser.png" />
     <Content Include="Assets\Projectiles\Shurikan.png" />
+    <Content Include="Assets\SFX\moneySound.mp3" />
     <Content Include="Assets\TowerIcons\boomerangMonkey_icon.png" />
     <Content Include="Assets\TowerIcons\dartMonkey_icon.png" />
     <Content Include="Assets\TowerIcons\ninjaMonkey_icon.png" />

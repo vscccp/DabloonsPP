@@ -29,6 +29,7 @@ namespace DabloonsPP
 
     abstract class ITower : IGameObject
     {
+        #region Upgrade fields
         protected int firstPath = 0;
         protected int secondPath = 0;
         protected int thirdPath = 0;
@@ -38,6 +39,7 @@ namespace DabloonsPP
         protected int thirdPath_Price = 0;
 
         protected int moneySpent = 0;
+        #endregion
 
         public int damage { get; set; }
         public float range { get; set; }
@@ -46,11 +48,16 @@ namespace DabloonsPP
         protected List<Bloon> enemies;
         private DateTime lastShootTime = DateTime.MinValue;
         private DispatcherTimer ChooseTimer;
+        protected string projectilePath;
 
         protected changeMenu OpenUpgradeMenu;
         protected TryReduceMoney tryReduceMoney;
         protected ChangeSelectedTower changeSelectedTower;
         protected AddMoneyForPop addMoneyForPop;
+
+        protected bool canShootCamo = false;
+        protected bool canShootLead = false;
+
 
         public int FirstPath
         {
@@ -177,7 +184,25 @@ namespace DabloonsPP
             Undraw();
         }
 
-        public abstract void Upgrade_Tower(Paths path);
+        protected abstract void UpgradeFirstPath();
+        protected abstract void UpgradeSecondPath();
+        protected abstract void UpgradeThirdPath();
+
+        public void Upgrade_Tower(Paths path)
+        {
+            if (path == Paths.FirstPath)
+            {
+                UpgradeFirstPath();
+            }
+            else if (path == Paths.SecondPath)
+            {
+                UpgradeSecondPath();
+            }
+            else if (path == Paths.ThirdPath)
+            {
+                UpgradeThirdPath();
+            }
+        }
 
         private void Image_Tapped(object sender, Windows.UI.Xaml.Input.TappedRoutedEventArgs e)
         {

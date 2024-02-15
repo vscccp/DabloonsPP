@@ -19,7 +19,8 @@ namespace DabloonsPP
         BLUE = 2,
         GREEN = 3,
         YELLOW = 4,
-        PINK = 5
+        PINK = 5,
+        LEAD = 6
     }
 
 
@@ -38,6 +39,9 @@ namespace DabloonsPP
         private Direction direction;
         private Queue<Turn> turns;
         private DispatcherTimer moveTimer;
+
+        private bool isCamo;
+        private int ceramicLayers;
 
         private reduceHealth reduceHealth;
 
@@ -67,7 +71,7 @@ namespace DabloonsPP
 
         #endregion
 
-        public Bloon(int x, int y, Canvas canva, int health, Queue<Turn> turns, reduceHealth reduceHealth) :
+        public Bloon(int x, int y, Canvas canva, int health, Queue<Turn> turns, reduceHealth reduceHealth, bool isCamo, int ceramicLayers) :
             base(ENEMY_WIDTH, ENEMY_HEIGHT, x, y, canva)
         {
             this.health = health;
@@ -84,6 +88,8 @@ namespace DabloonsPP
 
             SetBloonImage((Bloon_Colors)health);
             this.reduceHealth = reduceHealth;
+            this.isCamo = isCamo;
+            this.ceramicLayers = ceramicLayers;
         }
 
         private void Move(Direction dir)
@@ -188,7 +194,7 @@ namespace DabloonsPP
             }
         }
 
-        public async void TakeDamage(int damage)
+        public async void TakeDamage(int damage, bool shootsCamo, bool shootsLead)
         {
             health -= damage;
 

@@ -31,12 +31,121 @@ namespace DabloonsPP.GameObjects.Towers
         public SuperTower(int x, int y, Canvas canva, int damage, List<Bloon> enemies, TryReduceMoney tryReduceMoney, changeMenu OpenUpgradeMenu, ChangeSelectedTower changeSelectedTower, AddMoneyForPop addMoneyForPop) :
             base(width, height, (x - (width / 2)), (y - (height / 2)), "Monkeys\\super_monkey.png", canva, damage, 300, enemies, TimeSpan.FromMilliseconds(100), tryReduceMoney, OpenUpgradeMenu, changeSelectedTower, addMoneyForPop)
         {
-            moneySpent = (int)BasicTower_Prices.TowerPrice;
+            projectilePath = "Projectiles/Dart.png";
+
+            firstPath_Price = (int)SuperTower_Prices.FirstPath_1;
+            secondPath_Price = (int)SuperTower_Prices.SecondPath_1;
+            thirdPath_Price = (int)SuperTower_Prices.ThirdPath_1;
+
+            moneySpent = (int)SuperTower_Prices.TowerPrice;
         }
 
-        public override void Upgrade_Tower(Paths path)
+        protected override void UpgradeFirstPath()
         {
+            switch (firstPath)
+            {
+                case 0:
+                    if (tryReduceMoney((int)SuperTower_Prices.FirstPath_1))
+                    {
+                        pierce++;
+                        damage += 2;
+                        canShootLead = true;
+                        projectilePath = "Projectiles/Laser.png";
+                        firstPath_Price = (int)SuperTower_Prices.FirstPath_2;
+                        firstPath++;
+                    }
+                    break;
+                case 1:
+                    if (tryReduceMoney((int)SuperTower_Prices.FirstPath_2))
+                    {
+                        // Perform upgrade specific to first path and level 1
+                        damage += 2;
+                        projectile_speed = (int)(projectile_speed * 1.3);
+                        firstPath_Price = (int)SuperTower_Prices.FirstPath_3;
+                        firstPath++;
+                    }
+                    break;
+                case 2:
+                    if (tryReduceMoney((int)SuperTower_Prices.FirstPath_3))
+                    {
+                        // Perform upgrade specific to first path and level 2
+                        damage += 3;
+                        projectile_speed = (int)(projectile_speed * 1.2);
+                        firstPath_Price = 0;
+                        firstPath++;
+                    }
+                    break;
+            }
+        }
 
+        protected override void UpgradeSecondPath()
+        {
+            switch (secondPath)
+            {
+                case 0:
+                    if (tryReduceMoney((int)SuperTower_Prices.SecondPath_1))
+                    {
+                        // Perform upgrade specific to second path and level 0
+
+                        secondPath_Price = (int)SuperTower_Prices.SecondPath_2;
+                        secondPath++;
+                    }
+                    break;
+                case 1:
+                    if (tryReduceMoney((int)SuperTower_Prices.SecondPath_2))
+                    {
+                        // Perform upgrade specific to second path and level 1
+
+                        secondPath_Price = (int)SuperTower_Prices.SecondPath_3;
+                        secondPath++;
+                    }
+                    break;
+                case 2:
+                    if (tryReduceMoney((int)SuperTower_Prices.SecondPath_3))
+                    {
+                        // Perform upgrade specific to second path and level 2
+
+                        secondPath_Price = 0;
+                        secondPath++;
+                    }
+                    break;
+            }
+        }
+
+        protected override void UpgradeThirdPath()
+        {
+            switch (thirdPath)
+            {
+                case 0:
+                    if (tryReduceMoney((int)SuperTower_Prices.ThirdPath_1))
+                    {
+                        // Perform upgrade specific to third path and level 0
+                        range += 15;
+                        thirdPath_Price = (int)SuperTower_Prices.ThirdPath_2;
+                        thirdPath++;
+                    }
+                    break;
+                case 1:
+                    if (tryReduceMoney((int)SuperTower_Prices.ThirdPath_2))
+                    {
+                        // Perform upgrade specific to third path and level 1
+                        range += 25;
+                        canShootCamo = true;
+                        thirdPath_Price = (int)SuperTower_Prices.ThirdPath_3;
+                        thirdPath++;
+                    }
+                    break;
+                case 2:
+                    if (tryReduceMoney((int)SuperTower_Prices.ThirdPath_3))
+                    {
+                        // Perform upgrade specific to third path and level 2
+                        damage++;
+                        range += 20;
+                        thirdPath_Price = 0;
+                        thirdPath++;
+                    }
+                    break;
+            }
         }
 
         protected override void Shoot(double angle)
@@ -46,7 +155,7 @@ namespace DabloonsPP.GameObjects.Towers
             int vx = (int)(speed * Math.Cos(angle));
             int vy = (int)(speed * Math.Sin(angle));
 
-            Projectile projectile = new Projectile(Position.X, Position.Y, vx, vy, damage, pierce, "Projectiles\\dart.png", (float)angle, GameCanvas, enemies, addMoneyForPop);
+            Projectile projectile = new Projectile(Position.X, Position.Y, vx, vy, damage, pierce, projectilePath, (float)angle, GameCanvas, enemies, addMoneyForPop, canShootCamo, canShootLead);
         }
     }
 }
