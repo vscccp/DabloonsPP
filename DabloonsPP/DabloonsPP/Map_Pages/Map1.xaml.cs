@@ -9,6 +9,7 @@ using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.UI;
 using Windows.UI.Xaml;
+using Windows.UI.Xaml.Automation.Peers;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
 using Windows.UI.Xaml.Data;
@@ -43,6 +44,11 @@ namespace DabloonsPP
 
         private int money = 850;
         private int health = 100;
+        private int TotalMoneySpent = 0;
+        private int totalAccumuleted = 0;
+        private int towersBuilt = 0;
+        private TimeSpan gameTime;
+        private DateTime gameTimeStart;
 
         #endregion
         public Map1()
@@ -68,6 +74,8 @@ namespace DabloonsPP
             enemyCheckTimer.Tick += EnemyCheckTimer_Tick;
             enemyCheckTimer.Start();
             #endregion
+
+            gameTimeStart = DateTime.Now;
 
             selectedTower_icon = null;
 
@@ -151,18 +159,22 @@ namespace DabloonsPP
                 {
                     // Create the tower based on the selected color
                     BasicTower newTower = new BasicTower(tapX, tapY, GameCanva, 1, enemies, TryReduceMoney, changeMenu, changeSelectedTower, addMoneyForPop);
+                    towersBuilt++;
                 }
                 else if(towerType == "ninja_monkey" && TryReduceMoney((int)NinjaTower_Prices.TowerPrice))
                 {
                     NinjaTower newTower = new NinjaTower(tapX, tapY, GameCanva, 1, enemies, TryReduceMoney, changeMenu, changeSelectedTower, addMoneyForPop);
+                    towersBuilt++;
                 }
                 else if(towerType == "super_monkey" && TryReduceMoney((int)SuperTower_Prices.TowerPrice))
                 {
                     SuperTower newTower = new SuperTower(tapX, tapY, GameCanva, 1, enemies, TryReduceMoney, changeMenu, changeSelectedTower, addMoneyForPop);
+                    towersBuilt++;
                 }
                 else if(towerType == "boomerang_monkey" && TryReduceMoney((int)BoomerangTower_Prices.TowerPrice))
                 {
                     BoomerangTower newTower = new BoomerangTower(tapX, tapY, GameCanva, 1, enemies, TryReduceMoney, changeMenu, changeSelectedTower, addMoneyForPop);
+                    towersBuilt++;
                 }
                 // Deselect the tower after placing it
                 selectedTower_icon.BorderThickness = new Thickness(0);
@@ -234,6 +246,7 @@ namespace DabloonsPP
         {
             money += pops;
             money_block.Text = money.ToString();
+            totalAccumuleted += pops;
         }
 
         private void ColorRectangles(Rectangle rect1, Rectangle rect2, Rectangle rect3, int path)
@@ -278,6 +291,7 @@ namespace DabloonsPP
             {
                 money -= moneyReduced;
                 money_block.Text = money.ToString();
+                TotalMoneySpent += moneyReduced;
                 return true;
             }
 

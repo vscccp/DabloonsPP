@@ -9,7 +9,6 @@
     Background="White" Loaded="PageLoaded">
 
 
-
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1250"/>
@@ -91,11 +90,11 @@
 
         <Canvas Grid.Column="0" x:Name="GameCanva">
             <!--#region Turns-->
-            <Ellipse x:Name="turn1" Fill="Transparent" Height="30" Width="30" Canvas.Left="390" Canvas.Top="250"/>
-            <Ellipse x:Name="turn2" Fill="Transparent" Height="30" Width="30" Canvas.Left="350" Canvas.Top="660"/>
-            <Ellipse x:Name="turn3" Fill="Transparent" Height="30" Width="30" Canvas.Left="760" Canvas.Top="660"/>
-            <Ellipse x:Name="turn4" Fill="Transparent" Height="30" Width="30" Canvas.Left="770" Canvas.Top="60"/>
-            <Ellipse x:Name="turn5" Fill="Transparent" Height="30" Width="30" Canvas.Left="1090" Canvas.Top="100"/>
+            <Ellipse x:Name="turn1" Fill="Transparent" Height="30" Width="30" Canvas.Left="420" Canvas.Top="250"/>
+            <Ellipse x:Name="turn2" Fill="Transparent" Height="30" Width="30" Canvas.Left="350" Canvas.Top="680"/>
+            <Ellipse x:Name="turn3" Fill="Transparent" Height="30" Width="30" Canvas.Left="820" Canvas.Top="665"/>
+            <Ellipse x:Name="turn4" Fill="Transparent" Height="30" Width="30" Canvas.Left="780" Canvas.Top="35"/>
+            <Ellipse x:Name="turn5" Fill="Transparent" Height="30" Width="30" Canvas.Left="1150" Canvas.Top="100"/>
             <Ellipse x:Name="end" Fill="Transparent" Height="30" Width="30" Canvas.Left="1050" Canvas.Top="900"/>
             <!--#endregion-->
             <!--#region Blockers-->

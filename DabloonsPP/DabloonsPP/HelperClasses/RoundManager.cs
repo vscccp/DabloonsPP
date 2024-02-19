@@ -13,10 +13,11 @@ namespace DabloonsPP.HelperClasses
     {
         private Canvas gameCanva;
         private int round = 1;
+        private bool roundOngoing = false;
         private List<Bloon> enemies;
         private Queue<Turn> turns;
 
-        TextBlock roundBlock;
+        private TextBlock roundBlock;
 
         private int STARTING_X;
         private int STARTING_Y;
@@ -51,11 +52,13 @@ namespace DabloonsPP.HelperClasses
                 round++;
                 roundBlock.Text = "Round: " + round.ToString(); 
                 enemyChecker.Stop();
+                roundOngoing = false;
             }
         }
 
         public async void startRound()
         {
+            roundOngoing = true;
             switch (round)
             {
                 case 1:
