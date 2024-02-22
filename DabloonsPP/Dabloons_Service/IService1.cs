@@ -11,6 +11,7 @@ namespace Dabloons_Service
     [ServiceContract]
     public interface IService1
     {
+        #region basic queries
         [OperationContract]
         bool TryLogin(User user);
 
@@ -34,6 +35,16 @@ namespace Dabloons_Service
 
         [OperationContract]
         bool AddMatch(int userId, Matches match);
+
+        [OperationContract]
+        bool DeleteMatch(int matchId);
+
+        [OperationContract]
+        bool DeleteUnlockables(int userId);
+
+        [OperationContract]
+        bool DeleteUser(int userId);
+        #endregion
 
         #region Personal stats
         // Personal stats of a current player

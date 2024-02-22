@@ -220,6 +220,77 @@ namespace Dabloons_Service
             }
         }
 
+        public bool DeleteMatch(int userId)
+        {
+            try
+            {
+                connection.Open();
+                SqlCommand cmd = new SqlCommand("DELETE FROM Match WHERE UserId = @UserId", connection);
+                cmd.Parameters.AddWithValue("@MatchId", userId);
+                cmd.ExecuteNonQuery();
+                return true;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                return false;
+            }
+            finally
+            {
+                connection.Close();
+            }
+        }
+
+        public bool DeleteUnlockables(int userId)
+        {
+            try
+            {
+                connection.Open();
+                SqlCommand cmd = new SqlCommand("DELETE FROM Unlocked WHERE UserId = @UserId", connection);
+                cmd.Parameters.AddWithValue("@UserId", userId);
+                cmd.ExecuteNonQuery();
+                return true;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                return false;
+            }
+            finally
+            {
+                connection.Close();
+            }
+        }
+
+        public bool DeleteUser(int userId)
+        {
+            try
+            {
+                connection.Open();
+
+                // Delete unlockables
+                DeleteUnlockables(userId);
+
+                DeleteMatch(userId);
+
+                // Delete user
+                SqlCommand deleteUserCmd = new SqlCommand("DELETE FROM Users WHERE UserId = @UserId", connection);
+                deleteUserCmd.Parameters.AddWithValue("@UserId", userId);
+                deleteUserCmd.ExecuteNonQuery();
+
+                return true;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                return false;
+            }
+            finally
+            {
+                connection.Close();
+            }
+        }
+
         #endregion
 
         #region Personal Stats
