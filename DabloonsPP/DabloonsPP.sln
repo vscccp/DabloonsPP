@@ -4,6 +4,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 17.3.32929.385
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DabloonsPP", "DabloonsPP\DabloonsPP.csproj", "{8070D8CB-4137-401D-87DE-AE655573A1CF}"
+	ProjectSection(ProjectDependencies) = postProject
+		{0C4C09EE-2711-4A79-B388-63C2271612F9} = {0C4C09EE-2711-4A79-B388-63C2271612F9}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dabloons_Service", "Dabloons_Service\Dabloons_Service.csproj", "{0C4C09EE-2711-4A79-B388-63C2271612F9}"
 EndProject

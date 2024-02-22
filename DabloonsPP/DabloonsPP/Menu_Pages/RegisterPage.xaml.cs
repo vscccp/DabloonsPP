@@ -1,10 +1,12 @@
-﻿using System;
+﻿using DabloonsPP.DabloonsDB;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -25,6 +27,43 @@ namespace DabloonsPP
         public RegisterPage()
         {
             this.InitializeComponent();
+        }
+
+        private async void Submit_Click(object sender, RoutedEventArgs e)
+        {
+            string username = UsernameBox.Text;
+            string pwd = PwdBox.Password;
+
+            if(username.Length < 5 || username.Length > 16)
+            {
+                MessageDialog message = new MessageDialog("Username length is invalid(Should be between 5-16)");
+            }
+            else if((pwd.Length < 6 || pwd.Length > 24))
+            {
+                MessageDialog message = new MessageDialog("Password length is invalid(Should be between 6-24)");
+            }
+            else
+            {
+                try
+                {
+                    DabloonsDB.Service1Client service = new DabloonsDB.Service1Client();
+                    User user = new User();
+                    user.Username = username;
+                    user.Password = pwd;
+                    User result = await service.GetUserByUsernameAsync(user.Username);
+                    
+                    if(result == null)
+                    {
+                        bool addResult = await service.AddUserAsync(user);
+                        Frame.Navigate(typeof(MenuPage), user);
+                    }
+                }
+                catch(Exception ex)
+                {
+                    MessageDialog message = new MessageDialog("Something went wrong...");
+                }
+            }
+               
         }
     }
 }

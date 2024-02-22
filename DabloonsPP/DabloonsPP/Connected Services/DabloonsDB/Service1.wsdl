@@ -1,0 +1,457 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tns="http://tempuri.org/" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" name="Service1" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import schemaLocation="http://localhost:8733/Design_Time_Addresses/Dabloons_Service/Service1/?xsd=xsd0" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="http://localhost:8733/Design_Time_Addresses/Dabloons_Service/Service1/?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://localhost:8733/Design_Time_Addresses/Dabloons_Service/Service1/?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/Dabloons_Service" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="IService1_TryLogin_InputMessage">
+    <wsdl:part name="parameters" element="tns:TryLogin" />
+  </wsdl:message>
+  <wsdl:message name="IService1_TryLogin_OutputMessage">
+    <wsdl:part name="parameters" element="tns:TryLoginResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_GetUserByUsername_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetUserByUsername" />
+  </wsdl:message>
+  <wsdl:message name="IService1_GetUserByUsername_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetUserByUsernameResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_AddUser_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddUser" />
+  </wsdl:message>
+  <wsdl:message name="IService1_AddUser_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_GetAllUsers_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllUsers" />
+  </wsdl:message>
+  <wsdl:message name="IService1_GetAllUsers_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllUsersResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_UpdateUser_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateUser" />
+  </wsdl:message>
+  <wsdl:message name="IService1_UpdateUser_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_AddUnlocked_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddUnlocked" />
+  </wsdl:message>
+  <wsdl:message name="IService1_AddUnlocked_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddUnlockedResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_UpdateUnlocked_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateUnlocked" />
+  </wsdl:message>
+  <wsdl:message name="IService1_UpdateUnlocked_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateUnlockedResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_AddMatch_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddMatch" />
+  </wsdl:message>
+  <wsdl:message name="IService1_AddMatch_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddMatchResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_DeleteMatch_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteMatch" />
+  </wsdl:message>
+  <wsdl:message name="IService1_DeleteMatch_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteMatchResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_DeleteUnlockables_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteUnlockables" />
+  </wsdl:message>
+  <wsdl:message name="IService1_DeleteUnlockables_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteUnlockablesResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_DeleteUser_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteUser" />
+  </wsdl:message>
+  <wsdl:message name="IService1_DeleteUser_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_GetTotalGamesCount_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetTotalGamesCount" />
+  </wsdl:message>
+  <wsdl:message name="IService1_GetTotalGamesCount_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetTotalGamesCountResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_GetTotalMoneySpent_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetTotalMoneySpent" />
+  </wsdl:message>
+  <wsdl:message name="IService1_GetTotalMoneySpent_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetTotalMoneySpentResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_GetTotalMoneyGained_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetTotalMoneyGained" />
+  </wsdl:message>
+  <wsdl:message name="IService1_GetTotalMoneyGained_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetTotalMoneyGainedResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_GetTotalTowersBuilt_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetTotalTowersBuilt" />
+  </wsdl:message>
+  <wsdl:message name="IService1_GetTotalTowersBuilt_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetTotalTowersBuiltResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_GetTopPlayerByMoneySpent_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetTopPlayerByMoneySpent" />
+  </wsdl:message>
+  <wsdl:message name="IService1_GetTopPlayerByMoneySpent_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetTopPlayerByMoneySpentResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_GetTopPlayerByMoneyGained_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetTopPlayerByMoneyGained" />
+  </wsdl:message>
+  <wsdl:message name="IService1_GetTopPlayerByMoneyGained_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetTopPlayerByMoneyGainedResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_GetTopPlayerByTowersBuilt_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetTopPlayerByTowersBuilt" />
+  </wsdl:message>
+  <wsdl:message name="IService1_GetTopPlayerByTowersBuilt_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetTopPlayerByTowersBuiltResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_GetPlayerWithFastestGame_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetPlayerWithFastestGame" />
+  </wsdl:message>
+  <wsdl:message name="IService1_GetPlayerWithFastestGame_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetPlayerWithFastestGameResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_GetPlayerWithMostLosses_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetPlayerWithMostLosses" />
+  </wsdl:message>
+  <wsdl:message name="IService1_GetPlayerWithMostLosses_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetPlayerWithMostLossesResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_GetPlayerWithMostWins_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetPlayerWithMostWins" />
+  </wsdl:message>
+  <wsdl:message name="IService1_GetPlayerWithMostWins_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetPlayerWithMostWinsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_GetPlayerWithBestWinPercentage_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetPlayerWithBestWinPercentage" />
+  </wsdl:message>
+  <wsdl:message name="IService1_GetPlayerWithBestWinPercentage_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetPlayerWithBestWinPercentageResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_GetPlayerWithBestLossPercentage_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetPlayerWithBestLossPercentage" />
+  </wsdl:message>
+  <wsdl:message name="IService1_GetPlayerWithBestLossPercentage_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetPlayerWithBestLossPercentageResponse" />
+  </wsdl:message>
+  <wsdl:portType name="IService1">
+    <wsdl:operation name="TryLogin">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/TryLogin" message="tns:IService1_TryLogin_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/TryLoginResponse" message="tns:IService1_TryLogin_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUserByUsername">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/GetUserByUsername" message="tns:IService1_GetUserByUsername_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/GetUserByUsernameResponse" message="tns:IService1_GetUserByUsername_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AddUser">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/AddUser" message="tns:IService1_AddUser_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/AddUserResponse" message="tns:IService1_AddUser_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllUsers">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/GetAllUsers" message="tns:IService1_GetAllUsers_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/GetAllUsersResponse" message="tns:IService1_GetAllUsers_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateUser">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/UpdateUser" message="tns:IService1_UpdateUser_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/UpdateUserResponse" message="tns:IService1_UpdateUser_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AddUnlocked">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/AddUnlocked" message="tns:IService1_AddUnlocked_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/AddUnlockedResponse" message="tns:IService1_AddUnlocked_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateUnlocked">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/UpdateUnlocked" message="tns:IService1_UpdateUnlocked_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/UpdateUnlockedResponse" message="tns:IService1_UpdateUnlocked_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AddMatch">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/AddMatch" message="tns:IService1_AddMatch_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/AddMatchResponse" message="tns:IService1_AddMatch_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteMatch">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/DeleteMatch" message="tns:IService1_DeleteMatch_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/DeleteMatchResponse" message="tns:IService1_DeleteMatch_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteUnlockables">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/DeleteUnlockables" message="tns:IService1_DeleteUnlockables_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/DeleteUnlockablesResponse" message="tns:IService1_DeleteUnlockables_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteUser">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/DeleteUser" message="tns:IService1_DeleteUser_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/DeleteUserResponse" message="tns:IService1_DeleteUser_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTotalGamesCount">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/GetTotalGamesCount" message="tns:IService1_GetTotalGamesCount_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/GetTotalGamesCountResponse" message="tns:IService1_GetTotalGamesCount_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTotalMoneySpent">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/GetTotalMoneySpent" message="tns:IService1_GetTotalMoneySpent_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/GetTotalMoneySpentResponse" message="tns:IService1_GetTotalMoneySpent_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTotalMoneyGained">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/GetTotalMoneyGained" message="tns:IService1_GetTotalMoneyGained_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/GetTotalMoneyGainedResponse" message="tns:IService1_GetTotalMoneyGained_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTotalTowersBuilt">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/GetTotalTowersBuilt" message="tns:IService1_GetTotalTowersBuilt_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/GetTotalTowersBuiltResponse" message="tns:IService1_GetTotalTowersBuilt_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTopPlayerByMoneySpent">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/GetTopPlayerByMoneySpent" message="tns:IService1_GetTopPlayerByMoneySpent_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/GetTopPlayerByMoneySpentResponse" message="tns:IService1_GetTopPlayerByMoneySpent_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTopPlayerByMoneyGained">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/GetTopPlayerByMoneyGained" message="tns:IService1_GetTopPlayerByMoneyGained_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/GetTopPlayerByMoneyGainedResponse" message="tns:IService1_GetTopPlayerByMoneyGained_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTopPlayerByTowersBuilt">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/GetTopPlayerByTowersBuilt" message="tns:IService1_GetTopPlayerByTowersBuilt_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/GetTopPlayerByTowersBuiltResponse" message="tns:IService1_GetTopPlayerByTowersBuilt_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetPlayerWithFastestGame">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/GetPlayerWithFastestGame" message="tns:IService1_GetPlayerWithFastestGame_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/GetPlayerWithFastestGameResponse" message="tns:IService1_GetPlayerWithFastestGame_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetPlayerWithMostLosses">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/GetPlayerWithMostLosses" message="tns:IService1_GetPlayerWithMostLosses_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/GetPlayerWithMostLossesResponse" message="tns:IService1_GetPlayerWithMostLosses_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetPlayerWithMostWins">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/GetPlayerWithMostWins" message="tns:IService1_GetPlayerWithMostWins_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/GetPlayerWithMostWinsResponse" message="tns:IService1_GetPlayerWithMostWins_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetPlayerWithBestWinPercentage">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/GetPlayerWithBestWinPercentage" message="tns:IService1_GetPlayerWithBestWinPercentage_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/GetPlayerWithBestWinPercentageResponse" message="tns:IService1_GetPlayerWithBestWinPercentage_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetPlayerWithBestLossPercentage">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/GetPlayerWithBestLossPercentage" message="tns:IService1_GetPlayerWithBestLossPercentage_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/GetPlayerWithBestLossPercentageResponse" message="tns:IService1_GetPlayerWithBestLossPercentage_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BasicHttpBinding_IService1" type="tns:IService1">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="TryLogin">
+      <soap:operation soapAction="http://tempuri.org/IService1/TryLogin" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserByUsername">
+      <soap:operation soapAction="http://tempuri.org/IService1/GetUserByUsername" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddUser">
+      <soap:operation soapAction="http://tempuri.org/IService1/AddUser" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllUsers">
+      <soap:operation soapAction="http://tempuri.org/IService1/GetAllUsers" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateUser">
+      <soap:operation soapAction="http://tempuri.org/IService1/UpdateUser" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddUnlocked">
+      <soap:operation soapAction="http://tempuri.org/IService1/AddUnlocked" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateUnlocked">
+      <soap:operation soapAction="http://tempuri.org/IService1/UpdateUnlocked" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddMatch">
+      <soap:operation soapAction="http://tempuri.org/IService1/AddMatch" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteMatch">
+      <soap:operation soapAction="http://tempuri.org/IService1/DeleteMatch" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteUnlockables">
+      <soap:operation soapAction="http://tempuri.org/IService1/DeleteUnlockables" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteUser">
+      <soap:operation soapAction="http://tempuri.org/IService1/DeleteUser" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTotalGamesCount">
+      <soap:operation soapAction="http://tempuri.org/IService1/GetTotalGamesCount" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTotalMoneySpent">
+      <soap:operation soapAction="http://tempuri.org/IService1/GetTotalMoneySpent" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTotalMoneyGained">
+      <soap:operation soapAction="http://tempuri.org/IService1/GetTotalMoneyGained" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTotalTowersBuilt">
+      <soap:operation soapAction="http://tempuri.org/IService1/GetTotalTowersBuilt" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTopPlayerByMoneySpent">
+      <soap:operation soapAction="http://tempuri.org/IService1/GetTopPlayerByMoneySpent" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTopPlayerByMoneyGained">
+      <soap:operation soapAction="http://tempuri.org/IService1/GetTopPlayerByMoneyGained" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTopPlayerByTowersBuilt">
+      <soap:operation soapAction="http://tempuri.org/IService1/GetTopPlayerByTowersBuilt" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPlayerWithFastestGame">
+      <soap:operation soapAction="http://tempuri.org/IService1/GetPlayerWithFastestGame" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPlayerWithMostLosses">
+      <soap:operation soapAction="http://tempuri.org/IService1/GetPlayerWithMostLosses" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPlayerWithMostWins">
+      <soap:operation soapAction="http://tempuri.org/IService1/GetPlayerWithMostWins" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPlayerWithBestWinPercentage">
+      <soap:operation soapAction="http://tempuri.org/IService1/GetPlayerWithBestWinPercentage" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPlayerWithBestLossPercentage">
+      <soap:operation soapAction="http://tempuri.org/IService1/GetPlayerWithBestLossPercentage" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="Service1">
+    <wsdl:port name="BasicHttpBinding_IService1" binding="tns:BasicHttpBinding_IService1">
+      <soap:address location="http://localhost:8733/Design_Time_Addresses/Dabloons_Service/Service1/" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

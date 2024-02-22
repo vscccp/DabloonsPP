@@ -119,6 +119,11 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Connected Services\DabloonsDB\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
     <Compile Include="Menu_Pages\ChooseMap.xaml.cs">
       <DependentUpon>ChooseMap.xaml</DependentUpon>
     </Compile>
@@ -143,6 +148,9 @@
     </Compile>
     <Compile Include="Map_Pages\Map1.xaml.cs">
       <DependentUpon>Map1.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Menu_Pages\MenuPage.xaml.cs">
+      <DependentUpon>MenuPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Menu_Pages\RegisterPage.xaml.cs">
@@ -189,6 +197,16 @@
     <Content Include="Assets\Upgrade_Icons\RangeLol.png" />
     <Content Include="Assets\Upgrade_Icons\Sharp_darts.png" />
     <Content Include="Assets\VFX\pop.png" />
+    <None Include="Connected Services\DabloonsDB\DabloonsPP.DabloonsDB.User.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\DabloonsDB\item.disco" />
+    <None Include="Connected Services\DabloonsDB\configuration91.svcinfo" />
+    <None Include="Connected Services\DabloonsDB\configuration.svcinfo" />
+    <None Include="Connected Services\DabloonsDB\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="Assets\LockScreenLogo.scale-200.png" />
     <Content Include="Assets\SplashScreen.scale-200.png" />
@@ -219,6 +237,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Menu_Pages\MenuPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Menu_Pages\RegisterPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -229,7 +251,25 @@
       <Version>6.2.14</Version>
     </PackageReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\DabloonsDB\item.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\DabloonsDB\item1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\DabloonsDB\item2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\DabloonsDB\Service1.wsdl" />
+    <None Include="Properties\ServiceReferences.Designer.ClientConfig" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Connected Services\DabloonsDB\" />
+  </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
   </PropertyGroup>
