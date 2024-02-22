@@ -35,7 +35,8 @@ namespace Dabloons_Service
         [OperationContract]
         bool AddMatch(int userId, Matches match);
 
-        // Personal stats of current player
+        #region Personal stats
+        // Personal stats of a current player
         [OperationContract]
         int GetTotalGamesCount(int userId);
 
@@ -47,8 +48,9 @@ namespace Dabloons_Service
 
         [OperationContract]
         int GetTotalTowersBuilt(int userId);
+#endregion
 
-        // Top stats
+        #region Top Stats
         [OperationContract]
         User GetTopPlayerByMoneySpent();
 
@@ -72,7 +74,7 @@ namespace Dabloons_Service
 
         [OperationContract]
         User GetPlayerWithBestLossPercentage();
-    }
 
-    
+        #endregion
+    }
 }
