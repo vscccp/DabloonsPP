@@ -119,6 +119,12 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Menu_Pages\ChooseMap.xaml.cs">
+      <DependentUpon>ChooseMap.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Menu_Pages\LoginPage.xaml.cs">
+      <DependentUpon>LoginPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="GameObjects\Enemies\Bloon.cs" />
     <Compile Include="GameObjects\IGameObject.cs" />
     <Compile Include="GameObjects\Projectiles\BoomerangProjectile.cs" />
@@ -132,15 +138,15 @@
     <Compile Include="HelperClasses\MyCircle.cs" />
     <Compile Include="HelperClasses\RoundManager.cs" />
     <Compile Include="HelperClasses\Turn.cs" />
-    <Compile Include="MainPage.xaml.cs">
+    <Compile Include="Menu_Pages\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Map_Pages\Map1.xaml.cs">
       <DependentUpon>Map1.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Register.xaml.cs">
-      <DependentUpon>Register.xaml</DependentUpon>
+    <Compile Include="Menu_Pages\RegisterPage.xaml.cs">
+      <DependentUpon>RegisterPage.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -155,6 +161,9 @@
     <Content Include="Assets\Enemies\bloonBlue.png" />
     <Content Include="Assets\Enemies\bloonYellow.png" />
     <Content Include="Assets\Enemies\leadBloon.png" />
+    <Content Include="Assets\Funny\funny_monkey1.jpg" />
+    <Content Include="Assets\Funny\funny_monkey2.jpg" />
+    <Content Include="Assets\Funny\funny_monkey3.jpg" />
     <Content Include="Assets\Icons\coins.png" />
     <Content Include="Assets\Icons\hearts.png" />
     <Content Include="Assets\Icons\settings.png" />
@@ -194,7 +203,15 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Page Include="MainPage.xaml">
+    <Page Include="Menu_Pages\ChooseMap.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Menu_Pages\LoginPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Menu_Pages\MainPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -202,7 +219,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Register.xaml">
+    <Page Include="Menu_Pages\RegisterPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
