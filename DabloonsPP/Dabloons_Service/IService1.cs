@@ -25,6 +25,53 @@ namespace Dabloons_Service
 
         [OperationContract]
         bool UpdateUser(User user);
+
+        [OperationContract]
+        bool AddUnlocked(int userId);
+
+        [OperationContract]
+        bool UpdateUnlocked(int userId, Unlocked unlocked);
+
+        [OperationContract]
+        bool AddMatch(int userId, Matches match);
+
+        // Personal stats of current player
+        [OperationContract]
+        int GetTotalGamesCount(int userId);
+
+        [OperationContract]
+        int GetTotalMoneySpent(int userId);
+
+        [OperationContract]
+        int GetTotalMoneyGained(int userId);
+
+        [OperationContract]
+        int GetTotalTowersBuilt(int userId);
+
+        // Top stats
+        [OperationContract]
+        User GetTopPlayerByMoneySpent();
+
+        [OperationContract]
+        User GetTopPlayerByMoneyGained();
+
+        [OperationContract]
+        User GetTopPlayerByTowersBuilt();
+
+        [OperationContract]
+        User GetPlayerWithFastestGame();
+
+        [OperationContract]
+        User GetPlayerWithMostLosses();
+
+        [OperationContract]
+        User GetPlayerWithMostWins();
+
+        [OperationContract]
+        User GetPlayerWithBestWinPercentage();
+
+        [OperationContract]
+        User GetPlayerWithBestLossPercentage();
     }
 
     

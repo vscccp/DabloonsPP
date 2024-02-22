@@ -15,5 +15,8 @@ namespace Dabloons_Service
 
         [DataMember]
         public string Password { get; set; }
+
+        [DataMember]
+        public int UserId { get; set; }
     }
 }
