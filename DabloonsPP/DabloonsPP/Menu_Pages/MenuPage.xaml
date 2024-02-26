@@ -8,7 +8,11 @@
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-    <Grid>
+    <Canvas>
+        <Image Source="/Assets/Menu/Jungle_Background.jpg" Stretch="Fill" Width="1500" Height="1000"/>
+        <Image Source="/Assets/Icons/ShopIcon.png" Canvas.Left="963" Canvas.Top="544" Height="229" Width="258" DoubleTapped="Shop_DoubleTapped"/>
+        <Image Source="/Assets/Icons/PlayButton.png" Canvas.Left="547" Canvas.Top="100" Height="247" Width="297" DoubleTapped="Play_DoubleTapped"/>
+        <Image Source="/Assets/Icons/statisticsIcon.png" Canvas.Left="336" Canvas.Top="598" Height="265" Width="176" DoubleTapped="Stats_DoubleTapped"/>
 
-    </Grid>
+    </Canvas>
 </Page>

@@ -174,8 +174,12 @@
     <Content Include="Assets\Funny\funny_monkey3.jpg" />
     <Content Include="Assets\Icons\coins.png" />
     <Content Include="Assets\Icons\hearts.png" />
+    <Content Include="Assets\Icons\PlayButton.png" />
     <Content Include="Assets\Icons\settings.png" />
+    <Content Include="Assets\Icons\ShopIcon.png" />
+    <Content Include="Assets\Icons\statisticsIcon.png" />
     <Content Include="Assets\Maps\Map1.png" />
+    <Content Include="Assets\Menu\Jungle_Background.jpg" />
     <Content Include="Assets\Menu\MenuBackground.png" />
     <Content Include="Assets\Menu\PlayButton.png" />
     <Content Include="Assets\Menu\sellButton.png" />

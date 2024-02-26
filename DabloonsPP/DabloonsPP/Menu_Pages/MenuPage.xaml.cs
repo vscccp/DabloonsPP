@@ -15,7 +15,7 @@ using Windows.UI.Xaml.Navigation;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 
-namespace DabloonsPP
+namespace DabloonsPP.Menu_Pages
 {
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
@@ -25,6 +25,21 @@ namespace DabloonsPP
         public MenuPage()
         {
             this.InitializeComponent();
+        }
+
+        private void Shop_DoubleTapped(object sender, DoubleTappedRoutedEventArgs e)
+        {
+
+        }
+
+        private void Play_DoubleTapped(object sender, DoubleTappedRoutedEventArgs e)
+        {
+
+        }
+
+        private void Stats_DoubleTapped(object sender, DoubleTappedRoutedEventArgs e)
+        {
+
         }
     }
 }

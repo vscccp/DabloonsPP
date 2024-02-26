@@ -1,17 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
+﻿using DabloonsPP.DabloonsDB;
+using System;
+using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
-using Windows.UI.Xaml.Navigation;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -25,6 +16,35 @@ namespace DabloonsPP.Assets.Menu_Pages
         public LoginPage()
         {
             this.InitializeComponent();
+        }
+
+        private async void Submit_Click(object sender, RoutedEventArgs e)
+        {
+            string username = UsernameBox.Text;
+            string pwd = PwdBox.Password;
+
+
+            try
+            {
+                DabloonsDB.Service1Client service = new DabloonsDB.Service1Client();
+                User user = new User();
+                user.Username = username;
+                user.Password = pwd;
+                bool result = await service.TryLoginAsync(user);
+
+                if (result)
+                {
+                    Frame.Navigate(typeof(MenuPage), user);
+                }
+                else
+                {
+                    throw new Exception("Wrong credentials");
+                }
+        }
+            catch (Exception ex)
+            {
+                MessageDialog message = new MessageDialog(ex.Message);
+            }
         }
     }
 }

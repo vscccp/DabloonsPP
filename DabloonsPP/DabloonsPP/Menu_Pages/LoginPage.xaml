@@ -9,6 +9,14 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Grid>
+        <TextBlock Text="Login" FontSize="80" Width="399" Height="125"  HorizontalAlignment="Left" VerticalAlignment="Top" FontFamily="Consolas" Margin="575,0,0,0"/>
 
+        <TextBlock Text="Username: " FontSize="55" Width="300" Height="120" Margin="138,248,1062,632" FontFamily="Consolas"/>
+        <TextBox x:Name="UsernameBox" Text="" FontSize="55" Width="600" Height="120" Margin="450,418,450,462" FontFamily="Consolas"/>
+
+        <TextBlock Text="Password: " FontSize="55" Width="300" Height="120" Margin="138,441,1062,439" FontFamily="Consolas"/>
+        <PasswordBox x:Name="PwdBox" Password="" FontSize="55" Width="600" Height="120" Margin="450,248,450,632" FontFamily="Consolas"/>
+
+        <Button Click="Submit_Click" Width="300" Height="150" Content="Submit" FontSize="75" Margin="530,708,0,0" VerticalAlignment="Top" FontFamily="Consolas"/>
     </Grid>
 </Page>
