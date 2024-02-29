@@ -25,6 +25,8 @@ namespace Dabloons_Service
                 cmd.Parameters.AddWithValue("@Password", user.Password);
                 cmd.ExecuteNonQuery();
 
+                connection.Close();
+
                 AddUnlocked(GetUserByUsername(user.Username).UserId);
 
                 return true;
@@ -57,6 +59,8 @@ namespace Dabloons_Service
                         UserId = Convert.ToInt32(reader["UserId"])
                     };
                 }
+
+                connection.Close();
                 return null;
             }
             catch (Exception e)
@@ -87,6 +91,7 @@ namespace Dabloons_Service
                         UserId = Convert.ToInt32(reader["UserId"])
                     });
                 }
+                connection.Close();
                 return users;
             }
             catch (Exception e)
@@ -109,6 +114,7 @@ namespace Dabloons_Service
                 cmd.Parameters.AddWithValue("@Username", user.Username);
                 cmd.Parameters.AddWithValue("@Password", user.Password);
                 cmd.ExecuteNonQuery();
+                connection.Close();
                 return true;
             }
             catch (Exception e)
@@ -131,6 +137,7 @@ namespace Dabloons_Service
                 cmd.Parameters.AddWithValue("@Username", user.Username);
                 cmd.Parameters.AddWithValue("@Password", user.Password);
                 int count = (int)cmd.ExecuteScalar();
+                connection.Close();
                 return count > 0;
             }
             catch (Exception e)
@@ -157,6 +164,7 @@ namespace Dabloons_Service
                 cmd.Parameters.AddWithValue("@TowersBuilt", match.TowersBuilt);
                 cmd.Parameters.AddWithValue("@Result", match.Result);
                 cmd.ExecuteNonQuery();
+                connection.Close();
                 return true;
             }
             catch (Exception e)
@@ -178,6 +186,7 @@ namespace Dabloons_Service
                 SqlCommand cmd = new SqlCommand("INSERT INTO Unlocked (UserId) VALUES (@UserId)", connection);
                 cmd.Parameters.AddWithValue("@UserId", userId);
                 cmd.ExecuteNonQuery();
+                connection.Close();
                 return true;
             }
             catch (Exception e)
@@ -207,6 +216,7 @@ namespace Dabloons_Service
                 cmd.Parameters.AddWithValue("@MoneyTiers", unlocked.MoneyTiers);
                 cmd.Parameters.AddWithValue("@HealthTiers", unlocked.HealthTiers);
                 cmd.ExecuteNonQuery();
+                connection.Close();
                 return true;
             }
             catch (Exception e)
@@ -228,6 +238,7 @@ namespace Dabloons_Service
                 SqlCommand cmd = new SqlCommand("DELETE FROM Match WHERE UserId = @UserId", connection);
                 cmd.Parameters.AddWithValue("@MatchId", userId);
                 cmd.ExecuteNonQuery();
+                connection.Close();
                 return true;
             }
             catch (Exception e)
@@ -249,6 +260,7 @@ namespace Dabloons_Service
                 SqlCommand cmd = new SqlCommand("DELETE FROM Unlocked WHERE UserId = @UserId", connection);
                 cmd.Parameters.AddWithValue("@UserId", userId);
                 cmd.ExecuteNonQuery();
+                connection.Close();
                 return true;
             }
             catch (Exception e)
@@ -277,7 +289,7 @@ namespace Dabloons_Service
                 SqlCommand deleteUserCmd = new SqlCommand("DELETE FROM Users WHERE UserId = @UserId", connection);
                 deleteUserCmd.Parameters.AddWithValue("@UserId", userId);
                 deleteUserCmd.ExecuteNonQuery();
-
+                connection.Close();
                 return true;
             }
             catch (Exception e)
@@ -301,6 +313,7 @@ namespace Dabloons_Service
                 connection.Open();
                 SqlCommand cmd = new SqlCommand("SELECT COUNT(*) FROM Match WHERE UserId = @UserId", connection);
                 cmd.Parameters.AddWithValue("@Username", UserId);
+                connection.Close();
                 return (int)cmd.ExecuteScalar();
             }
             catch (Exception e)
@@ -322,6 +335,7 @@ namespace Dabloons_Service
                 SqlCommand cmd = new SqlCommand("SELECT SUM(MoneyAccumulated) FROM Match WHERE UserId = @UserId", connection);
                 cmd.Parameters.AddWithValue("@UserId", userId);
                 object result = cmd.ExecuteScalar();
+                connection.Close();
                 return result != DBNull.Value ? Convert.ToInt32(result) : 0;
             }
             catch (Exception e)
@@ -343,6 +357,7 @@ namespace Dabloons_Service
                 SqlCommand cmd = new SqlCommand("SELECT SUM(MoneyAccumulated) FROM Match WHERE UserId = @UserId AND Result = 'W'", connection);
                 cmd.Parameters.AddWithValue("@UserId", userId);
                 object result = cmd.ExecuteScalar();
+                connection.Close();
                 return result != DBNull.Value ? Convert.ToInt32(result) : 0;
             }
             catch (Exception e)
@@ -364,6 +379,7 @@ namespace Dabloons_Service
                 SqlCommand cmd = new SqlCommand("SELECT SUM(TowersBuilt) FROM Match WHERE UserId = @UserId", connection);
                 cmd.Parameters.AddWithValue("@UserId", userId);
                 object result = cmd.ExecuteScalar();
+                connection.Close();
                 return result != DBNull.Value ? Convert.ToInt32(result) : 0;
             }
             catch (Exception e)
@@ -393,12 +409,14 @@ namespace Dabloons_Service
                 SqlDataReader reader = cmd.ExecuteReader();
                 if (reader.Read())
                 {
+                    connection.Close();
                     return new User
                     {
                         UserId = Convert.ToInt32(reader["UserId"]),
                         Username = reader["Username"].ToString(),
                     };
                 }
+                connection.Close();
                 return null;
             }
             catch (Exception e)
@@ -426,12 +444,14 @@ namespace Dabloons_Service
                 SqlDataReader reader = cmd.ExecuteReader();
                 if (reader.Read())
                 {
+                    connection.Close();
                     return new User
                     {
                         UserId = Convert.ToInt32(reader["UserId"]),
                         Username = reader["Username"].ToString(),
                     };
                 }
+                connection.Close();
                 return null;
             }
             catch (Exception e)
@@ -458,12 +478,14 @@ namespace Dabloons_Service
                 SqlDataReader reader = cmd.ExecuteReader();
                 if (reader.Read())
                 {
+                    connection.Close();
                     return new User
                     {
                         UserId = Convert.ToInt32(reader["UserId"]),
                         Username = reader["Username"].ToString(),
                     };
                 }
+                connection.Close();
                 return null;
             }
             catch (Exception e)
@@ -490,12 +512,14 @@ namespace Dabloons_Service
                 SqlDataReader reader = cmd.ExecuteReader();
                 if (reader.Read())
                 {
+                    connection.Close();
                     return new User
                     {
                         UserId = Convert.ToInt32(reader["UserId"]),
                         Username = reader["Username"].ToString(),
                     };
                 }
+                connection.Close();
                 return null;
             }
             catch (Exception e)
@@ -522,12 +546,14 @@ namespace Dabloons_Service
                 SqlDataReader reader = cmd.ExecuteReader();
                 if (reader.Read())
                 {
+                    connection.Close();
                     return new User
                     {
                         UserId = Convert.ToInt32(reader["UserId"]),
                         Username = reader["Username"].ToString(),
                     };
                 }
+                connection.Close();
                 return null;
             }
             catch (Exception e)
@@ -554,12 +580,14 @@ namespace Dabloons_Service
                 SqlDataReader reader = cmd.ExecuteReader();
                 if (reader.Read())
                 {
+                    connection.Close();
                     return new User
                     {
                         UserId = Convert.ToInt32(reader["UserId"]),
                         Username = reader["Username"].ToString(),
                     };
                 }
+                connection.Close();
                 return null;
             }
             catch (Exception e)
@@ -588,12 +616,14 @@ namespace Dabloons_Service
                 SqlDataReader reader = cmd.ExecuteReader();
                 if (reader.Read())
                 {
+                    connection.Close();
                     return new User
                     {
                         UserId = Convert.ToInt32(reader["UserId"]),
                         Username = reader["Username"].ToString(),
                     };
                 }
+                connection.Close();
                 return null;
             }
             catch (Exception e)
@@ -622,12 +652,14 @@ namespace Dabloons_Service
                 SqlDataReader reader = cmd.ExecuteReader();
                 if (reader.Read())
                 {
+                    connection.Close();
                     return new User
                     {
                         UserId = Convert.ToInt32(reader["UserId"]),
                         Username = reader["Username"].ToString(),
                     };
                 }
+                connection.Close();
                 return null;
             }
             catch (Exception e)

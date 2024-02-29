@@ -44,7 +44,13 @@ namespace DabloonsPP.Assets.Menu_Pages
             catch (Exception ex)
             {
                 MessageDialog message = new MessageDialog(ex.Message);
+                await message.ShowAsync();
             }
+        }
+
+        private void Return_Click(object sender, RoutedEventArgs e)
+        {
+            Frame.Navigate(typeof(MainPage));
         }
     }
 }

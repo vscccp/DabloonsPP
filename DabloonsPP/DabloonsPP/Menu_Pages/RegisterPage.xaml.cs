@@ -37,10 +37,12 @@ namespace DabloonsPP
             if(username.Length < 5 || username.Length > 16)
             {
                 MessageDialog message = new MessageDialog("Username length is invalid(Should be between 5-16)");
+                await message.ShowAsync();
             }
             else if((pwd.Length < 6 || pwd.Length > 24))
             {
                 MessageDialog message = new MessageDialog("Password length is invalid(Should be between 6-24)");
+                await message.ShowAsync();
             }
             else
             {
@@ -67,10 +69,18 @@ namespace DabloonsPP
                 }
                 catch(Exception ex)
                 {
-                    MessageDialog message = new MessageDialog("Something went wrong...");
+                    MessageDialog message = new MessageDialog(ex.Message);
+                    await message.ShowAsync();
                 }
             }
-               
+
+            
+
+        }
+
+        private void Return_Click(object sender, RoutedEventArgs e)
+        {
+            Frame.Navigate(typeof(MainPage));
         }
     }
 }
