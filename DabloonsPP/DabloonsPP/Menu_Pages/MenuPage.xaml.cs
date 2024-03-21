@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DabloonsPP.Menu_Pages;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -29,7 +30,7 @@ namespace DabloonsPP
 
         private void Shop_DoubleTapped(object sender, DoubleTappedRoutedEventArgs e)
         {
-
+            Frame.Navigate(typeof(BloonShop));
         }
 
         private void Play_DoubleTapped(object sender, DoubleTappedRoutedEventArgs e)

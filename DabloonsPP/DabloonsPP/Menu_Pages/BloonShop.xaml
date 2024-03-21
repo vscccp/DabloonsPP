@@ -14,7 +14,10 @@
             <RowDefinition Height="0.5*"/>
             <RowDefinition/>
             <RowDefinition/>
+            <RowDefinition Height="0.25*"/>
         </Grid.RowDefinitions>
+
+        <Button Content="^" Width="1280" FontSize="50"  Grid.Row="3" Click="Button_Click_1"/>
 
         <TextBlock Foreground="White" Text="Shop" Grid.Row="0" FontSize="80" HorizontalAlignment="Center" FontWeight="ExtraBlack" Margin="0,0,250,0"/>
         <TextBlock Foreground="White" x:Name="Coins" Text="" Grid.Row="0" FontSize="80" HorizontalAlignment="Right" FontWeight="SemiBold"/>
