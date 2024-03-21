@@ -6,7 +6,8 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
-    Background="Orange">
+    Background="Orange"
+    Loaded="Page_Loaded">
 
     <Grid x:Name="Choice_Grid">
         <Grid.RowDefinitions>
@@ -21,5 +22,10 @@
         </Grid.ColumnDefinitions>
         <TextBlock Text="Choose Map" FontSize="60" Grid.ColumnSpan="3" Grid.Row="0" HorizontalAlignment="Center" FontWeight="ExtraBold"/>
         <Button Content="^" Width="1500" FontSize="50"  Grid.Row="3" Grid.ColumnSpan="3" Click="Button_Click_1"/>
+        
+        <Image x:Name="Map1" Source="/Assets/Maps/Map1.png" Grid.Column="0" Grid.Row="1" Width="450" Height="250"/>
+        <Image x:Name="Map2" Source="/Assets/Maps/map2.png" Grid.Column="1" Grid.Row="1" Width="450" Height="250"/>
+        <Image x:Name="Map3" Source="/Assets/Maps/map3.png" Grid.Column="2" Grid.Row="1" Width="450" Height="250"/>
+
     </Grid>
 </Page>

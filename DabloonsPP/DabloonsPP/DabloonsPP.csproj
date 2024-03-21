@@ -184,7 +184,7 @@
     <Content Include="Assets\Icons\settings.png" />
     <Content Include="Assets\Icons\ShopIcon.png" />
     <Content Include="Assets\Icons\statisticsIcon.png" />
-    <Content Include="Assets\Maps\locked_,map.jpg" />
+    <Content Include="Assets\Maps\locked_map.jpg" />
     <Content Include="Assets\Maps\Map1.png" />
     <Content Include="Assets\Maps\map2.png" />
     <Content Include="Assets\Maps\map3.png" />
