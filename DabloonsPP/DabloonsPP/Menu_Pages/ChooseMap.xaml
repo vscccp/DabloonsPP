@@ -6,9 +6,20 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
-    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    Background="Orange">
 
-    <Grid>
-
+    <Grid x:Name="Choice_Grid">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.15*"/>
+            <RowDefinition />
+            <RowDefinition Height="0.1*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <TextBlock Text="Choose Map" FontSize="60" Grid.ColumnSpan="3" Grid.Row="0" HorizontalAlignment="Center" FontWeight="ExtraBold"/>
+        <Button Content="^" Width="1500" FontSize="50"  Grid.Row="3" Grid.ColumnSpan="3" Click="Button_Click_1"/>
     </Grid>
 </Page>
