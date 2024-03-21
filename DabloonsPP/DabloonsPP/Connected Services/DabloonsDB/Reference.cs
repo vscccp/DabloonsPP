@@ -319,6 +319,9 @@ namespace DabloonsPP.DabloonsDB {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/GetTotalTowersBuilt", ReplyAction="http://tempuri.org/IService1/GetTotalTowersBuiltResponse")]
         System.Threading.Tasks.Task<int> GetTotalTowersBuiltAsync(int userId);
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/GetUnlocked", ReplyAction="http://tempuri.org/IService1/GetUnlockedResponse")]
+        System.Threading.Tasks.Task<DabloonsPP.DabloonsDB.Unlocked> GetUnlockedAsync(int userId);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/GetTopPlayerByMoneySpent", ReplyAction="http://tempuri.org/IService1/GetTopPlayerByMoneySpentResponse")]
         System.Threading.Tasks.Task<DabloonsPP.DabloonsDB.User> GetTopPlayerByMoneySpentAsync();
         
@@ -445,6 +448,10 @@ namespace DabloonsPP.DabloonsDB {
         
         public System.Threading.Tasks.Task<int> GetTotalTowersBuiltAsync(int userId) {
             return base.Channel.GetTotalTowersBuiltAsync(userId);
+        }
+        
+        public System.Threading.Tasks.Task<DabloonsPP.DabloonsDB.Unlocked> GetUnlockedAsync(int userId) {
+            return base.Channel.GetUnlockedAsync(userId);
         }
         
         public System.Threading.Tasks.Task<DabloonsPP.DabloonsDB.User> GetTopPlayerByMoneySpentAsync() {

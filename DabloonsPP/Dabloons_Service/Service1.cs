@@ -47,7 +47,7 @@ namespace Dabloons_Service
             try
             {
                 connection.Open();
-                SqlCommand cmd = new SqlCommand("SELECT * FROM Users WHERE Username = @Username", connection);
+                SqlCommand cmd = new SqlCommand("SELECT UserId,Username FROM Users WHERE Username = @Username", connection);
                 cmd.Parameters.AddWithValue("@Username", username);
                 SqlDataReader reader = cmd.ExecuteReader();
                 if (reader.Read())
@@ -55,7 +55,6 @@ namespace Dabloons_Service
                     return new User
                     {
                         Username = reader["Username"].ToString(),
-                        Password = reader["Password"].ToString(),
                         UserId = Convert.ToInt32(reader["UserId"])
                     };
                 }
@@ -327,6 +326,38 @@ namespace Dabloons_Service
             }
         }
 
+        public Unlocked GetUnlocked(int userId)
+        {
+            try
+            {
+                connection.Open();
+                SqlCommand cmd = new SqlCommand("SELECT * FROM Unlocked WHERE UserId = @UserId", connection);
+                cmd.Parameters.AddWithValue("@UserId", userId);
+                SqlDataReader reader = cmd.ExecuteReader();
+                if (reader.Read())
+                {
+                    return new Unlocked
+                    {
+                        UserId = Convert.ToInt32(reader["UserId"]),
+                        GameCurrency = Convert.ToInt32(reader["GameCurrency"]),
+                        MapsUnlocked = Convert.ToInt32(reader["MapsUnlocked"]),
+                        MoneyTiers = Convert.ToInt32(reader["MoneyTiers"]),
+                        HealthTiers = Convert.ToInt32(reader["HealthTiers"])
+                    };
+                }
+                connection.Close();
+                return null;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                return null;
+            }
+            finally
+            {
+                connection.Close();
+            }
+        }
         public int GetTotalMoneySpent(int userId)
         {
             try

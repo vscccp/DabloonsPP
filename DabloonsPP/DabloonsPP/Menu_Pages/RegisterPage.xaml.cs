@@ -59,12 +59,16 @@ namespace DabloonsPP
                         bool addResult = await service.AddUserAsync(user);
                         if(addResult)
                         {
-                            Frame.Navigate(typeof(MenuPage), user);
+                            Frame.Navigate(typeof(MainPage));
                         }
                         else
                         {
                             throw new Exception("Add user to DB failed");
                         }
+                    }
+                    else
+                    {
+                        throw new Exception("Username already exists.");
                     }
                 }
                 catch(Exception ex)

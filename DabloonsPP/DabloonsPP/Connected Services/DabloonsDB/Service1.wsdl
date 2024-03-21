@@ -97,6 +97,12 @@
   <wsdl:message name="IService1_GetTotalTowersBuilt_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetTotalTowersBuiltResponse" />
   </wsdl:message>
+  <wsdl:message name="IService1_GetUnlocked_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetUnlocked" />
+  </wsdl:message>
+  <wsdl:message name="IService1_GetUnlocked_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetUnlockedResponse" />
+  </wsdl:message>
   <wsdl:message name="IService1_GetTopPlayerByMoneySpent_InputMessage">
     <wsdl:part name="parameters" element="tns:GetTopPlayerByMoneySpent" />
   </wsdl:message>
@@ -205,6 +211,10 @@
     <wsdl:operation name="GetTotalTowersBuilt">
       <wsdl:input wsaw:Action="http://tempuri.org/IService1/GetTotalTowersBuilt" message="tns:IService1_GetTotalTowersBuilt_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IService1/GetTotalTowersBuiltResponse" message="tns:IService1_GetTotalTowersBuilt_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUnlocked">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/GetUnlocked" message="tns:IService1_GetUnlocked_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/GetUnlockedResponse" message="tns:IService1_GetUnlocked_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="GetTopPlayerByMoneySpent">
       <wsdl:input wsaw:Action="http://tempuri.org/IService1/GetTopPlayerByMoneySpent" message="tns:IService1_GetTopPlayerByMoneySpent_InputMessage" />
@@ -369,6 +379,15 @@
     </wsdl:operation>
     <wsdl:operation name="GetTotalTowersBuilt">
       <soap:operation soapAction="http://tempuri.org/IService1/GetTotalTowersBuilt" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUnlocked">
+      <soap:operation soapAction="http://tempuri.org/IService1/GetUnlocked" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

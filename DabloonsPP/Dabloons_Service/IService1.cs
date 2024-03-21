@@ -59,7 +59,10 @@ namespace Dabloons_Service
 
         [OperationContract]
         int GetTotalTowersBuilt(int userId);
-#endregion
+
+        [OperationContract]
+        Unlocked GetUnlocked(int userId);
+        #endregion
 
         #region Top Stats
         [OperationContract]

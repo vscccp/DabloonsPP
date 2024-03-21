@@ -8,11 +8,14 @@ using Windows.UI.Xaml.Controls;
 
 namespace DabloonsPP.Assets.Menu_Pages
 {
+    
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
     public sealed partial class LoginPage : Page
     {
+        public static User currentUser; 
+            
         public LoginPage()
         {
             this.InitializeComponent();
@@ -31,10 +34,13 @@ namespace DabloonsPP.Assets.Menu_Pages
                 user.Username = username;
                 user.Password = pwd;
                 bool result = await service.TryLoginAsync(user);
+                user.Password = "";
 
+                
                 if (result)
                 {
-                    Frame.Navigate(typeof(MenuPage), user);
+                    currentUser = await service.GetUserByUsernameAsync(user.Username);
+                    Frame.Navigate(typeof(MenuPage));
                 }
                 else
                 {

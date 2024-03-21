@@ -124,6 +124,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
+    <Compile Include="Menu_Pages\BloonShop.xaml.cs">
+      <DependentUpon>BloonShop.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Menu_Pages\ChooseMap.xaml.cs">
       <DependentUpon>ChooseMap.xaml</DependentUpon>
     </Compile>
@@ -201,6 +204,9 @@
     <Content Include="Assets\Upgrade_Icons\RangeLol.png" />
     <Content Include="Assets\Upgrade_Icons\Sharp_darts.png" />
     <Content Include="Assets\VFX\pop.png" />
+    <None Include="Connected Services\DabloonsDB\DabloonsPP.DabloonsDB.Unlocked.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Connected Services\DabloonsDB\DabloonsPP.DabloonsDB.User.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
@@ -225,6 +231,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="Menu_Pages\BloonShop.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Menu_Pages\ChooseMap.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
