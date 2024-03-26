@@ -22,10 +22,12 @@ using Windows.UI.Xaml.Shapes;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 
-namespace DabloonsPP
+namespace DabloonsPP.Map_Pages
 {
-    
-    public sealed partial class Map1 : Page
+    /// <summary>
+    /// An empty page that can be used on its own or navigated to within a Frame.
+    /// </summary>
+    public sealed partial class map2 : Page
     {
         #region constants
         const int STARTING_X = -50;
@@ -39,7 +41,7 @@ namespace DabloonsPP
         private ITower selectedTower;
         private Border selectedTower_icon;
         GameData gameData;
-        
+
         private RoundManager roundManager;
 
         #region Stats
@@ -53,20 +55,15 @@ namespace DabloonsPP
         private DateTime gameTimeStart;
 
         #endregion
-        public Map1()
+        public map2()
         {
             this.InitializeComponent();
         }
 
-        private void PageLoaded(object sender, RoutedEventArgs e)
+        private void Page_Loaded(object sender, RoutedEventArgs e)
         {
             #region Initialize Turns
-            turns.Enqueue(new Turn(turn1, new System.Drawing.Point((int)Canvas.GetLeft(turn1), (int)Canvas.GetTop(turn1)), Direction.DOWN));
-            turns.Enqueue(new Turn(turn2, new System.Drawing.Point((int)Canvas.GetLeft(turn2), (int)Canvas.GetTop(turn2)), Direction.RIGHT));
-            turns.Enqueue(new Turn(turn3, new System.Drawing.Point((int)Canvas.GetLeft(turn3), (int)Canvas.GetTop(turn3)), Direction.UP));
-            turns.Enqueue(new Turn(turn4, new System.Drawing.Point((int)Canvas.GetLeft(turn4), (int)Canvas.GetTop(turn4)), Direction.RIGHT));
-            turns.Enqueue(new Turn(turn5, new System.Drawing.Point((int)Canvas.GetLeft(turn5), (int)Canvas.GetTop(turn5)), Direction.DOWN));
-            turns.Enqueue(new Turn(end, new System.Drawing.Point((int)Canvas.GetLeft(end), (int)Canvas.GetTop(end)), Direction.DOWN));
+            
             #endregion
 
             #region enemyCheckTimer init
@@ -87,8 +84,6 @@ namespace DabloonsPP
             roundManager = new RoundManager(GameCanva, addMoneyForPop, enemies, STARTING_X, STARTING_Y, turns, Reduce_Health, round_block);
 
             Window.Current.CoreWindow.KeyDown += CoreWindow_KeyDown;
-
-
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
@@ -102,6 +97,7 @@ namespace DabloonsPP
                 health += receivedData.HealthTiers * 5;
             }
         }
+
         private void CoreWindow_KeyDown(Windows.UI.Core.CoreWindow sender, Windows.UI.Core.KeyEventArgs args)
         {
             if (args.VirtualKey == Windows.System.VirtualKey.W)
@@ -110,13 +106,13 @@ namespace DabloonsPP
 
                 enemies.Add(enemy);
             }
-            else if(args.VirtualKey == Windows.System.VirtualKey.S)
+            else if (args.VirtualKey == Windows.System.VirtualKey.S)
             {
                 Bloon enemy = new Bloon(STARTING_X, STARTING_Y, GameCanva, 5, turns, addMoneyForPop, Reduce_Health, false, 0);
 
                 enemies.Add(enemy);
             }
-            else if(args.VirtualKey == Windows.System.VirtualKey.M)
+            else if (args.VirtualKey == Windows.System.VirtualKey.M)
             {
                 money += 200;
                 money_block.Text = money.ToString();
@@ -170,23 +166,23 @@ namespace DabloonsPP
                 // Use the selected tower's Tag to identify the chosen tower
                 string towerType = selectedTower_icon.Tag as string;
 
-                if(towerType == "dart_monkey" && TryReduceMoney((int)BasicTower_Prices.TowerPrice))
+                if (towerType == "dart_monkey" && TryReduceMoney((int)BasicTower_Prices.TowerPrice))
                 {
                     // Create the tower based on the selected color
                     BasicTower newTower = new BasicTower(tapX, tapY, GameCanva, 1, enemies, TryReduceMoney, changeMenu, changeSelectedTower, addMoneyForPop);
                     towersBuilt++;
                 }
-                else if(towerType == "ninja_monkey" && TryReduceMoney((int)NinjaTower_Prices.TowerPrice))
+                else if (towerType == "ninja_monkey" && TryReduceMoney((int)NinjaTower_Prices.TowerPrice))
                 {
                     NinjaTower newTower = new NinjaTower(tapX, tapY, GameCanva, 1, enemies, TryReduceMoney, changeMenu, changeSelectedTower, addMoneyForPop);
                     towersBuilt++;
                 }
-                else if(towerType == "super_monkey" && TryReduceMoney((int)SuperTower_Prices.TowerPrice))
+                else if (towerType == "super_monkey" && TryReduceMoney((int)SuperTower_Prices.TowerPrice))
                 {
                     SuperTower newTower = new SuperTower(tapX, tapY, GameCanva, 1, enemies, TryReduceMoney, changeMenu, changeSelectedTower, addMoneyForPop);
                     towersBuilt++;
                 }
-                else if(towerType == "boomerang_monkey" && TryReduceMoney((int)BoomerangTower_Prices.TowerPrice))
+                else if (towerType == "boomerang_monkey" && TryReduceMoney((int)BoomerangTower_Prices.TowerPrice))
                 {
                     BoomerangTower newTower = new BoomerangTower(tapX, tapY, GameCanva, 1, enemies, TryReduceMoney, changeMenu, changeSelectedTower, addMoneyForPop);
                     towersBuilt++;
@@ -294,7 +290,7 @@ namespace DabloonsPP
             health -= health_reduce;
 
             health_block.Text = health.ToString();
-            if(health <= 0)
+            if (health <= 0)
             {
                 // implement lose screen and statistics
             }
@@ -315,7 +311,7 @@ namespace DabloonsPP
 
         private void Sell_Tapped(object sender, TappedRoutedEventArgs e)
         {
-            if(upgradeMenu.Visibility == Visibility.Collapsed)
+            if (upgradeMenu.Visibility == Visibility.Collapsed)
                 return;
 
             selectedTower.sellTower();

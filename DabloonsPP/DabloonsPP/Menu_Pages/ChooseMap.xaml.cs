@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
@@ -21,6 +22,12 @@ namespace DabloonsPP.Assets.Menu_Pages
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
+
+    public struct GameData
+    {
+        public int HealthTiers { get; set; }
+        public int MoneyTiers { get; set; }
+    };
     public sealed partial class ChooseMap : Page
     {
         DabloonsDB.Unlocked unlocked;
@@ -78,6 +85,28 @@ namespace DabloonsPP.Assets.Menu_Pages
             {
                 MessageDialog die = new MessageDialog(ex.Message);
                 await die.ShowAsync();
+            }
+        }
+
+        private void Map_Tapped(object sender, TappedRoutedEventArgs e)
+        {
+            Image mapImage = (Image)sender;
+            string tag = mapImage.Tag.ToString();
+            GameData data = new GameData();
+            data.HealthTiers = unlocked.HealthTiers;
+            data.MoneyTiers = unlocked.MoneyTiers;
+
+            if(tag == "map1")
+            {
+                Frame.Navigate(typeof(Map1), data);
+            }
+            else if(tag == "map2")
+            {
+                
+            }
+            else
+            {
+
             }
         }
     }
