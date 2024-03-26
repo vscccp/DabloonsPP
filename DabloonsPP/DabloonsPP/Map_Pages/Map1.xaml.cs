@@ -29,7 +29,7 @@ namespace DabloonsPP
     {
         #region constants
         const int STARTING_X = -50;
-        const int STARTING_Y = 250;
+        const int STARTING_Y = 280;
         #endregion
 
         MediaElement moneySound = new MediaElement();

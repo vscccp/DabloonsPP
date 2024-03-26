@@ -38,7 +38,7 @@ namespace DabloonsPP
             firstPath_Price = (int)BasicTower_Prices.FirstPath_1;
             secondPath_Price = (int)BasicTower_Prices.SecondPath_1;
             thirdPath_Price = (int)BasicTower_Prices.ThirdPath_1;
-
+            type = TowerType.Basic;
             moneySpent = (int)BasicTower_Prices.TowerPrice;
         }
 

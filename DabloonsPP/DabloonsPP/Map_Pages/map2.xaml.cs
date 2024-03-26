@@ -31,7 +31,7 @@ namespace DabloonsPP.Map_Pages
     {
         #region constants
         const int STARTING_X = -50;
-        const int STARTING_Y = 250;
+        const int STARTING_Y = 300;
         #endregion
 
         MediaElement moneySound = new MediaElement();
@@ -63,7 +63,18 @@ namespace DabloonsPP.Map_Pages
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
             #region Initialize Turns
-            
+            turns.Enqueue(new Turn(turn1, new System.Drawing.Point((int)Canvas.GetLeft(turn1), (int)Canvas.GetTop(turn1)), Direction.UP));
+            turns.Enqueue(new Turn(turn2, new System.Drawing.Point((int)Canvas.GetLeft(turn2), (int)Canvas.GetTop(turn2)), Direction.LEFT));
+            turns.Enqueue(new Turn(turn3, new System.Drawing.Point((int)Canvas.GetLeft(turn3), (int)Canvas.GetTop(turn3)), Direction.DOWN));
+            turns.Enqueue(new Turn(turn4, new System.Drawing.Point((int)Canvas.GetLeft(turn4), (int)Canvas.GetTop(turn4)), Direction.LEFT));
+            turns.Enqueue(new Turn(turn5, new System.Drawing.Point((int)Canvas.GetLeft(turn5), (int)Canvas.GetTop(turn5)), Direction.UP));
+            turns.Enqueue(new Turn(turn6, new System.Drawing.Point((int)Canvas.GetLeft(turn6), (int)Canvas.GetTop(turn6)), Direction.RIGHT));
+            turns.Enqueue(new Turn(turn7, new System.Drawing.Point((int)Canvas.GetLeft(turn7), (int)Canvas.GetTop(turn7)), Direction.UP));
+            turns.Enqueue(new Turn(turn8, new System.Drawing.Point((int)Canvas.GetLeft(turn8), (int)Canvas.GetTop(turn8)), Direction.RIGHT));
+            turns.Enqueue(new Turn(turn9, new System.Drawing.Point((int)Canvas.GetLeft(turn9), (int)Canvas.GetTop(turn9)), Direction.DOWN));
+            turns.Enqueue(new Turn(turn10, new System.Drawing.Point((int)Canvas.GetLeft(turn10), (int)Canvas.GetTop(turn10)), Direction.LEFT));
+            turns.Enqueue(new Turn(turn11, new System.Drawing.Point((int)Canvas.GetLeft(turn11), (int)Canvas.GetTop(turn11)), Direction.DOWN));
+            turns.Enqueue(new Turn(end, new System.Drawing.Point((int)Canvas.GetLeft(end), (int)Canvas.GetTop(end)), Direction.DOWN));
             #endregion
 
             #region enemyCheckTimer init

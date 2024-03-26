@@ -90,12 +90,35 @@
 
         <Canvas Grid.Column="0" x:Name="GameCanva">
             <!--#region Turns-->
-            <Ellipse x:Name="turn1" Fill="Transparent" Height="30" Width="30" Canvas.Left="420" Canvas.Top="250"/>
-            
+            <Ellipse x:Name="turn1" Fill="Black" Height="30" Width="30" Canvas.Left="675" Canvas.Top="300"/>
+            <Ellipse x:Name="turn2" Fill="Black" Height="30" Width="30" Canvas.Left="585" Canvas.Top="26"/>
+            <Ellipse x:Name="turn3" Fill="Black" Height="30" Width="30" Canvas.Left="340" Canvas.Top="36"/>
+            <Ellipse x:Name="turn4" Fill="Black" Height="30" Width="30" Canvas.Left="385" Canvas.Top="720"/>
+            <Ellipse x:Name="turn5" Fill="Black" Height="30" Width="30" Canvas.Left="120" Canvas.Top="710"/>
+            <Ellipse x:Name="turn6" Fill="Black" Height="30" Width="30" Canvas.Left="130" Canvas.Top="326"/>
+            <Ellipse x:Name="turn7" Fill="Black" Height="30" Width="30" Canvas.Left="824" Canvas.Top="456"/>
+            <Ellipse x:Name="turn8" Fill="Black" Height="30" Width="30" Canvas.Left="734" Canvas.Top="139"/>
+            <Ellipse x:Name="turn9" Fill="Black" Height="30" Width="30" Canvas.Left="991" Canvas.Top="219"/>
+            <Ellipse x:Name="turn10" Fill="Black" Height="30" Width="30" Canvas.Left="890" Canvas.Top="642"/>
+            <Ellipse x:Name="turn11" Fill="Black" Height="30" Width="30" Canvas.Left="416" Canvas.Top="572"/>
+            <Ellipse x:Name="end" Fill="Transparent" Height="30" Width="30" Canvas.Left="515" Canvas.Top="970"/>
+
+
             <!--#endregion-->
             <!--#region Blockers-->
-            <Rectangle Width="400" Height="100" Canvas.Top="210" RadiusX="4" RadiusY="4"                   Fill="Transparent" />
-            
+            <Rectangle Width="625" Height="80" Canvas.Top="285" RadiusX="4" RadiusY="4"                   Fill="Transparent" />
+            <Rectangle Width="86" Height="227" Canvas.Top="128" RadiusX="4" RadiusY="4"                   Fill="Transparent" Canvas.Left="539" />
+            <Rectangle Width="255" Height="85" Canvas.Top="128" RadiusX="4" RadiusY="4"                   Fill="Transparent" Canvas.Left="370" />
+            <Rectangle Width="75" Height="545" Canvas.Top="128" RadiusX="4" RadiusY="4"                   Fill="Transparent" Canvas.Left="355" />
+            <Rectangle Width="260" Height="77" Canvas.Top="590" RadiusX="4" RadiusY="4"                   Fill="Transparent" Canvas.Left="170" />
+            <Rectangle Width="71" Height="203" Canvas.Top="456" RadiusX="4" RadiusY="4"                   Fill="Transparent" Canvas.Left="160" />
+            <Rectangle Width="604" Height="67" Canvas.Top="426" RadiusX="4" RadiusY="4"                   Fill="Transparent" Canvas.Left="160" />
+            <Rectangle Width="73" Height="264" Canvas.Top="229" RadiusX="4" RadiusY="4"                   Fill="Transparent" Canvas.Left="724" />
+            <Rectangle Width="217" Height="88" Canvas.Top="227" RadiusX="4" RadiusY="4"                   Fill="Transparent" Canvas.Left="724" />
+            <Rectangle Width="78" Height="385" Canvas.Top="227" RadiusX="4" RadiusY="4"                   Fill="Transparent" Canvas.Left="863" />
+            <Rectangle Width="426" Height="54" Canvas.Top="540" RadiusX="4" RadiusY="4"                   Fill="Transparent" Canvas.Left="515" />
+            <Rectangle Width="84" Height="302" Canvas.Top="552" RadiusX="4" RadiusY="4"                   Fill="Transparent" Canvas.Left="488" />
+
             <!--#endregion-->
 
 

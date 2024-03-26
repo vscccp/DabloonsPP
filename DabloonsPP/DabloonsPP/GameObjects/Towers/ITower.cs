@@ -49,6 +49,7 @@ namespace DabloonsPP
         private DateTime lastShootTime = DateTime.MinValue;
         private DispatcherTimer ChooseTimer;
         protected string projectilePath;
+        protected TowerType type;
 
         protected changeMenu OpenUpgradeMenu;
         protected TryReduceMoney tryReduceMoney;
@@ -208,7 +209,7 @@ namespace DabloonsPP
 
         private void Image_Tapped(object sender, Windows.UI.Xaml.Input.TappedRoutedEventArgs e)
         {
-            OpenUpgradeMenu(TowerType.Basic, "ms-appx:///Assets/Upgrade_Icons/Sharp_darts.png", "ms-appx:///Assets/Upgrade_Icons/Quick_shots.png", "ms-appx:///Assets/Upgrade_Icons/RangeLol.png", firstPath, secondPath, thirdPath, firstPath_Price, secondPath_Price, thirdPath_Price);
+            OpenUpgradeMenu(type, "ms-appx:///Assets/Upgrade_Icons/Sharp_darts.png", "ms-appx:///Assets/Upgrade_Icons/Quick_shots.png", "ms-appx:///Assets/Upgrade_Icons/RangeLol.png", firstPath, secondPath, thirdPath, firstPath_Price, secondPath_Price, thirdPath_Price);
             changeSelectedTower(this);
         }
     }

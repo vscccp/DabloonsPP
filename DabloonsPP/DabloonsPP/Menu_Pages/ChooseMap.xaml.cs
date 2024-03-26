@@ -109,5 +109,10 @@ namespace DabloonsPP.Assets.Menu_Pages
 
             }
         }
+
+        private void BackButton(object sender, RoutedEventArgs e)
+        {
+            Frame.Navigate(typeof(MenuPage));
+        }
     }
 }

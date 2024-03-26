@@ -38,7 +38,7 @@ namespace DabloonsPP
             firstPath_Price = (int)BoomerangTower_Prices.FirstPath_1;
             secondPath_Price = (int)BoomerangTower_Prices.SecondPath_1;
             thirdPath_Price = (int)BoomerangTower_Prices.ThirdPath_1;
-
+            type = TowerType.boomerang;
             moneySpent = (int)BoomerangTower_Prices.TowerPrice;
         }
 

@@ -41,7 +41,7 @@ namespace DabloonsPP.GameObjects.Towers
             thirdPath_Price = (int)NinjaTower_Prices.ThirdPath_1;
 
             moneySpent = (int)NinjaTower_Prices.TowerPrice;
-
+            type = TowerType.ninja;
             canShootCamo = true;
         }
 

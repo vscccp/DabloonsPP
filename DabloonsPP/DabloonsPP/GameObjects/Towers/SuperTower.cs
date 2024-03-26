@@ -36,7 +36,7 @@ namespace DabloonsPP.GameObjects.Towers
             firstPath_Price = (int)SuperTower_Prices.FirstPath_1;
             secondPath_Price = (int)SuperTower_Prices.SecondPath_1;
             thirdPath_Price = (int)SuperTower_Prices.ThirdPath_1;
-
+            type = TowerType.super;
             moneySpent = (int)SuperTower_Prices.TowerPrice;
         }
 

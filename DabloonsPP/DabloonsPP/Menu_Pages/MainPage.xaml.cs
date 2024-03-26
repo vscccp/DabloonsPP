@@ -1,4 +1,5 @@
 ﻿using DabloonsPP.Assets.Menu_Pages;
+using DabloonsPP.Map_Pages;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -30,7 +31,7 @@ namespace DabloonsPP
 
         private void Register_Click(object sender, RoutedEventArgs e)
         {
-            Frame.Navigate(typeof(RegisterPage));
+            Frame.Navigate(typeof(map2));
         }
 
         private void Login_Click(object sender, RoutedEventArgs e)
